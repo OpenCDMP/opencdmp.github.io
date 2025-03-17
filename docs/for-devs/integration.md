@@ -168,7 +168,7 @@ When reaching out to OpenCDMP/Keycloak administrators, provide the following inf
 - **Keycloak Documentation**: [https://www.keycloak.org/documentation](https://www.keycloak.org/documentation)
 - **OAuth2 Specification**: [https://oauth.net/2/](https://oauth.net/2/)
 - **OpenID Connect Specification**: [https://openid.net/connect/](https://openid.net/connect/)
-- **OpenCDMP API Reference**: [https://opencdmp.org/api-docs](https://opencdmp.org/api-docs)
+<!-- - **OpenCDMP API Reference**: [https://opencdmp.org/api-docs](https://opencdmp.org/api-docs) -->
 
 ---
 
@@ -176,8 +176,7 @@ When reaching out to OpenCDMP/Keycloak administrators, provide the following inf
 
 If you have any questions or need assistance with integration:
 
-- **Email**: support@opencdmp.org
-<!-- - **Community Forum**: [OpenCDMP Discussion Forum](https://forum.opencdmp.org) -->
+- **Email**: opencdmp at cite.gr
 - **GitHub Issues**: [https://github.com/OpenCDMP/OpenCDMP/issues](https://github.com/OpenCDMP/OpenCDMP/issues)
 
 ---

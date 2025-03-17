@@ -48,8 +48,8 @@ description: A brief introduction to the platform features
 
 ## 🛠️ **Getting Started**
 
-1. **Deploy OpenCDMP**: Follow the [Deployment Guide](https://github.com/OpenCDMP/OpenCDMP/blob/main/INSTALLATION.md) to set up the platform.
-2. **Configure OpenCDMP**: Set up authentication and authorization by following the [Keycloak Setup Instructions](https://github.com/OpenCDMP/OpenCDMP/blob/main/KEYCLOAK_SETUP.md).
+1. **Deploy OpenCDMP**: Follow the [Deployment Guide](./installation.md) to set up the platform.
+2. **Configure OpenCDMP**: Set up authentication and authorization by following the [Keycloak Setup Instructions](./configuration/keycloak.md).
 3. **Create your plans**: Create your Plans by leveraging the features of the platform.
 
 ---
@@ -64,19 +64,6 @@ description: A brief introduction to the platform features
 - **Stay Informed**: Notification features ensure that team members are promptly aware of important updates and actions required.
 - **Flexibility and Scalability**: Suits organizations of all sizes due to its flexible and extensible design.
 <!-- - **Compliance Assurance**: Customizable validation plugins help keep OMPs aligned with specific standards and regulations. -->
-
----
-
-## 📖 **Documentation**
-
-- **User Guide**: Learn how to use OpenCDMP effectively.
-- **Developer Guide**: For those interested in extending the platform.
-<!-- - **API Reference**: Detailed documentation of available APIs. -->
-- **Deployment Instructions**: Steps to deploy OpenCDMP in your environment.
-- **Configuration Guides**:
-  - [Environment Variables Configuration](https://github.com/OpenCDMP/OpenCDMP/blob/main/ENV_CONFIGURATION.md)
-  - [Keycloak Setup](https://github.com/OpenCDMP/OpenCDMP/blob/main/KEYCLOAK_SETUP.md)
-  - [Scalability and Extensibility](https://github.com/OpenCDMP/OpenCDMP/blob/main/SCALABILITY_EXTENSIBILITY.md)
 
 ---
 
@@ -100,10 +87,7 @@ OpenCDMP is released under the [EUPL-1.2 License](https://github.com/OpenCDMP/Op
 
 For questions or support, please contact:
 
-- **Email**: support@opencdmp.org
-- **Twitter**: [@OpenCDMP](https://twitter.com/OpenCDMP)
-- **LinkedIn**: [OpenCDMP Page](https://www.linkedin.com/company/opencdmp)
-
+- **Email**: opencdmp at cite.gr
 ---
 
 Start simplifying your Output Management Plans with OpenCDMP today!

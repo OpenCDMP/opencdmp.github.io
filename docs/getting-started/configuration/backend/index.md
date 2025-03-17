@@ -75,7 +75,7 @@ This document provides an overview of the configuration settings for the backend
 | `LOCALE_TIMEZONE` | Timezone for backend service. | `UTC` | `UTC` |
 | `LOCALE_LANGUAGE` | Language for backend service. | `en` | `en` |
 | `LOCALE_CULTURE` | Culture for backend service. | `en` | `en` |
-| `CONTACT_SUPPORT_EMAIL_ADDRESS` | Email receiver for contact support notifications. | - | `support@opencdmp.com` |
+| `CONTACT_SUPPORT_EMAIL_ADDRESS` | Email receiver for contact support notifications. | - | `support@mydomain.com` |
 | `ACCOUNTING_ENABLED` | Boolean value to enable [accounting service](/docs/supplementary-services/accounting.md). | - | `true` |
 | `ACCOUNTING_URL` | Accounting service connection URL string. | - | `http://<hostname>:<port>` |
 | `ACCOUNTING_AUTH_TOKEN_ENDPOINT` | URL to get keycloak auth token for accounting service. | - | `http://<keycloak-hostname>:<port>/realms/<realm-name>/protocol/openid-connect/token` |
