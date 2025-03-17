@@ -4,7 +4,7 @@ This repository contains the official documentation for **OpenCDMP**, built usin
 
 ## Overview
 
-The OpenCDMP documentation is designed to be easy to navigate and understand, offering detailed explanations and examples for all aspects of the platform. It is hosted as a **Docusaurus** project, allowing it to be deployed as a static website for public access.
+The OpenCDMP documentation is designed to be easy to navigate and understand, offering detailed explanations and examples for all aspects of the platform.
 
 ## License
 
