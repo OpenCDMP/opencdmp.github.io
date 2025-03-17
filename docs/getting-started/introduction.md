@@ -70,10 +70,8 @@ description: A brief introduction to the platform features
 ## 🤝 **Community and Support**
 
 - **GitHub Repository**: [https://github.com/OpenCDMP/OpenCDMP](https://github.com/OpenCDMP/OpenCDMP)
-- **Issue Tracker**: Report bugs or request features.
-- **Discussion Forum**: Join the community to discuss and share ideas.
+- **Issue Tracker**: Report bugs or request features [here](https://github.com/OpenCDMP/OpenCDMP).
 - **Contributing Guidelines**: Learn how to contribute to OpenCDMP. Please check out our [contributing guidelines](../for-devs/contributing.md) to get started.
-
 
 ---
 
