@@ -4,19 +4,72 @@ description: Configuring the evaluator services
 ---
 
 # Evaluator Services
-There are currently one implemented [evaluator service](/docs/supplementary-services/evaluator-services.md).
+These are the currently implemented [evaluator services](/docs/optional-services/evaluator-services.md). Here you can view all available configuration options for each evaluator service.
 
-<h3>Evaluator RDA maDMP </h3>
+## Evaluator RDA maDMP
 
-| Env Variable | Description | Default Value | Example |
-| --- | --- | --- | --- |
-| `IDP_ISSUER_URI` | Keycloak realm URL string. | - | `http://<keycloak-hostname>:<port>/realms/<realm-name>` |
-| `IDP_CLAIMS_ROLES_PATH` | Keycloak client roles path. | - | `<keycloak_client>.roles` |
-| `SECURITY_AUDIENCE` | Keycloak client scope that security is intended for. | - | `<keycloak-client-scope>` |
-| `RDA_MADMP_RDA_SCHEMA` | JSON file that contains [RDA](https://github.com/RDA-DMP-Common/RDA-DMP-Common-Standard) schema to make evaluations. | `classpath:schema/rda-schema.json` | `classpath:schema/<file-name>.json` |
-| `RDA_MADMP_HAS_LOGO` | Boolean value to enable evaluator logo. | `true` | `true` |
-| `RDA_MADMP_LOGO_PATH` | Image for evaluator logo. | `classpath:fair.png` | `classpath:<image-name>.<image-type>` |
-| `LOGGING_CONFIG_PATH` | Xml file that stores logging confiiguration. | `classpath:logging/logback.xml` | `classpath:logging/<file-name>.xml` |
-| `LOGGING_DEFAULT_LOG_LEVEL` | Level of error to store. Only 4 values can be assigned: `INFO`, `DEBUG`, `WARM`, `ERROR` | - | `WARN` |
-| `LOGGING_PATH` | File path to store logging. | - | `logs/` |
+### Authentication & Core Settings
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `IDP_ISSUER_URI` | Keycloak realm URL string. | Yes | - | `http://<keycloak-hostname>:<port>/realms/<realm-name>` |
+| `IDP_CLAIMS_ROLES_PATH` | Keycloak client roles path. | Yes | - | `<keycloak_client>.roles` |
+| `SECURITY_AUDIENCE` | [Keycloak client scope](/getting-started/configuration/keycloak/#step-4-create-client-scopes) that security is intended for. | Yes | - | `<keycloak-client-scope>` |
+
+### RDA Schema Configuration
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `RDA_MADMP_RDA_SCHEMA` | JSON file that contains [RDA](https://github.com/RDA-DMP-Common/RDA-DMP-Common-Standard) schema to make evaluations. | No | `classpath:schema/rda-schema.json` | `classpath:schema/<file-name>.json` |
+
+### UI Configuration
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `RDA_MADMP_HAS_LOGO` | Boolean value to enable evaluator logo. | No | `true` | `true` |
+| `RDA_MADMP_LOGO_PATH` | Image for evaluator logo. | No | `classpath:rda.png` | `classpath:<image-name>.<image-type>` |
+
+### Logging Configuration
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `LOGGING_CONFIG_PATH` | Xml file that stores logging configuration. | No | `classpath:logging/logback.xml` | `classpath:logging/<file-name>.xml` |
+| `LOGGING_DEFAULT_LOG_LEVEL` | Level of error to store. Only 4 values can be assigned: `INFO`, `DEBUG`, `WARN`, `ERROR` | No | - | `WARN` |
+| `LOGGING_PATH` | File path to store logging. | No | - | `logs/` |
+
+---
+
+## Evaluator OSTrails
+
+### Authentication & Core Settings
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `IDP_ISSUER_URI` | Keycloak realm URL string. | Yes | - | `http://<keycloak-hostname>:<port>/realms/<realm-name>` |
+| `IDP_CLAIMS_ROLES_PATH` | Keycloak client roles path. | Yes | - | `<keycloak_client>.roles` |
+| `SECURITY_AUDIENCE` | Keycloak client scope that security is intended for. | Yes | - | `<keycloak-client-scope>` |
+
+### UI Configuration
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `OSTRAILS_EVALUATOR_HAS_LOGO` | Boolean value to enable evaluator logo. | No | `true` | `true` |
+| `OSTRAILS_EVALUATOR_LOGO_PATH` | Image for evaluator logo. | No | `classpath:ostrails.png` | `classpath:<image-name>.<image-type>` |
+
+### Logging Configuration
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `LOGGING_CONFIG_PATH` | Xml file that stores logging configuration. | No | `classpath:logging/logback.xml` | `classpath:logging/<file-name>.xml` |
+| `LOGGING_DEFAULT_LOG_LEVEL` | Level of error to store. Only 4 values can be assigned: `INFO`, `DEBUG`, `WARN`, `ERROR` | No | - | `WARN` |
+| `LOGGING_PATH` | File path to store logging. | No | - | `logs/` |
+
+---
+
+## See Also
+
+- [Main Backend Configuration](/docs/getting-started/configuration/backend/index.md) - Core backend service configuration
+- [Evaluator Service Authentication](/docs/getting-started/configuration/backend/index.md#evaluator-service-authentication) - Backend authentication setup for evaluators
+- [Keycloak Configuration](/getting-started/configuration/keycloak/) - Authentication setup
+
 ---

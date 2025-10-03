@@ -14,8 +14,8 @@ description: A brief introduction to the platform features
 - **Evaluation via Plugins**: Perform evaluation through customizable plugins tailored to specific standards and requirements.
 - **Collaborative Environment**: Supports teamwork with multi-user access, version control, and change tracking.
 - **Role-Based Access Control**: Invite users to a Plan with different roles—Viewer, Contributor, Reviewer, etc.—and set access rights at the Plan or Section level.
-- **Review and Annotation System**: Reviewers can add annotations (comments) to Plans or Desriptions, with statuses to track their lifecycle.
-- **Notification Features**: Receive Email and In-App notifications for updates, comments, and changes to Plans or Desriptions you're involved in.
+- **Review and Annotation System**: Reviewers can add annotations (comments) to Plans or Descriptions, with statuses to track their lifecycle.
+- **Notification Features**: Receive Email and In-App notifications for updates, comments, and changes to Plans or Descriptions you're involved in.
 - **Flexible Export Options**: Export Plans in human and machine-readable formats like XML, JSON, DOCX, and PDF.
 - **Pluggable Export Mechanism**: Implement custom export plugins to suit specific requirements.
 - **Repository Deposits for DOI Assignment**: Deposit OMPs directly to repositories for DOI (Digital Object Identifier) assignment.
@@ -48,8 +48,8 @@ description: A brief introduction to the platform features
 
 ## 🛠️ **Getting Started**
 
-1. **Deploy OpenCDMP**: Follow the [Deployment Guide](./installation.md) to set up the platform.
-2. **Configure OpenCDMP**: Set up authentication and authorization by following the [Keycloak Setup Instructions](./configuration/keycloak.md).
+1. **Deploy OpenCDMP**: Follow the [Deployment Guide](getting-started/deployment/index.md) to set up the platform.
+2. **Configure OpenCDMP**: Set up authentication and authorization by following the [Keycloak Setup Instructions](getting-started/configuration/keycloak.md).
 3. **Create your plans**: Create your Plans by leveraging the features of the platform.
 
 ---
@@ -71,7 +71,7 @@ description: A brief introduction to the platform features
 
 - **GitHub Repository**: [https://github.com/OpenCDMP/OpenCDMP](https://github.com/OpenCDMP/OpenCDMP)
 - **Issue Tracker**: Report bugs or request features [here](https://github.com/OpenCDMP/OpenCDMP/issues).
-- **Contributing Guidelines**: Learn how to contribute to OpenCDMP. Please check out our [contributing guidelines](../for-devs/contributing.md) to get started.
+- **Contributing Guidelines**: Learn how to contribute to OpenCDMP. Please check out our [contributing guidelines](developers/contributing.md) to get started.
 
 ---
 

@@ -33,7 +33,7 @@ const config: Config = {
 					routeBasePath: '/',
 					sidebarPath: './sidebars.ts',
 					path:'docs'
-					
+
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
 					// editUrl:
@@ -52,6 +52,12 @@ const config: Config = {
 			} satisfies Preset.Options,
 		],
 	],
+
+	themes: ['@docusaurus/theme-mermaid'],
+
+	markdown: {
+		mermaid: true,
+	},
 
 	themeConfig: {
 		// Replace with your project's social card

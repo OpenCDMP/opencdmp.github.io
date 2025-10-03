@@ -49,8 +49,8 @@ The following diagram provides a high-level overview of the architecture:
 - **Features**:
   - Processes requests from the Webapp Service.
   - Interacts with PostgreSQL for data persistence.
-  - Interacts with Elastisearch for indexing.
-  - Evaluating authentication against Keyclaok.
+  - Interacts with Elasticsearch for indexing.
+  - Evaluating authentication against Keycloak.
   - Communicates with other microservices via RabbitMQ.
   - Implements RESTful APIs for frontend consumption.
 

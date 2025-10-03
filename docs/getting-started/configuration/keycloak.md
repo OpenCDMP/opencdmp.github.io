@@ -36,15 +36,28 @@ Create the following five OpenID Connect clients:
 - `notification`
 - `plugins`
 - `webapp`
+- `swagger`
+
+:::note
+Client names and ids are configurable and are used as examples.
+:::
 
 ### General Client Settings
 
-For **all clients except `webapp`**, set the following options:
+For **`api`, `annotation`, `notification`, `plugins` clients**, set the following options:
 
 - **Client Authentication**: **On**
 - **Direct Access Grants Enabled**: **On**
 - **Service Accounts Enabled**: **On**
 - **Standard Flow Enabled**: **Off**
+
+For **`swagger` client**, set the following options:
+
+- **Client Authentication**: **Off**
+- **Direct Access Grants Enabled**: **On**
+- **Service Accounts Enabled**: **Off**
+- **Standard Flow Enabled**: **On**
+- **Implicit Flow Enabled**: **On**
 
 For the **`webapp` client**, set:
 
@@ -123,9 +136,33 @@ For the **`webapp` client**, set:
    - **Direct Access Grants Enabled**: **Off**
    - **Service Accounts Enabled**: **Off**
    - **Standard Flow Enabled**: **On**
+   - **Root URL**: `https://(APP_URL)/home`
    - **Home URL**: `https://(APP_URL)/home`
    - **Valid Redirect URIs**: `https://(APP_URL)/*`
    - **Web Origins**: `https://(APP_URL)`
+   - **Admin URL**: `https://(APP_URL)/home`
+
+6. Click **Save**.
+
+### Client: `swagger`
+
+1. Create a new client with **Client ID**: `swagger`.
+
+2. **Client Protocol**: **openid-connect**
+
+3. **Root URL**: `https://(APP_URL)/home`
+
+4. Click **Save**.
+
+5. In the **Settings** tab, set:
+
+   - **Client Authentication**: **Off**
+   - **Direct Access Grants Enabled**: **On**
+   - **Service Accounts Enabled**: **Off**
+   - **Standard Flow Enabled**: **On**
+   - **Implicit Flow Enabled**: **On**
+   - **Valid Redirect URIs**: `https://(APP_URL)/api/swagger-ui/oauth2-redirect.html`
+   - **Web Origins**: `/*`
 
 6. Click **Save**.
 
@@ -133,7 +170,7 @@ For the **`webapp` client**, set:
 
 ## Step 3: Create Realm Roles
 
-1. In the left menu, click on **Roles**.
+1. In the left menu, click on **Realm Roles**.
 
 2. Click **Add Role**.
 
@@ -167,7 +204,9 @@ For each client scope:
 
 4. **Description**: *(optional)*
 
-5. **Type**: **None**
+5. **Type**:
+   - all client scopes except `tenant_role`: **None**
+   - `tenant_role`: **Optional**
 
 6. **Protocol**: **openid-connect**
 
@@ -197,7 +236,11 @@ For each of the client scopes `api`, `annotation`, `notification`, and `plugins`
 
 6. **Included Client Audience**: *(select the client scope name, e.g., `api`)*
 
-7. Click **Save**.
+7. **Add to access token**: **On**
+
+8. **Add to token introspection**: **On**
+
+9. Click **Save**.
 
 ### Assign Roles to Client Scopes
 
@@ -228,9 +271,19 @@ For the `api`, `annotation`, and `notification` client scopes:
 
 7. **Token Claim Name**: `identity_provider`
 
-8. **Add to Access Token**: **On**
+8. **Claim JSON Type**: **String**
 
-9. Click **Save**.
+9. **Add to ID token**: **On**
+
+10. **Add to Access Token**: **On**
+
+11. **Add to userinfo**: **On**
+
+12. **Add to access token response**: **On**
+
+13. **Add to token introspection**: **On**
+
+14. Click **Save**.
 
 ### User Attribute Mapper for `tenant_role`
 
@@ -246,15 +299,23 @@ For the `api`, `annotation`, and `notification` client scopes:
 
 6. **User Attribute**: `tenant_role`
 
-7. **Token Claim Name**: `tenant_role`
+7. **Token Claim Name**: `tenant_roles`
 
-8. **Add to Access Token**: **On**
+8. **Claim JSON Type**: `String`
 
-9. **Multivalued**: **On**
+9. **Add to ID token**: **On**
 
-10. **Aggregate Attribute Values**: **On**
+10. **Add to Access Token**: **On**
 
-11. Click **Save**.
+11. **Add to userinfo**: **On**
+
+12. **Add to token introspection**: **On**
+
+13. **Multivalued**: **On**
+
+14. **Aggregate Attribute Values**: **On**
+
+15. Click **Save**.
 
 ---
 
@@ -287,6 +348,15 @@ For the `api`, `annotation`, and `notification` client scopes:
    - `annotation`
    - `notification`
 
+### Client: `swagger`
+
+1. Go to **Clients** and select `swagger`.
+
+2. Navigate to the **Client Scopes** tab.
+
+3. In **Default Client Scopes**, add:
+
+   - `api`
 ---
 
 ## Step 7: Set Up Groups

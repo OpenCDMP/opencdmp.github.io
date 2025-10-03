@@ -47,3 +47,7 @@ article img + em {
 .outer-tab {
   margin-left: 1rem;
 }
+
+.menu__list-item.hidden {
+  display: none !important;
+}

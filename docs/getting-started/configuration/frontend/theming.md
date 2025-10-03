@@ -25,9 +25,9 @@ Some commonly used color tokens are the following:
 | --md-sys-on-surface   | used for icons, text, and other visual elements placed on a surface background.|
 | --md-sys-background   | background color of the main area, behind any other element that the user interacts with.|
 | --md-sys-on-background  | used for icons, text, and other visual elements placed on the background.|
-| --md-sys-primary      | The most common color used by components to participate in the application theme. Also the color associated with [**Plans**](/docs/application/plans/index.md). |
+| --md-sys-primary      | The most common color used by components to participate in the application theme. Also the color associated with [**Plans**](user-guide/plans/index.md). |
 | --md-sys-on-primary   | used for icons, text, and other visual elements placed on a primary background           |
-| --md-sys-tertiary      | The accent color used by components to participate in the application theme. Also the color associated with [**Descriptions**](/docs/application/descriptions/index.md). |
+| --md-sys-tertiary      | The accent color used by components to participate in the application theme. Also the color associated with [**Descriptions**](user-guide/descriptions/index.md). |
 | --md-sys-on-tertiary   | used for icons, text, and other visual elements placed on a tertiary background.|
 
 
@@ -54,12 +54,24 @@ Some examples of typography size value uses in the application:
 
 For more information, take a look at the list of [**color tokens**](https://github.com/material-components/material-web/blob/main/tokens/_md-sys-color.scss) and [**typography tokens**](https://github.com/material-components/material-web/blob/main/tokens/_md-sys-typescale.scss).
 
-### OpenCDMP color variables
+### OpenCDMP Color Variables
 This is a list of the system variables created for **OpenCDMP**. They are a set of color and typography variables that can be overriden the same way as Material variables.
-| Name          | Default value | Description
-| ------------- | ------------- | ------------------ |
-| --link-color  | #1E59B1     | The color used on all links in the application |
 
-## Extra resources
+| Name          | Default Value | Description |
+| ------------- | ------------- | ------------------ |
+| `--link-color`  | `#1E59B1`     | The color used on all links in the application |
+
+## Extra Resources
 For ease of use, the [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/) can be used to generate the desired color values.\
 Note that currently, OpenCDMP themes are generated in light mode.
+
+---
+
+## See Also
+
+- [Frontend Configuration](index.md) - Main frontend configuration settings
+- [Material 3 Design System](https://m3.material.io/) - Material Design documentation
+- [Material Color Tokens](https://github.com/material-components/material-web/blob/main/tokens/_md-sys-color.scss) - Complete list of color tokens
+- [Material Typography Tokens](https://github.com/material-components/material-web/blob/main/tokens/_md-sys-typescale.scss) - Complete list of typography tokens
+
+---
