@@ -228,17 +228,17 @@ These model extracts data from every available plugin from [configuration field]
 public class PluginFieldModel {
 
     /*
-    *Identifier for the configurable plugin.
+    *code of the field.
     */ 
     private String code;
 
     /*
-    *Identifier for the text value.
+    *the text value of the field (if exist).
     */
     private String textValue;
 
     /*
-    *Identifier for the file value
+    *the file value of the field (if exist)
     */
     private FileEnvelopeModel file;
 
@@ -251,17 +251,17 @@ These model extracts data from every available plugin from [configuration field]
 public class PluginUserFieldModel {
 
     /*
-    *Identifier for the configurable plugin.
+    *code of the field.
     */ 
     private String code;
 
     /*
-    *Identifier for the text value.
+    *the text value of the field (if exist).
     */
     private String textValue;
 
     /*
-    *Identifier for the file value
+    *the file value of the field (if exist)
     */
     private FileEnvelopeModel file;
 

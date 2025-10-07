@@ -64,7 +64,41 @@ public interface EvaluatorController {
 - **getConfiguration()**: Returns the evaluation service's configuration details.
 - **getLogo()**: Returns the logo for the evaluation service if available.
 
-### 3. EvaluatorConfiguration.java
+### 3. PlanEvaluationModel.java
+
+```java
+public class PlanEvaluationModel {
+
+    private PlanModel planModel;
+
+    private List<String> benchmarkIds;
+
+    // Getters and Setters
+}
+```
+
+**Fields**
+- **planModel**: plan evaluation structure that contains plan model.
+- **benchmarkIds**: list of benchmark or metric identifiers to be used during the plan evaluation. It allows additional configuration of which benchmarks apply to this evaluation.
+
+### 4. DescriptionEvaluationModel.java
+
+```java
+public class DescriptionEvaluationModel {
+
+    private DescriptionModel descriptionModel;
+
+    private List<String> benchmarkIds;
+
+    // Getters and Setters
+}
+```
+
+**Fields**
+- **descriptionModel**: description evaluation structure that contains description model.
+- **benchmarkIds**: list of benchmark or metric identifiers to be used during the description evaluation. It allows additional configuration of which benchmarks apply to this evaluation.
+
+### 5. EvaluatorConfiguration.java
 
 This class contains the configuration details for each evaluation service, which the OpenCDMP platform reads and registers.
 
@@ -80,6 +114,7 @@ public class EvaluatorConfiguration {
     private List<ConfigurationField> userConfigurationFields;
     private List<BenchmarkConfiguration> availableBenchmarks;
 
+    // Getters and Setters
 }
 ```
 
@@ -90,8 +125,8 @@ public class EvaluatorConfiguration {
 - **useSharedStorage**: Indicates if shared storage is used for the evaluator.
 - **hasLogo**: Indicates if the evaluator service has a logo.
 - **configurationFields**: Fields that contain additional configuration for this evaluator. For more information click [here](developers/plugins/common-models.md#3-configurationfieldjava).
-- **userConfigurationFields**: Fields that provide additional configuration options specific to this file transformer, particularly for [user profile settings](user-guide/profile-settings.md#external-plugin-settings). For more details, click [here](developers/plugins/common-models.md#3-configurationfieldjava).
-- **availableBenchmarks**: Benchmark that can be used to add reference.
+- **userConfigurationFields**: Fields that provide additional configuration options specific to this evaluator, particularly for [user profile settings](user-guide/profile-settings.md#external-plugin-settings). For more details, click [here](developers/plugins/common-models.md#3-configurationfieldjava).
+- **availableBenchmarks**: Benchmarks that can be used.
 ## How to Create a Custom Evaluation Service
 
 To implement a custom evaluation service for OpenCDMP:
@@ -103,8 +138,7 @@ To implement a custom evaluation service for OpenCDMP:
    - Define the evaluation-specific configuration in the `EvaluatorConfiguration` class.
 
 3. **Use Existing Implementations as Examples**:
-   - You can refer to other evaluation services in the OpenCDMP platform for reference.
-   - You can refer to the [evaluator-rda-madmp project](https://github.com/OpenCDMP/evaluator-rda-madmp) that is part of the OpenCDMP platform (*is mentioned in [supplementary services section](optional-services/evaluator-services.md)*) as example.
+   - You can refer to existing evakuator projects that are part of the OpenCDMP platform (*is mentioned in [supplementary services section](optional-services/evaluator-services.md)*) as example.
 
 4. **Register the Service**:
    - Once your service is implemented and running, register it with the OpenCDMP platform (*for more details see **[Tenant Configuration](admin-guide/tenant-management/tenant-configuration.md)***). It will be available as an evaluation option for plans and descriptions.

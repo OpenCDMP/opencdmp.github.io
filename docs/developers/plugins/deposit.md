@@ -22,7 +22,7 @@ This interface defines the core operations that any repository deposit service m
 ```java
 public interface DepositClient {
 
-    String deposit(PlanModel planDepositModel, String repositoryAccessToken) throws Exception;
+    String deposit(PlanDepositModel planDepositModel) throws Exception;
 
     String authenticate(String code);
 
@@ -45,7 +45,7 @@ This interface defines the API endpoints that the repository deposit service mus
 public interface DepositController {
 
     @PostMapping()
-    String deposit(@RequestBody PlanModel planDepositModel, @RequestParam("authToken") String authToken) throws Exception;
+    String deposit(@RequestBody PlanDepositModel planDepositModel) throws Exception;
 
     @GetMapping("/authenticate")
     String authenticate(@RequestParam("authToken") String code);
@@ -63,7 +63,36 @@ public interface DepositController {
 - **getConfiguration()**: Returns the repository's configuration details.
 - **getLogo()**: Returns the repository’s logo if available.
 
-### 3. DepositConfiguration.java
+### 3. PlanDepositModel.java
+
+```java
+public class PlanDepositModel {
+
+   private PlanModel planModel;
+   private AuthInfo authInfo;
+
+   // Getters and Setters
+}
+```
+**Fields**
+- **planModel**: contains plan data which is to be deposited
+- **authInfo**: user auth info structure needed for the authentication to the repository.
+
+```java
+public class AuthInfo {
+
+   private String authToken;
+   private List<PluginUserFieldModel> authFields;
+
+   // Getters and Setters
+}
+```
+
+**Fields**
+- **authToken**: option to user access token if needed or supported
+- **authFields**: contains a list of objects. Option to use different credentials from access token, like username and password. Tou can view `PluginUserFieldModel` [here](developers/plugins/common-models.md#4-pluginmodeljava).
+
+### 4. DepositConfiguration.java
 
 This class contains the configuration details for each repository deposit service, which the OpenCDMP platform reads and registers.
 
@@ -84,7 +113,9 @@ public class DepositConfiguration {
     private boolean hasLogo;
     private List<ConfigurationField> configurationFields;
     private List<ConfigurationUserField> configurationUserFields;
+    private List<DepositAuthMethod> authMethods;
 
+     // Getters and Setters
 }
 ```
 
@@ -103,7 +134,11 @@ public class DepositConfiguration {
 - **hasLogo**: Indicates if the repository has a logo.
 - **configurationFields**: Fields that contain additional configuration for this deposit. For more information click [here](developers/plugins/common-models.md#3-configurationfieldjava).
 - **configurationUserFields**: Fields that provide additional configuration options specific to this file transformer, particularly for [user profile settings](user-guide/profile-settings.md#external-plugin-settings). For more details, click [here](developers/plugins/common-models.md#3-configurationfieldjava).
-
+- **authMethods**: List of the deposit authentication method types.
+   - `PluginDefault`: option to use default repository credentials
+   - `AuthInfoFromUserProfile`: option to use credentials that have stored in **OpenCDMP** user's profile
+   - `oAuth2Flow`: option to use credentials OAuth2 flow
+ 
 ## How to Create a Custom Repository Deposit Service
 
 To implement a custom repository deposit service for OpenCDMP:
@@ -115,7 +150,7 @@ To implement a custom repository deposit service for OpenCDMP:
    - Define the repository-specific configuration in the `DepositConfiguration` class.
 
 3. **Use Existing Implementations as Examples**:
-   - You can refer to the [repository-deposit-zenodo](https://github.com/OpenCDMP/repository-deposit-zenodo) project that is part of the OpenCDMP platform (*is mentioned in [supplementary services section](optional-services/deposit-services.md)*) as examples.
+   - You can refer to existing deposit projects that are part of the OpenCDMP platform (*is mentioned in [supplementary services section](optional-services/deposit-services.md)*) as examples.
 
 5. **Register the Service**:
    - Once your service is implemented and running, register it with the OpenCDMP platform (*for more details see **[Tenant Configuration](admin-guide/tenant-management/tenant-configuration.md)***). It will then be available as a repository deposit option for plans.
