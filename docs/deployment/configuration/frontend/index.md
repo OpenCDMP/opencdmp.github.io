@@ -1,37 +1,51 @@
-# Frontend Services Configuration
+---
+title: Frontend configuration
+description: Environment variables and config-override.json settings of the OpenCDMP webapp
+---
 
-import DocCardList from '@theme/DocCardList';
+# Frontend configuration
 
-This document provides an overview of the configuration settings for the frontend of OpenCDMP, based on their `config.json` file structure. 
+The OpenCDMP webapp is configured through its `config.json` file. When the webapp container starts, it fills in `config.json` from the environment variables below, which the Docker example sets in its `.env` file (see the [Docker Compose environment](/docs/deployment/configuration/infrastructure.md#docker)). Other values of `config.json` can be changed with a [`config-override.json`](#overrides) file.
 
-The following table's environment variables are defined inside the `.env` file of the Docker configuration. The frontend container reads them at runtime to populate its `config.json`, which drives the web application's behavior. If you want to see the full Docker configuration, you can navigate [here](deployment/configuration/infrastructure/docker.md).
+## Environment variables
 
-### Core Configuration
-
-| Env Variable | Description | Required | Default Value | Example |
-| --- | --- | --- | --- | --- |
-| `WEBAPP_API_URL` | Server API URL | Yes | - | `https://<hostname>:<port>/<api-path>/` |
-| `INSTALLATION_URL` | Installation base URL | Yes | - | `https://<hostname>:<port>/` |
-| `DEFAULT_CULTURE` | Default app culture, in ISO639 format | Yes | - | `en` |
-
-### Keycloak Authentication
+### Core configuration
 
 | Env Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `KEYCLOAK_ADDRESS` | Keycloak server URL string | Yes | - | `https://<keycloak-hostname>:<port>` |
-| `KEYCLOAK_REALM` | Keycloak realm name | Yes | - | `opencdmp` |
-| `KEYCLOAK_CLIENT_ID` | Keycloak client name | Yes | - | `webapp` |
-| `KEYCLOAK_SCOPE` | Keycloak scope parameters | Yes | - | `openid <scope-value-1> <scope-value-2>` |
-<!-- kpi disabled -->
+| `WEBAPP_API_URL` | Address of the API, as the browser reaches it, with a trailing slash. | Yes | - | `https://opencdmp.example.org/api/` |
+| `INSTALLATION_URL` | Address of the webapp, with a trailing slash. | Yes | - | `https://opencdmp.example.org/` |
+| `WEBAPP_BASE_URL` | Base path of the webapp, when it is not served at the root of its host. | No | `/` | `/opencdmp/` |
+| `DEFAULT_CULTURE` | Default language of the webapp, as an ISO 639 code. | No | `en` | `en` |
+
+### Keycloak authentication
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `KEYCLOAK_ADDRESS` | Keycloak server URL, including its relative path (`/auth/` in the Docker example). | Yes | - | `https://opencdmp.example.org/auth/` |
+| `KEYCLOAK_REALM` | Keycloak realm. | Yes | - | `OpenCDMP` |
+| `KEYCLOAK_CLIENT_ID` | Keycloak client of the webapp. | Yes | - | `webapp` |
+| `KEYCLOAK_SCOPE` | Scopes the webapp requests. They must include `api` (the API audience) and, for comments and notifications, `annotation` and `notification`. | No | `openid profile email address phone api notification annotation identity_provider` | `openid profile email api notification annotation identity_provider` |
+
+### Appearance and accessibility
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `PRIMARY_COLOR` | Main colour of the installation (`theme.primaryColor`). Each organisation can set its own on its [Branding](/docs/administering/tenant-management/branding.md) page. | No | - | `#1e6b52` |
+| `CSS_OVERRIDES` | Style variables of the installation (`theme.cssOverride`): a JSON object of variable names and values, see [Branding](/docs/administering/tenant-management/branding.md#css-overrides). The value is inserted into a JSON string, so escape its quotes; it cannot contain a comma, so set more than one variable in [`config-override.json`](#overrides) instead. | No | - | `{\"--mat-sys-primary\":\"#1e6b52\"}` |
+| `USERWAY_ID` | Account id of the [UserWay](https://userway.org/) accessibility widget (`userWay.id`). The widget is not loaded when it is empty. | No | - | `<userway-account-id>` |
+
+<!-- kpi disabled  -->
 <!-- ### KPI Service Configuration
 
+These variables enable the [Statistics](/docs/administering/statistics.md) page, whose charts are served by the optional [KPI service](/docs/optional-services/kpi.md). The API service must have the KPI integration enabled as well, see the [backend KPI configuration](/docs/deployment/configuration/backend/index.md#kpi-service-configuration).
+
 | Env Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `KPI_SERVICE_ENABLED` | Boolean value that enables KPI service (Statistics dashboard) | No | `false` | `true` |
-| `KPI_SERVICE_ADDRESS` | KPI service URL | Yes* | - | `http://<hostname>:<port>/<kpi-path>` |
+| `KPI_SERVICE_ENABLED` | Boolean value that enables the KPI service integration and shows the Statistics page to eligible users. | No | `false` | `true` |
+| `KPI_SERVICE_ADDRESS` | KPI service URL. | Yes¹ | - | `http://<hostname>:<port>/<kpi-path>` |
 
-*Required only if `KPI_SERVICE_ENABLED` is set to `true`
--->
+¹ Required only if `KPI_SERVICE_ENABLED` is set to `true` -->
 <!-- accounting disabled
 ### Supplementary Services
 
@@ -43,70 +57,83 @@ The following table's environment variables are defined inside the `.env` file o
 
 | Env Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `LOGGING_ENABLED` | Boolean value that enables logging service | No | `false` | `true` | -->
+| `LOGGING_ENABLED` | Writes the webapp's log messages to the browser console. | No | `false` | `true` |
 
-## Overrides
+## Overrides {#overrides}
 
-You can also override `config.json` values via creating a new `config-override.json` file, which defines the values that will be overriden.
-`config-override.json` configured values are **not mandatory** and take precedence over other env variables.
-The file structure is as follows:
+To change other values of `config.json`, mount a `config-override.json` file at `/usr/share/nginx/html/assets/config/config-override.json` in the webapp container (the Docker example has the volume line commented out in `docker-compose.override.yml`). The webapp merges it over `config.json` when it loads: objects are merged key by key, and any other value that is not `null` in the override replaces the value of `config.json`, including values set from the environment variables. List only the keys you change. The sections you can change are listed below.
 
-
-### [Notifications](optional-services/notifications/index.md)
-```
+### [Notifications](/docs/optional-services/notifications/index.md)
+```json
 "notification_service": {
-    "address": {NOTIFICATION_SERVICE_ADDRESS}
+    "enabled": true,
+    "address": null
 }
 ```
 | Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `address` | Notification service URL string | No | `null` | `http://<hostname>:<port>/<path>` |
+| `enabled` | Shows the in-app notifications. | No | `true` | `false` |
+| `address` | Address under which the webapp calls the notification service (`<address>api/notification/...`), with a trailing slash. When `null`, the webapp calls its own address, where the proxy forwards `/api/notification/`. | No | `null` | `https://notifications.example.org/` |
 
-### [Annotations](optional-services/annotations.md)
-```
+### [Annotations](/docs/optional-services/annotations.md)
+```json
 "annotation_service": {
-    "address": {ANNOTATION_SERVICE_ADDRESS}
+    "enabled": true,
+    "address": null
 }
 ```
 | Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `address` | Annotation service URL string | No | `null` | `http://<hostname>:<port>/<path>` |
+| `enabled` | Shows comments on plans and assets. | No | `true` | `false` |
+| `address` | Address under which the webapp calls the annotation service (`<address>api/annotation/...`), with a trailing slash. When `null`, the webapp calls its own address, where the proxy forwards `/api/annotation/`. | No | `null` | `https://annotations.example.org/` |
 
 <!-- kpi disabled -->
-<!-- ### KPI Service
-    ```
-        "kpi_service": {
-            "enabled": KPI_SERVICE_ENABLED,
-            "address": "KPI_SERVICE_ADDRESS",
-            "dashboards": [
-                {
-                    "dashboardId": "KPI_SERVICE_DASHBOARD_ID",
-                    "keywordFilter": "KPI_SERVICE_KEYWORD_FILTER",
-                    "availableToRoles": "KPI_SERVICE_AVAILABLE_TO_ROLES"
-                }
-            ]
+<!-- ### [KPI Service](/docs/optional-services/kpi.md)
+
+The `kpi_service` section lists the dashboards that the [Statistics](/docs/administering/statistics.md) page offers. Two dashboards are preconfigured and match the definitions that the API publishes to the KPI service: the Tenant dashboard (`dmp_dashboard`, shown as **Tenant-Scoped Statistics**) and the Admin dashboard (`dmp_admin_dashboard`, shown as **Multi-Tenant Statistics**). Override this section only to change which dashboards are offered or to whom. -->
+
+<!-- **Default:**
+```
+"kpi_service": {
+    "enabled": {KPI_SERVICE_ENABLED},
+    "address": {KPI_SERVICE_ADDRESS},
+    "dashboards": [
+        {
+            "dashboardId": "dmp_dashboard",
+            "keywordFilter": "tenant_code",
+            "availableToRoles": ["Admin", "InstallationAdmin", "TenantAdmin"]
         },
-    ```
-| Variable | Description | Required | Default Value | Example |
+        {
+            "dashboardId": "dmp_admin_dashboard",
+            "keywordFilter": null,
+            "availableToRoles": ["Admin", "InstallationAdmin"]
+        }
+    ]
+}
+``` -->
+
+<!-- | Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `enabled` | Boolean value that enables KPI service (Statistics dashboard) | No | `false` | `true` |
-| `address` | KPI service URL | Yes | - | `http://<hostname>:<port>/<kpi-path>` |
-| `dashboards` | KPI (Statistics) dashboard Id | Yes | - | `<dashboard-id>` |
-| `keywordFilter` | Filtering keywords for the KPI dashboard | No | - | `<filter-value-code>` | 
-| `availableToRoles` | Filtering roles for the OpenCDMP to show the statistics | No | - | `<available-role-code>` | 
- -->
+| `enabled` | Boolean value that enables the KPI service integration (Statistics page). | No | `false` | `true` |
+| `address` | KPI service URL. | Yes¹ | - | `http://<hostname>:<port>/<kpi-path>` |
+| `dashboards` | Array of dashboards offered on the Statistics page. When more than one dashboard is available to the logged-in user, a dropdown lets the user switch between them. | No | The two dashboards above | - |
+| `dashboards[].dashboardId` | Key of a dashboard definition published to the KPI service by the API (`dmp_dashboard` or `dmp_admin_dashboard` with the default definitions). | Yes | - | `dmp_dashboard` |
+| `dashboards[].keywordFilter` | Indicator keyword field used to scope the dashboard to the tenant the user is logged in with; the webapp filters that field by the current tenant code. Use `tenant_code` for a tenant-scoped dashboard and `null` for an installation-wide one. | No | `null` | `tenant_code` |
+| `dashboards[].availableToRoles` | Roles for which the dashboard is offered. The dashboard is shown when the user holds the `ViewIndicatorDashboardPage` permission and at least one of the user's selected roles is in this list. | Yes | - | `["Admin", "TenantAdmin"]` |
+
+¹ Required only if `enabled` is set to `true` -->
 
 ### Logging
 
-If `LOGGING_ENABLED` is true you can define the levels of the frontend logging.
-```
+When `LOGGING_ENABLED` is `true`, `logLevels` selects the levels written to the browser console.
+```json
 "logging": {
-    "logLevels": {LOG_LEVELS}
+    "logLevels": ["debug", "info", "warning", "error"]
 }
 ```
 | Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `logLevels` | array of levels | No | `["debug", "info", "warning", "error"]` | `["debug"]` |
+| `logLevels` | Levels to write. | No | `["debug", "info", "warning", "error"]` | `["warning", "error"]` |
 
 ### Sidebar menu
 
@@ -117,8 +144,8 @@ If `LOGGING_ENABLED` is true you can define the levels of the frontend logging.
         {
             "title": "SIDE-BAR.SUPPORT",
             "icon": "help",
-            "externalUrl": "/splash/contact.html",
-            "accessLevel": "unauthenticated"
+            "routerPath": "/contact-support",
+            "accessLevel": "authenticated"
         }
     ],
     "footerItems": [
@@ -155,16 +182,16 @@ If `LOGGING_ENABLED` is true you can define the levels of the frontend logging.
 | Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
 | `title` | Page title | Yes | - | `page-title` |
-| `routerPath` | Internal path to the page | Yes* | - | `/<relative-route>` |
-| `externalUrl` | URL that leads to external view | Yes** | - | `http://<base-route>/<route>` |
+| `routerPath` | Internal path to the page | Yes¹ | - | `/<relative-route>` |
+| `externalUrl` | URL that leads to external view | Yes² | - | `http://<base-route>/<route>` |
 | `accessLevel` | Access level of users allowed to view page | Yes | - | `authenticated` |
 | `icon` | Sidebar menu **material symbol icon** that appears next to the title | No | - | `feedback` |
 
-*Required if not using `externalUrl`
-**Required if not using `routerPath`
+¹ Required if not using `externalUrl`
+² Required if not using `routerPath`
 
-### Authorization Providers 
-Authorization Providers are used to set an icon next to email in [My Profile Page](using/profile-settings.md). You can set a default auth provider for all emails or a specific icon based on the email provider that comes from [keycloak](deployment/configuration/keycloak.md). If provider do not exist in keycloak, default provider is used.
+### Authorization providers
+`authProviders` sets the icon shown next to each email address on the [profile page](/docs/using/profile-settings.md), by the identity provider the user signed in with through [Keycloak](/docs/deployment/configuration/keycloak.md#step-11-configure-identity-providers-optional). Providers that are not listed get the default icon.
 
 **Default:**
 ```
@@ -190,45 +217,44 @@ Authorization Providers are used to set an icon next to email in [My Profile Pag
 
 | Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `name` | provider name | Yes | - | `google` |
-| `providerClass` | style class to be applied | Yes | - | `googleIcon` |
-| `cultures` | list of supported cultures in ISO639 format | Yes | - | `["en"]` |
+| `name` | Alias of the identity provider in Keycloak. | Yes | - | `google` |
+| `providerClass` | Style class of the icon. | Yes | - | `googleIcon` |
+| `cultures` | Languages, as ISO 639 codes, in which the icon is shown. | Yes | - | `["en"]` |
 
 ### UserWay
 
-UserWay is an accessibility plugin that OpenCDMP uses. More details [here](https://userway.org/).
+[UserWay](https://userway.org/) is an accessibility widget. It is loaded when an account id is set, with `USERWAY_ID` or here.
 
-```
+```json
 "userWay": {
-    "id": {USERWAY_ID}
+    "id": "<userway-account-id>"
 }
 ```
 | Variable | Description | Required | Default Value | Example |
 | --- | --- | --- | --- | --- |
-| `id` | String identifier provided by UserWay to enable the accessibility feature. | No | - | `<UserWay_id>` |
+| `id` | Account id of the UserWay widget. | No | - | `<userway-account-id>` |
 
 ### Theme
 
-The application supports theme customization. A full explanation of all available theme values can be found in the [theming guide](deployment/configuration/frontend/theming.md).
+`primaryColor` and `cssOverride` are the installation's defaults, also set by `PRIMARY_COLOR` and `CSS_OVERRIDES`. Each organisation can replace them on its [Branding](/docs/administering/tenant-management/branding.md#css-overrides) page, which also lists the style variables. `cssOverride` is a JSON object written as a string:
 
-```
+```json
 "theme": {
-    "primaryColor": {PRIMARY_COLOR},
-    "cssOverride": {CSS_OVERRIDES}
+    "primaryColor": "#1e6b52",
+    "cssOverride": "{\"--mat-sys-primary\": \"#1e6b52\", \"--link-color\": \"#1F57C3\"}"
 }
 ```
 
 ---
 
-## See Also
+## See also
 
-- [Backend Configuration](deployment/configuration/backend/index.md) - Core backend service configuration
-- [Keycloak Configuration](/deployment/configuration/keycloak/) - Authentication and authorization setup
-- [Docker Configuration](deployment/configuration/infrastructure/docker.md) - Full Docker configuration
-- [Theming Guide](theming.md) - Customize the application theme
-- [Notification Service](optional-services/notifications/index.md) - Email notification service
-- [Annotation Service](optional-services/annotations.md) - Annotation service overview
+- [Backend configuration](/docs/deployment/configuration/backend/index.md) - The API service
+- [Keycloak setup](/docs/deployment/configuration/keycloak.md) - The `webapp` client and its scopes
+- [Infrastructure](/docs/deployment/configuration/infrastructure.md#docker) - The `.env` file of the Docker example
+- [Branding](/docs/administering/tenant-management/branding.md) - The main colour, logo, and style variables of an organisation
+- [Notification Service](/docs/optional-services/notifications/index.md) - Email notification service
+- [Annotation Service](/docs/optional-services/annotations.md) - Annotation service overview
+<!-- kpi disabled  -->
+<!-- - [KPI Service](/docs/optional-services/kpi.md) - Statistics dashboards provided by the KPI service -->
 
----
-
-<DocCardList />

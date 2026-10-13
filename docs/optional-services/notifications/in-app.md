@@ -5,23 +5,22 @@ description: Learn about the in-app notifications.
 
 # In-App Notifications
 
-In-app notifications are displayed directly within the platform — no email required. They appear in real time while you are logged in.
+In-app notifications are shown inside the platform. While you are logged in, the platform checks for new ones at a regular interval and shows the number of unread notifications on the bell.
 
-## Accessing Notifications
+## Accessing notifications
 
-Click the **notifications icon** (bell) at the top right of the navigation bar, next to your profile picture.
+Click the **notifications icon** (bell) at the top right of the navigation bar, next to your profile picture. Its badge shows how many notifications you have not read yet.
 
-![In-app notification icon](/images/notifications/inapp-notification.png)
+![Notification bell in the top bar, with the unread count and the View all notifications tooltip](/images/notifications/inapp-notification.png)
 
-A dropdown appears showing your most recent unread notifications. From here you can:
+The **Notifications** panel opens with your five most recent notifications and the number of unread ones. Unread notifications are highlighted and marked with a dot. From here you can:
 
-- **Read individual notifications** — click any entry to navigate directly to the relevant plan or description.
-- **Mark all as read** — click `Read all` to clear all unread indicators at once.
-- **View all notifications** — click `All notifications` to open the full notifications table with your complete history.
+- Click an entry to mark it as read and open its full text. The link in the text (for example **Click here to view it.**) opens the plan or asset it is about, or, for a comment, the question in the plan editor with its comments.
+- Click **View all notifications** to open the **Notifications** page, a table of your complete history (state, subject, type, and date) that you can search and filter by **Type** and **State** (**Unread** or **Read**).
 
-![Notification popup](/images/notifications/notifications-popup.png)
+![Notifications panel open under the bell, with recent comment notifications and the View all notifications button](/images/notifications/notifications-popup.png)
 
-## What Triggers an In-App Notification
+## What triggers an in-app notification
 
 The following events can generate in-app notifications:
 
@@ -33,18 +32,24 @@ The following events can generate in-app notifications:
 | Plan modified | A plan you are involved in was updated |
 | Plan deposited | A plan you are involved in was deposited to a repository and received a DOI |
 | Plan evaluation completed | An evaluation was run on a plan you are involved in |
+| Plan role added | You were assigned a role on a plan |
+| Plan role changed | Your role on a plan was changed |
+| Plan role removed | A role you held on a plan was removed |
 | Plan access removed | Your access to a plan was removed |
-| Your role changed | Your role on a plan was changed |
-| Annotation created | A comment was added to a plan or description you are involved in |
+| Annotation created | A comment was added to a plan or asset you are involved in |
 | Annotation status changed | A comment's status was updated |
 | Mentioned in annotation | You were @-mentioned in a comment |
-| Description created | A description was added to a plan you are involved in |
-| Description status changed | A description you are involved in changed status |
-| Description finalized | A description you are involved in was finalized |
-| Description evaluation completed | An evaluation was run on a description you are involved in |
+| Asset created | An asset was added to a plan you are involved in |
+| Asset modified | An asset you are involved in was updated |
+| Asset status changed | An asset you are involved in changed status |
+| Asset finalized | An asset you are involved in was finalized |
+| Asset evaluation completed | An evaluation was run on an asset of a plan you are a member of |
+| Asset template invitation | You were added to the users of an asset template |
+| Organisation invitation | You were invited to join an organisation |
+| Plan suggestion | An external system suggested a new plan, or changes to a plan |
 | Account merge confirmation | A request to link accounts was initiated |
 | Credential removal confirmation | A request to unlink an email was initiated |
 
 :::info
-Which of these events generate in-app notifications depends on the notification templates configured by your administrator. Users can further control their preferences in [Profile Settings](/docs/using/profile-settings.md).
+Which of these events generate in-app notifications depends on the notification templates configured by your administrator. Users choose which channel comes first in the **Notifications** tab of their [profile](/docs/using/profile-settings.md#notifications).
 :::

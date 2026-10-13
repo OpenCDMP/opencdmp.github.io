@@ -29,10 +29,6 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-p {
-  text-align: justify;
-}
-
 article img {
   display: block;
   margin-left: auto;

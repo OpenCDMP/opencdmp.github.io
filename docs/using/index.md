@@ -1,108 +1,31 @@
 ---
 sidebar_position: 1
-description: Guide for researchers and end users creating and managing plans in OpenCDMP
+description: What a data management plan is, how plans, blueprints, assets, and references fit together, and the fastest path from a new plan to a published one
 ---
 
 # Using OpenCDMP
 
-This section covers all end-user features of OpenCDMP — creating and managing plans, adding descriptions, collaborating with your team, and exporting or depositing your work.
+A Data Management Plan (DMP), or a Software Management Plan (SMP) for code, describes how a project will create, store, share, and preserve its research outputs. Funders such as Horizon Europe ask for one at the start of a project and for updates along the way, so that results stay findable and reusable. In OpenCDMP your organisation has already set up the forms: you pick the one that fits your funder or project, answer its questions with your team, and download or publish the result.
 
-New to OpenCDMP? Start with the [Your First Plan](getting-started.md) tutorial, or read the overview below to understand the core concepts first.
+## Fastest path
 
----
+1. [Create a plan](/docs/using/plans/create-or-edit-a-plan.md) from a blueprint, or [import](/docs/using/plans/imports.md) one.
+2. [Answer its questions](/docs/using/plans/fill-in-a-plan.md).
+3. [Add an asset](/docs/using/assets/create-or-edit-an-asset.md) for each research output.
+4. [Invite your collaborators](/docs/using/plans/invite-collaborators.md).
+5. [Finalize the plan](/docs/using/plans/plan-workflow.md).
+6. [Download](/docs/using/download.md) or [publish](/docs/using/plans/deposit-a-plan.md) it.
 
-## How it all fits together
+New to OpenCDMP? The [Your first plan](/docs/using/getting-started.md) tutorial walks through these steps. Inside the application, short [guided tours](/docs/using/home.md#guided-tours) introduce each redesigned page the first time you open it.
 
-Before diving into features, here is the relationship between the key entities:
+## How it fits together
 
-1. **An administrator creates Description Templates** — each one defines a set of questions (fields) for a specific type of output, such as a dataset or software component.
-2. **An administrator creates a Blueprint** — it defines the sections a Plan will have, and specifies which Description Templates can be used in each section.
-3. **You create a Plan** using a Blueprint — the Plan inherits the section structure defined by that Blueprint.
-4. **Within each section of the Plan, you add Descriptions** — each Description follows the structure of the selected Description Template and contains the actual answers/content for that output.
+- A **plan** is your project's DMP or SMP. When you create it, you choose a **blueprint**, which gives the plan its sections and questions.
+- Inside the plan you add **assets**, one per research output, such as a dataset or a piece of software. Each asset follows an **asset template**, which gives it its questions.
+- Some answers are **references**, such as a funder, a grant, a researcher, or a license, that you pick from a list instead of typing.
+- You work on the plan with your **collaborators**, each with a role. You can download it at any time. When it is complete, you **finalize** it; you can then share it on Public Plans, publish it to a repository for a DOI, and start a new version when the project moves on.
 
-In short: **Blueprint → Plan structure. Description Template → Description content.**
-
-:::info Prerequisites for end users
-Before you can create a Plan, an administrator must have configured at least one Blueprint and at least one Description Template. If no blueprints appear when you try to create a plan, contact your OpenCDMP administrator.
-:::
-
----
-
-## Core Concepts
-
-### Blueprints
-
-A Blueprint defines the overall structure of a **Plan** by specifying its **Sections** and the content within each section.
-
-- Each Blueprint is divided into one or more **Sections**, which can include fields describing the plan as a whole (title, contacts, funders, etc.) and slots for **Descriptions**.
-- Blueprints are created and managed by administrators. As an end user, you select a Blueprint when creating a new Plan — you cannot modify the Blueprint itself.
-
-See [Blueprints](blueprints.md) for more detail.
-
----
-
-### Plans
-
-A Plan is the primary entity and main output of the OpenCDMP platform — it represents a complete OMP for a research project or output.
-
-- **Structured by a Blueprint**: when you create a Plan, you choose a Blueprint, and the Plan inherits its sections and structure.
-- **Contains Descriptions**: within the Plan's sections, you add Descriptions that detail specific inputs or outputs (datasets, software, publications, etc.).
-- **Collaborative**: invite users with different roles — Viewer, Contributor, Reviewer — at the Plan level or at individual Section level.
-- **Versioned**: create new versions of a Plan to track changes over time while preserving history.
-- **Exportable and depositable**: export in DOCX, PDF, RDA JSON, and more; deposit to repositories (Zenodo, Dataverse, etc.) to obtain a DOI.
-
-See [Plans](plans/index.md) for the full guide.
-
----
-
-### Description Templates
-
-A Description Template defines the structure of a **Description** — the set of questions and fields a user must fill in for a specific type of output.
-
-- Contains **sections** and **question definitions** with various input types: text, date, select, file upload, external references, and more.
-- A Blueprint references which Description Templates are available in each of its sections.
-- Description Templates are created and managed by administrators.
-
-See [Templates](templates.md) for more detail.
-
----
-
-### Descriptions
-
-A Description is a detailed entry within a Plan that captures information about a specific research input or output — for example, a dataset, a piece of software, or a publication.
-
-- Each Description is based on a **Description Template**, which determines what questions appear.
-- Descriptions are added inside the sections of a Plan, as defined by the Blueprint.
-- A Plan typically contains multiple Descriptions — one per output type or research asset.
-- Descriptions can be exported, reviewed, and annotated independently.
-
-See [Descriptions](descriptions/index.md) for the full guide.
-
----
-
-### References
-
-References are structured pieces of information that can be linked to a Plan or a Description — for example, a funder, a grant, a researcher (with ORCID), an organization, or a license.
-
-- **Internal references**: already available in the system for selection.
-- **External references**: fetched from external APIs (e.g., grant databases, researcher registries).
-- Users can also add custom references manually.
-
----
-
-## Typical workflow
-
-1. **Log in** to your OpenCDMP instance.
-2. **Create a new Plan** — choose a Blueprint that matches your project type.
-3. **Fill in Plan-level details** — title, language, contacts, funding information (as defined by the Blueprint sections).
-4. **Add Descriptions** — for each research output (dataset, software, etc.), add a Description using the appropriate Description Template and answer its questions.
-5. **Invite collaborators** — assign roles to team members at the Plan or Section level.
-6. **Review and finalize** — check completion, run evaluators if configured, change the plan status.
-7. **Export or deposit** — download in your required format or deposit to a repository to obtain a DOI.
-
-Follow the full step-by-step in the [Getting Started Tutorial](getting-started.md).
-
----
+Your organisation prepares the blueprints and templates; you cannot change them. See [Blueprints and asset templates](/docs/using/blueprints.md).
 
 ## Features
 

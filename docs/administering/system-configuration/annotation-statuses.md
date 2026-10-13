@@ -1,74 +1,58 @@
 ---
-sidebar_position: 14
-description: Manage all annotation statuses
+sidebar_position: 5
+description: Manage the statuses of comment threads
 ---
 
-# Annotation Statuses
+# Comment Statuses
 
-This page allows administrators to define and manage the lifecycle of review comments (annotations) in OpenCDMP, enabling structured review workflows for plans and descriptions.
+The **Comment statuses** page lets administrators define the states a comment thread can be in, so that reviews of plans and assets follow clear stages.
 
-## Why Annotation Statuses Matter
+## Why comment statuses matter
 
-Annotation statuses provide a formal review and quality assurance process by:
+With comment statuses, reviewers and plan owners can:
 
-- **Tracking review progress** - Monitor which comments have been addressed vs. pending
-- **Enabling structured workflows** - Define clear stages for the review process (e.g., Open → Resolved → Closed)
-- **Improving collaboration** - Reviewers and plan owners can communicate status without additional tools
-- **Ensuring accountability** - Track who resolved comments and when
-- **Supporting compliance** - Document the review process for auditing or institutional requirements
+- See which comments have been addressed and which are still pending.
+- Move comments through defined review stages, for example from *Open* to *Resolved*.
+- Agree on the state of a comment without other tools.
+- Document the review process for audits or institutional requirements.
 
-## How Annotations Work in OpenCDMP
+## How comments work in OpenCDMP
 
-[Annotations](optional-services/annotations.md) (comments) can be added to plans and descriptions by users with the **Reviewer** role. Each annotation has a status that tracks its lifecycle:
+[Comments](/docs/optional-services/annotations.md) can be added to plans and assets by users with the **Reviewer** plan role, among others. Each comment thread can be given one of the statuses defined on this page, for example *Open*, *In Progress*, or *Resolved*. A status can count as **Resolved**, which tells the platform that the thread has been dealt with.
 
-1. **Created** - A reviewer adds a comment or question
-2. **In Progress** - The plan owner or contributor is addressing the feedback
-3. **Resolved** - The issue has been addressed
-4. **Closed** - The comment thread is finalized
+## Managing comment statuses
 
-By customizing annotation statuses, you can adapt the review workflow to your organization's needs.
+The listing shows the comment statuses available in your organisation. The columns are the **Label**, **Counts as** (the internal status), and the **Created** and **Updated** dates. Statuses shared by the default organisation carry a **Shared** chip and can be viewed, but not edited, from other organisations. Use the **Display settings** button at the top right to choose which columns are visible.
 
-## Managing Annotation Statuses
+Click **Add comment status** at the top of the page to create a status. Click a row to open its editor; to delete a status, click the three dots menu at the end of its row and select **Delete**.
 
-In this page, you can view, create, edit, and manage all annotation statuses available in your tenant.
-
-The information displayed by default is: the `label`, the `internal status` which is the system specific status, the `status` of the entity and timestamps for the `creation` and `updating` of the entities. At the top right corner of the listing you can also select which columns to display.
-
-:::tip
-
-For annotation statuses, all the columns are visible by default.
-
-:::
-
-You can edit or remove a status by clicking on the three dots on the far right corner of the records and then select `Edit` or `Delete` respectively.
+This listing supports the standard [admin listing](/docs/administering/admin-listings.md) controls: search, filter chips, Show deleted items, column picker, and density. It has no scope tabs.
 
 :::warning
 
-When an annotation status that is in use by existing annotations is deleted, the status is automatically removed from those annotations as well.
+When a comment status that is in use by existing comments is deleted, the status is automatically removed from those comments as well.
 
 :::
 
+## Editor
+
+Comment statuses open in a full-page editor with two fields:
+
+- **Label**: The name of the status.<br/>*This is required.*
+- **Counts as**: The internal status: **Resolved**, or **None**.
+
+Click **Save** to save, **Delete** to delete the status, or **Cancel** to return to the listing.
+
 ## Authorization
 
-Only users that have the global **Admin** role or the tenant specific **TenantAdmin** role can access this page.
+Users with the **System Administrator** or **Organisation Admin** role can access this page and create, edit, and delete comment statuses. See [Roles](/docs/administering/how-it-fits-together.md#roles).
 
 ## Navigation
 
-This view is available when the user presses the `Annotation Statuses` link from the side navigation menu.
+In the side navigation menu, switch to the **Admin** view, go to **Organisation > Settings**, and open **Comment statuses** (in the **Workflows** group of the section menu).
 
-## Pagination
+## This page's filters
 
-Not all the records are being displayed at once. By default, there is a pagination of 10 records applied to them. 
+- **Counts as**: its own filter chip. You can filter statuses by their internal status. You can select one or more values.<br/>*By default, no value is selected.*
 
-You can control how many records are being displayed at any time, by adjusting the `items per page` control at the bottom left corner of the table.
-
-## Filtering
-
-There are some filtering options available for annotation statuses.
-
-- **Is Active**: By toggling this control you can view only the active or only the disabled annotation statuses.<br/>*By default, this option is set to true.*
-- **Internal Status**: You can filter statuses by the internal status they could relate with. You can select one or more statuses.<br/>*By default, no status is selected.*
-
-In order for the filters to apply, you have to click the `Apply filters` button. 
-
-You can also clear any filters already applied, by pressing the `clear all filters` option, located at the top of the popup.
+For the search, Show deleted items, column picker, and density controls shared with other administration pages, see [Admin listings](/docs/administering/admin-listings.md).

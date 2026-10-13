@@ -1,73 +1,66 @@
 ---
-sidebar_position: 13
-description: Manage all entity locks
+sidebar_position: 6
+description: See and release the locks that stop two people from editing the same plan, asset, plan blueprint, or asset template at once
 ---
 
-# Entity Locks
+# Edit Locks
 
-This page provides visibility and control over the locking mechanism that prevents concurrent editing conflicts in OpenCDMP.
+The **Edit Locks** page shows the locks that stop two people from editing the same record at once, and lets you remove them.
 
-## Why Entity Locks Matter
+## Why edit locks matter
 
-When multiple users collaborate on [plans](using/plans/index.md) and [descriptions](using/descriptions/index.md), the locking mechanism ensures data integrity by preventing simultaneous edits that could result in lost changes or conflicts. Understanding and managing these locks helps administrators:
+When multiple users collaborate on [plans](/docs/using/plans/index.md) and [assets](/docs/using/assets/index.md), a lock keeps one person's changes from overwriting another's. Use this page to:
 
-- **Resolve stuck sessions** - When users close their browser without properly saving or discarding changes, locks may persist
-- **Enable urgent edits** - Remove locks blocking critical updates when the original user is unavailable
-- **Monitor collaboration** - View which entities are currently being edited and by whom
-- **Troubleshoot issues** - Investigate when users report inability to edit content
+- Release locks left behind when a user closed the browser without saving or discarding their changes.
+- Remove a lock that blocks an urgent edit while the person holding it is unavailable.
+- See which records are being edited, and by whom.
+- Investigate when users report that they cannot edit content.
 
-## How Locks Work
+## How locks work
 
 :::info
 
-When a user edits a [plan](using/plans/index.md) or a [description](using/descriptions/index.md), the system automatically places a lock on that entity. No other user can make changes while the lock is active. Locks are automatically removed:
+When a user edits a [plan](/docs/using/plans/index.md), an [asset](/docs/using/assets/index.md), a plan blueprint, or an asset template, the system automatically places a lock on that record. No other user can make changes while the lock is active. Locks are automatically removed:
 - After a period of inactivity (timeout)
 - When the user saves or discards their changes
 - When the user navigates away from the editor
 
 :::
 
-## Managing Locks
+## Managing locks
 
-In this page, you can view details about all actively locked entities and manually remove locks when necessary.
+The page lists the active locks. The columns are:
 
-The information displayed by default is: the `target` which is the id of the entity, the `type` of the entity and timestamps for the `locking` and `updating` of the locks. At the top right corner of the listing you can also select which columns to display.
+- **Target**: the name of the locked record, linked to its page. If the record no longer exists or cannot be opened, the column shows *Deleted or unavailable item*. A **Shared** chip marks locks on records that belong to the default organisation. Plans and assets are private to their organisation, so a plan or asset of another organisation is shown without a link; its tooltip says to open it from that organisation.
+- **Type**: the kind of record (plan, asset, plan blueprint, or asset template).
+- **Locked By**: the user holding the lock.
+- **Locked At** and **Touched At**: when the lock was placed and when it was last renewed.
 
-:::tip
+The listing is sorted by **Touched At**, most recent first. Use the **Display settings** button at the top right to choose which columns are visible.
 
-For entity locks, all the columns are visible by default.
+![The Edit locks page: the Type and More filters chips, and a list of locks with their target, type, the user holding the lock, and when it was placed and last touched](/images/administering/edit-locks/edit-locks.png)
 
-:::
+This listing is organisation-scoped and supports the standard [admin listing](/docs/administering/admin-listings.md) controls: scope tabs, search, filter chips, column picker, and density. Locks are not kept after they are removed, so there is no **Show deleted items** toggle. Because the system creates locks itself, the empty **Owned by [organisation name]** tab says so instead of inviting you to create one.
 
-You can manually remove a lock by clicking on the three dots on the far right corner of the records and then select `Delete`.
+To remove a lock, click the three dots menu at the end of its row and select **Delete**. Only locks that belong to the organisation you are working in can be removed from that organisation.
 
 :::warning
 
-Only remove locks manually when necessary (e.g., the user's session has ended but the lock persists). Removing a lock while a user is actively editing will cause them to lose unsaved changes.
+Remove a lock manually only when necessary, for example when the user's session has ended but the lock remains. Removing a lock while a user is editing makes them lose their unsaved changes.
 
 :::
 
 ## Authorization
 
-Only users that have the global **Admin** role can access this page.
+Only users with the **System Administrator** role can access this page. See [Roles](/docs/administering/how-it-fits-together.md#roles).
 
 ## Navigation
 
-This view is available when the user presses the `Entity Locks` link from the side navigation menu.
+In the side navigation menu, switch to the **Admin** view and go to **Installation > Edit Locks**.
 
-## Pagination
+## This page's filters
 
-Not all the records are being displayed at once. By default, there is a pagination of 10 records applied to them. 
+- **Type**: its own filter chip. You can select one or more record types.<br/>*By default, no type is selected.*
+- **Users**: available under the **More filters** chip. You can select one or more users.<br/>*By default, no user is selected.*
 
-You can control how many records are being displayed at any time, by adjusting the `items per page` control at the bottom left corner of the table.
-
-## Filtering
-
-There are some filtering options available for entity locks.
-
-- **Users**: You can filter locks by their user. You can select one or more users.<br/>*By default, no user is selected.*
-- **Types**: You can filter locks by the entity type they act upon. You can select one or more types.<br/>*By default, no type is selected.*
-
-In order for the filters to apply, you have to click the `Apply filters` button. 
-
-You can also clear any filters already applied, by pressing the `clear all filters` option, located at the top of the popup.
+For the search, scope tabs, column picker, and density controls shared with other administration pages, see [Admin listings](/docs/administering/admin-listings.md).

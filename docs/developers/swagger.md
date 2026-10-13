@@ -1,59 +1,52 @@
 ---
-sidebar_position: 2
-description: A brief guide on the API documentation tool this platform uses
+sidebar_position: 3
+title: Swagger UI
+description: The interactive Swagger UI and OpenAPI document of the OpenCDMP API - where to find them, which endpoints they list, signing in, and the x-tenant header
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import Admonition from '@theme/Admonition';
 
 # Swagger UI
 
-:::info Swagger UI
-For interactive API documentation, access the Swagger UI at: `https://your-opencdmp-instance/api/swagger-ui/index.html`. It contains documentation for the following API endpoints.
+:::note
+Assets are called *descriptions* in the API, plugin contracts, and data model. For example, the
+`/api/description/**` endpoints listed below operate on assets.
 :::
 
-<Tabs>
- <TabItem value="current" label="Current">
+:::info Swagger UI
+For interactive API documentation, open the Swagger UI at `https://your-opencdmp-instance/api/swagger-ui/index.html`. The OpenAPI document itself is served at `/api/v3/api-docs`.
+:::
 
-    - **/api/plan/\*\***
-    - **/api/description/\*\***
-    - **/api/plan-blueprint/\*\***
-    - **/api/plan-blueprint-type/\*\***
-    - **/api/description-template/\*\***
-    - **/api/description-template-type/\*\***
-    - **/api/reference/\*\***
-    - **/api/reference-type/\*\***
-    - **/api/user/\*\***
-    - **/api/tenants\*\***
-    - **/api/file-transformer/\*\***
-    - **/api/evaluator/\*\***
-    - **/api/deposit/\*\***
-    - **/api/entity-doi/\*\***
-    - **/api/plan-status/\*\***
-    - **/api/plan-workflow/\*\***
-    - **/api/description-status/\*\***
-    - **/api/description-workflow/\*\***
-    - **/api/tag/\*\***
-    - **/api/principal/\*\***
-    - **/api/lock/\*\***
+The Swagger UI shows one API group, **Current**, with the following endpoints:
 
-    <Admonition type="info">
-      <p>These endpoints require authentication.</p>
-    </Admonition>
+- **/api/plan/\*\***
+- **/api/description/\*\***
+- **/api/plan-blueprint/\*\***
+- **/api/plan-blueprint-type/\*\***
+- **/api/description-template/\*\***
+- **/api/description-template-type/\*\***
+- **/api/reference/\*\***
+- **/api/reference-type/\*\***
+- **/api/user/\*\***
+- **/api/tenant/\*\***
+- **/api/file-transformer/\*\***
+- **/api/evaluator/\*\***
+- **/api/deposit/\*\***
+- **/api/entity-doi/\*\***
+- **/api/plan-status/\*\***
+- **/api/plan-workflow/\*\***
+- **/api/description-status/\*\***
+- **/api/description-workflow/\*\***
+- **/api/tag/\*\***
+- **/api/principal/\*\***
+- **/api/lock/\*\***
+- **/api/report/\*\***
 
-  </TabItem>
-  <TabItem value="legacy" label="Legacy">
+Some endpoints of these paths are hidden from the Swagger UI because the webapp uses them internally. The [report](/docs/developers/reports.md) endpoints are in the Swagger UI under **Reports**. Other endpoints of the API, such as the [webhook](/docs/developers/webhooks.md) endpoints, are not part of the Swagger UI; their pages describe them.
 
-    - **/api/public/dmps/\*\***
-    - **/api/public/datasets/\*\***
+---
 
-    <Admonition type="info">
-      <p>These endpoints do not require authentication.</p>
-    </Admonition>
+## Enable or disable the Swagger UI
 
-  </TabItem>
-</Tabs>
+The Swagger UI and the OpenAPI document are enabled by default. Set `SWAGGER_ENABLED=false` in the API service configuration to turn both off. `SWAGGER_AUTH_CLIENT_ID`, `SWAGGER_AUTH_REDIRECT_URL`, and `SWAGGER_SERVER_URL` configure the sign-in of the Swagger UI; see [Swagger configuration](/docs/deployment/configuration/backend/index.md#swagger-configuration).
 
 ---
 
@@ -71,18 +64,24 @@ https://your-opencdmp-instance/api
 
 ## Authentication
 
-All API requests (except legacy public endpoints) require authentication using OAuth2 Bearer tokens. In `Swagger UI` page `authorize` with your account to get authentication access.
+The Swagger UI page itself is public. Most endpoints require an OAuth2 Bearer token: click **Authorize** and sign in with your account. Endpoints under `public` paths (for example `/api/plan/public/query`) answer without a token.
 
-### Request Header
+Authenticated endpoints also need the `x-tenant` header with the code of the organisation to work in; the Swagger UI shows it as a parameter of each operation. See [Addressing an organisation](/docs/developers/api-usage.md#addressing-an-organisation-x-tenant).
+
+Listing endpoints (`.../query`) accept a `like` search term. A term in double quotes is matched exactly, `*` and `?` act as wildcards, and any other term is a contains-match. See [Search syntax](/docs/developers/api-usage.md#search-syntax).
+
+### Request headers
 
 ```http
 Authorization: Bearer {access_token}
+x-tenant: {tenant_code}
 ```
 
 **Example**:
+
 ```http
-GET /api/plan HTTP/1.1
+GET /api/plan/c0c163dc-2965-45a5-9608-f76030578609?f=id&f=label HTTP/1.1
 Host: opencdmp.example.org
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
-Content-Type: application/json
+x-tenant: default
 ```

@@ -1,66 +1,63 @@
 ---
-sidebar_position: 2
-description: View, search and manage your plans
+sidebar_position: 1
+description: Find, search, filter, and sort the plans you own or collaborate on, and browse the public plans of other projects
 ---
 
 # My Plans
 
-The user can view the plans he has created or is a contributor. The basic information of the plans is displayed in a card format. At the top of the cards, the `name` and the `date` of creation or update are displayed. At the main body of the cards, the user can view the `status` of the plan (more information [here](administering/system-configuration/plan-statuses.md)), the `version`, the `grant` that is related with the plan, if any, and the role he has on it. The [descriptions](using/descriptions/index.md) are also listed, along with their total count. At the bottom of the cards, the user has access to some of the actions that he can perform on the plans, based on his plan specific role (*all the actions exist in [plan overview page](using/plans/plan-overview.md)*).
+The **My Plans** page, in the **My Workspace** group of the side navigation menu, lists the plans you have created or collaborate on. Use the inline **+** action next to it (**New Plan**) to [create a plan](/docs/using/plans/create-or-edit-a-plan.md).
 
-![My Plans](/images/plans/my-plans/my-plans.png)
+Under the page title, a short hint explains what plans are (*Plans are your project's own version of a blueprint - the structure it sets out, filled in for your specific project, grant, or initiative.*). Each plan is shown as a card. At the top of each card are the **Plan** badge and the plan's name, with its version and [status](/docs/using/plans/plan-workflow.md) at the top right. The body of the card shows the [blueprint](/docs/using/blueprints.md) the plan is based on, the owners and number of collaborators, the created and modified dates, the [assets](/docs/using/assets/index.md) of the plan, and, once the plan has been published, its DOIs.
+
+Click a card to open the plan's [Plan overview](/docs/using/plans/plan-overview.md). The cards carry no action buttons: the plan actions (edit, download, new version, duplicate, delete, and so on) are on the Plan overview page and in the [plan editor](/docs/using/plans/create-or-edit-a-plan.md#the-toolbar). The page loads a first batch of plans and shows how many are listed (for example *Showing 5 of 108 plans*); click **Load more** to see more.
+
+:::note
+Cards also show reference columns, such as **Grants** or **Researchers**, when an organisation administrator has configured them. See [References shown in lists](/docs/administering/tenant-management/content-defaults.md#references-shown-in-lists).
+:::
+
+![The My Plans page, with the search box, view toggle, sort control, and Filters button above two plan cards](/images/plans/my-plans/my-plans.png)
 *My Plans*
 
-## User actions
+A short [guided tour](/docs/using/home.md#guided-tours) introduces the page the first time you open it.
 
-Let's explore these actions and what privileges they require.
+## Search {#searching}
 
-- **Export**: With this option, a dropdown containing all the export options pops up. You can view more details on the exports [here](using/plans/exports.md).<br/>*Every collaborator can do this.*
-- **Add Description**: From here, the user gets redirected to the [edit page](using/plans/create-or-edit-a-plan.md) of the plan where he can add [descriptions](using/descriptions/index.md).<br/>*Only the collaborators with the role `Owner` can do this*
-- **Invite**: This is where the user can invite others to collaborate on the plan. More information is available on the [collaboration](using/plans/invite-collaborators.md) section.<br/>*Only the collaborators with the role `Owner` can do this*
-- **Clone**: More information is available in the [plan workflow](using/plans/plan-workflow.md) section.<br/>*Only the collaborators with the role `Owner` can do this*
-- **Delete**<br/>*Only the collaborators with the role `Owner` can do this*
-- **New Version**: More information is available in the [versioning](using/plans/versions.md) and the [plan workflow](using/plans/plan-workflow.md) sections.<br/>*Only the collaborators with the role `Owner` can do this*
-- **All Plan Versions**: From here, the user gets redirected to a listing with all the versions of the plan.<br/>*Every collaborator can do this.*
+Use the search box above the plan cards to search for plans by text.
 
-## Authorization
+## View
 
-All the users can access this page.
+Next to the search box, a toggle switches between **Compact view** (one row per plan) and **Full view** (full cards showing status, collaborators, and the latest activity).
 
-## Navigation
+## Filter {#filtering}
 
-This view is available when the user presses the `My Plans` link from the side navigation menu.
+Click the **Filters** button to open the filtering options in a side panel; a counter on the button shows how many filters are active. The filters are:
 
-## Searching
-
-Using the searchbox above the plan cards on the right, you can search for plans by text.
-
-## Filtering
-
-There are also a lot of filtering choices for the plans. The filtering options are displayed in a sidebar at the right side of the screen when the user clicks on the respective `filtering` handle and they are the following:
-
-- **Status**: Show only plans that are saved with specific status.
-- **Active**: By toggling this control you can view only the active plans (*By default, this option is set to true*).
-- **Related Tenant**: Filter plans based on the the [tenant](administering/tenant-management/tenants.md) your are logged in with.
-- **Related Description Templates**: Filter plans based on the [templates](using/templates.md) their [descriptions](using/descriptions/index.md) are using.
-- **Related Plan Blueprints**: Filter plans based on their [blueprint](using/blueprints.md).
+- **Active Filter**: Show only the active plans (on by default).
+- **Status**: Show only plans that are saved with a specific status.
+- **Blueprint Types**: Filter plans based on the type of their blueprint (blueprint types are categories that administrators assign to blueprints).
+- **Templates**: Filter plans based on the [templates](/docs/using/blueprints.md#asset-templates) their [assets](/docs/using/assets/index.md) are using.
+- **Blueprints**: Filter plans based on their [blueprint](/docs/using/blueprints.md).
 - **Role**: Filter plans based on the role the user has on them.
-- **Reference Types**: Filter plans based on their [references](using/references.md). You can filter using more than one references by clicking the `Add a Reference Type` button and selecting your reference.
+- **Reference Types**: Filter plans based on their [references](/docs/using/references.md). Each reference type shown in plan lists (see [References shown in lists](/docs/administering/tenant-management/content-defaults.md#references-shown-in-lists)) has its own collapsible section, followed by a **More reference types** section that covers every other type, grouped by type name. A section lists only the references your plans use, most used first, each with the number of plans that use it. Search within a section, show more entries with **Show more**, and tick the references to filter by. Selected references appear as chips in a **Filtered by** row above the list; remove one with its close button, or all of them with **Clear all**.
 
-When done setting the filters, the button `Apply filters` located at the bottom of the sidebar must be pressed.
+When you have set the filters, click **Apply filters** at the bottom of the panel. **Reset** clears all the selected filters.
 
-## Sorting
-There are also a sorting choices.
-- **Modified**: groupping plans by most recent updates
-- **Label**: groupping plans by label
-- **Status**: groupping plans by status
+## Sort {#sorting}
 
-## Public Plans
+Next to the view toggle, the **Sort by** control orders the plans by one of the following, and the arrow button next to it toggles between ascending and descending order:
 
-In addition to the `My Plans` page, there is also the `Public Plans` page where all finalized plans with public access are displayed. 
-The same information is displayed for each plan, but the available user actions for them are only: `Export`, `Clone`, `All Plan Versions`.
+- **Modified**: most recently updated plans first
+- **Label**: alphabetical order by plan title
+- **Status**: grouped by status
 
-![My Plans](/images/plans/my-plans/public-plan.png)
+## Public Plans {#public-plans}
+
+The **Public Plans** page, under **Explore** in the side navigation menu, lists all [finalized](/docs/using/plans/plan-workflow.md) plans whose access is set to **Public** (see [Who can see your plan](/docs/using/plans/visibility.md)). The page hint reads *Plans other projects have made available - their own version of a blueprint, filled in for their specific project, grant, or initiative. Useful as a reference if you're working on something similar.*
+
+The same information is displayed for each plan. Public plans can be searched by text and sorted by **Published** (the date the plan was finalized) or **Label**; the **Filters** panel is not offered on the public listing. The similar **Public Assets** page lists the individual assets that other projects have made available.
+
+The page lists the public plans of every organisation in the installation, not only those of the organisation you are working in, and each of them opens in its public, read-only overview.
 
 :::info
-`Public Plans` page is available to both authorized and anonymous users. 
+The **Public Plans** page is available to both logged-in users and visitors who are not logged in.
 :::

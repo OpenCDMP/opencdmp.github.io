@@ -1,91 +1,56 @@
 ---
-sidebar_position: 9
-description: Manage supportive material
+sidebar_position: 6
+description: Customize the help and legal pages
 ---
 
-# Supportive Material
+# Help pages & legal
 
-In this page, there is a listing where you can view details about the supportive material.
+The **Help pages & legal** page manages the FAQ, guides, and policy pages that people open from the footer of the side navigation menu and from the **Support** menu. These pages are available to both signed-in and anonymous users.
 
 :::info
- Supporting Material is a list of information relevant to explaining the application. It is available to both authorized and anonymous users.
+Every page ships with a built-in text. Change a page to use your own wording; the other pages keep the built-in text.
 :::
 
-The information displayed by default is: the `code` of the registered [languages](administering/system-configuration/languages.md), the `type` of materials and timestamps for the `creation` and `updates` of the records. At the top right corner of the listing you can also select which columns to display.
+The pages are:
 
-:::tip
+- **About**: A brief description of the platform
+- **FAQ**: Frequently asked questions
+- **User Guide**: A short guide available to users directly on the platform
+- **Glossary**: A brief description of the most important terms used in the application
+- **Terms Of Service**
+- **Cookie Policy**: A description of the cookies the application uses
 
-For supportive material, all the columns are visible by default.
-
-:::
-
-You can add a new supportive material by clicking to the `+ Create Supportive Material` button at the top right corner of the page.
-
-Editing and removing existing supportive materials is also possible by clicking on the three dots available on the last column.
+![The Help pages & legal page: the Language selector and the list of pages, each with an Open page link and its state, Customised or Built-in](/images/administering/help-pages/help-pages.png)
 
 :::note
-    If no supportive materials are defined, there are system files as a fallback.
+The terms that people accept when they first sign in are not set here but under **Settings > Users & onboarding**, because accepting them is versioned. The page links there. See [Organisation settings](/docs/administering/tenant-management/tenant-configuration.md).
 :::
+
+## Editing a page
+
+1. Select the **Language** to work on. Languages in which at least one page is customized are marked **Customised** in the list. The pages can have a translation for every registered [language](/docs/administering/system-configuration/languages.md).
+2. Each page shows its state for that language as a button:
+    - **Built-in**: the page uses the built-in text.
+    - **Shared**: the page uses a text set by the default organisation, which every organisation shares.
+    - **Customised**: your organisation has its own text.
+3. Click the state button to open the page in a drawer. A built-in or shared text is shown read-only; click **Customise this page** to edit a copy of it.
+4. Edit the text in the rich text editor and click **Save**.
+
+Other actions in the drawer:
+
+- **Preview** opens the page, as people see it, in a new browser tab. **Open page** next to each page in the list does the same.
+- **Reset to built-in text** removes your wording for this page and language and goes back to the built-in text.
+
+:::info
+Saving a page that shows a **Shared** text creates your organisation's own copy; the shared text itself is not changed.
+:::
+
+If you close the drawer or open another page with unsaved changes, you are asked whether to discard them.
 
 ## Authorization
 
-Only users that have the global **Admin** role or the tenant specific **TenantAdmin**, **TenantConfigManager** roles can access this page.
+Users with the **System Administrator**, **Organisation Admin**, or **Content & Workflow Manager** role can access this page and customize the pages. See [Roles](/docs/administering/how-it-fits-together.md#roles).
 
 ## Navigation
 
-This view is available when the user presses the `Supportive Material` link from the side navigation menu.
-
-## Pagination
-
-Not all the records are being displayed at once. By default, there is a pagination of 10 records applied to them.
-
-You can control how many records are being displayed at any time, by adjusting the `items per page` control at the bottom left corner of the table.
-
-## Filtering
-
-There is a filtering option available for plan statuses.
-
-- **Is Active**: By toggling this control you can view only the active or only the disabled supportive material.<br/>*By default, this option is set to true.*
-- **By Tenant**: By toggling this control you can view only the supportive materials that exist in the tenant we are logged in with.<br/>*By default, this option is set to false.*
-- **Type**: You can filter supportive materials by the type they are enforced upon. You can select one or more types.<br/>*By default, no metric is selected.*
-
-In order for the filters to apply, you have to click the `Apply filters` button. 
-
-You can also clear any filters already applied, by pressing the `clear all filters` option, located at the top of the popup.
-
----
-
-## Edit form
-
-When you try to add new languages or edit existing ones, the **language editing form** will appear containing the following controls:
-
-- **Material Type**: You select the specific supportive material you want to edit. Let's explore all the available supportive material types:
-    - **FAQ**: Frequently Asked Questions.
-    - **About**: A brief description of the platform.
-    - **Glossary**: A brief description of the most important keywords you see through the app.
-    - **Terms Of Service**
-    - **User Guide**: A small guide available to the users directly on the platform
-    - **Cookie Policy**: Cookies description
-- **Language**: You select the specific available language. These materials can have translations available for all the registered [languages](administering/system-configuration/languages.md).
-- **Payload**: Here all the content that you want to add.
-- **Override from file**: In case a language code is already defined in form, you can load the contents of the definition on the `Payload` control by clicking this checkbox. Then, you can proceed to make any change you want on the payload.
-
-:::warning
-
-Editing a supportive material content will override the file definition, if it exists.
-
-:::
----
-
-## End notes
-
-:::note
-
-All the above are available for the users to read, following the links situated at the bottom part of the side navigation, visible on every page.
-
-:::
-:::tip
-
-You can always minimize the navigation sidebar by clicking on the `x` button on the top of it.
-
-:::
+In the side navigation menu, switch to the **Admin** view, go to **Organisation > Settings**, and open **Help pages & legal** (in the **Content** group of the section menu).

@@ -6,7 +6,7 @@ description: Introduction to OpenCDMP and role-based paths through the documenta
 
 # Introduction
 
-**OpenCDMP** is an open and extensible software platform for managing, monitoring, and maintaining **Output Management Plans (OMPs)** — such as **Data Management Plans (DMPs)** and **Software Management Plans (SMPs)**. It streamlines the complex processes involved in handling OMPs, supporting efficiency, compliance, and collaboration across projects and organizations.
+**OpenCDMP** is an open, extensible platform for writing and managing **Output Management Plans (OMPs)**, such as **Data Management Plans (DMPs)** and **Software Management Plans (SMPs)**, together with the people who work on them.
 
 ---
 
@@ -16,75 +16,60 @@ Pick the path that matches what you want to do:
 
 | I want to… | Go to |
 |---|---|
-| **Create and manage plans** as a researcher or end user | **[Using OpenCDMP](/using/)** |
-| **Configure blueprints, templates, users, and tenants** as a tenant administrator | **[Administering OpenCDMP](/administering/)** |
-| **Deploy or upgrade** an OpenCDMP instance as a system administrator | **[Deployment & Configuration](/deployment/)** |
-| **Integrate with the API** or build plugins as a developer | **[API & Integration](/developers/)** |
+| **Create and manage plans** as a researcher or end user | **[Using OpenCDMP](/docs/using/index.md)** |
+| **Configure blueprints, templates, users, and organisations** as an organisation administrator | **[Administering OpenCDMP](/docs/administering/index.md)** |
+| **Deploy or upgrade** an OpenCDMP installation and keep it running | **[Deployment & Configuration](/docs/deployment/index.md)** |
+| **Integrate with the API** or build plugins as a developer | **[API & Integration](/docs/developers/index.md)** |
 
 :::tip Two kinds of administrators
-OpenCDMP distinguishes between the **system administrator** who deploys and operates the platform ([Deployment & Configuration](/deployment/)) and the **tenant administrator** who configures blueprints, templates, and users inside a running instance ([Administering OpenCDMP](/administering/)). If you are not sure which applies, you are probably a tenant administrator.
+The people who deploy and operate an installation find their guides in [Deployment & Configuration](/docs/deployment/index.md). **Organisation administrators**, who configure blueprints, templates, and users inside a running installation, find theirs in [Administering OpenCDMP](/docs/administering/index.md). If you are not sure which applies, you are probably an organisation administrator.
 :::
 
 ---
 
-## Key Features
+## What you can do
 
-- **Modular Architecture**: Easily extend the platform with new modules and plugins to meet specific needs.
-- **Evaluation via Plugins**: Perform evaluation through customizable plugins tailored to specific standards and requirements.
-- **Collaborative Environment**: Supports teamwork with multi-user access, version control, and change tracking.
-- **Role-Based Access Control**: Invite users to a Plan with different roles — Viewer, Contributor, Reviewer, etc. — and set access rights at the Plan or Section level.
-- **Review and Annotation System**: Reviewers can add annotations (comments) to Plans or Descriptions, with statuses to track their lifecycle.
-- **Notification Features**: Receive Email and In-App notifications for updates, comments, and changes to Plans or Descriptions you are involved in.
-- **Flexible Export Options**: Export Plans in human and machine-readable formats like XML, JSON, DOCX, and PDF.
-- **Pluggable Export Mechanism**: Implement custom export plugins to suit specific requirements.
-- **Repository Deposits for DOI Assignment**: Deposit OMPs directly to repositories for DOI (Digital Object Identifier) assignment.
-- **Pluggable Deposit Mechanism**: Implement custom deposit plugins to integrate with different repositories.
-- **Customizable Templates**: Offers a library of templates for various types of OMPs, customizable to fit specific project requirements.
-- **Integration Capabilities**: Seamlessly connects with other software tools and platforms, enabling data import/export and interoperability via APIs.
+- **Write plans together**: invite collaborators with roles such as Editor, Reviewer, or Viewer, for the whole plan or for specific sections, discuss the content in comments, and make finalized plans public.
+- **Shape the questions**: blueprints and asset templates, configured by administrators, decide what a plan and each of its assets ask.
+- **Follow a workflow**: statuses and transitions that each organisation defines, with versions of a plan and a field-by-field comparison between them.
+- **Download and publish**: download plans as PDF, DOCX, JSON, or XML, and publish them to repositories such as Zenodo to get a DOI.
+- **Evaluate**: check plans against standards such as the RDA maDMP schema, OSTrails benchmarks, or the OpenAIRE FAIR guidelines with evaluator plugins.
+- **Extend and integrate**: add file-transformer, deposit, and evaluator plugins, and connect other systems through the API and signed webhooks.
+- **Stay informed**: email and in-app notifications, and the **Research Insights** page, which counts how questions were answered across an organisation.
 
 ---
 
-## Core Concepts
+## Core concepts
 
-OpenCDMP is built around four main entities. Understanding how they relate is the key to using the platform effectively:
+OpenCDMP is built around four main entities:
 
-  - #### **Blueprints**
+### Blueprints
 
-    Define the structure of a Plan by specifying its Sections and which Description Templates can be used within each section. Blueprints are created by administrators and selected by users when creating a new Plan.
+Define the structure of a Plan by specifying its Sections and which Asset Templates can be used within each section. Blueprints are created by administrators and selected by users when creating a new Plan.
 
-  - #### **Plans**
+### Plans
 
-    The primary output of OpenCDMP — a complete OMP such as a DMP or SMP. A Plan is structured by a Blueprint, contains multiple Descriptions, and supports collaboration, versioning, export, and repository deposit.
+The primary output of OpenCDMP: a complete OMP such as a DMP or SMP. A Plan is structured by a Blueprint, contains multiple Assets, and supports collaboration, versioning, export, and repository deposit.
 
-  - #### **Description Templates**
+### Asset Templates
 
-    Define the questions and input fields that make up a Description. Each template is tailored to a specific type of output (dataset, software, publication, etc.) and is configured by administrators.
+Define the questions and input fields that make up an Asset. Each template is tailored to a specific type of output (dataset, software, publication, etc.) and is configured by administrators.
 
-  - #### **Descriptions**
+### Assets
 
-    Detailed entries within a Plan that document a specific research output — such as a dataset or software component. Each Description follows the structure of a Description Template and contains the actual content provided by the user.
+Structured descriptions of research outputs (datasets, software, protocols, etc.) linked to a Plan. Each Asset follows the structure of an Asset Template, which defines the fields to fill in, and contains the actual content provided by the user.
 
-**How they connect**: a Blueprint defines what sections a Plan has and which Description Templates are available in each section. When a user creates a Plan, they fill in plan-level information and then add Descriptions (one per output), each answering the questions defined by its Description Template.
+### How they connect
 
----
-
-## Benefits
-
-- **Efficiency**: Streamlines the creation, management, and distribution of OMPs, saving time and resources.
-- **Enhanced Collaboration**: Robust features like role-based access control, annotations, and notifications improve teamwork and communication.
-- **Quality Control**: The review and annotation system ensures thorough examination and quality assurance of Plans.
-- **Flexible Sharing and Distribution**: Diverse export and deposit options enable easy sharing, integration, and official registration of your Plans.
-- **Customizability**: The pluggable mechanisms for validation, export, and deposit allow for tailored solutions to meet specific organizational needs.
-- **Stay Informed**: Notification features ensure that team members are promptly aware of important updates and actions required.
-- **Flexibility and Scalability**: Suits organizations of all sizes due to its flexible and extensible design.
+A Blueprint defines what sections a Plan has and which Asset Templates are available in each section. When a user creates a Plan, they fill in plan-level information and then add Assets (one per output), each answering the questions defined by its Asset Template.
 
 ---
 
-## Community and Support
+## Community and support
 
 - **GitHub Repository**: [https://github.com/OpenCDMP/OpenCDMP](https://github.com/OpenCDMP/OpenCDMP)
-- **Issue Tracker**: Report bugs or request features [here](https://github.com/OpenCDMP/OpenCDMP/issues).
-- **Contributing Guidelines**: See the [contributing guidelines](/developers/contributing) to get started.
+- **Issue Tracker**: Report bugs or request features in the [OpenCDMP issue tracker](https://github.com/OpenCDMP/OpenCDMP/issues).
+- **Contributing Guidelines**: See the [contributing guidelines](/docs/developers/contributing.md) to get started.
 
 ---
 
@@ -99,9 +84,3 @@ OpenCDMP is released under the [EUPL-1.2 License](https://github.com/OpenCDMP/Op
 For questions or support, please contact:
 
 - **Email**: opencdmp at cite.gr
-
----
-
-Start simplifying your Output Management Plans with OpenCDMP today!
-
-[Download Now](https://github.com/OpenCDMP/OpenCDMP/releases)

@@ -1,0 +1,228 @@
+# Documentation Sync Reference
+
+This file records the point in the OpenCDMP source code up to which this
+documentation was last synchronized. Use it as the starting reference for
+the next documentation sync.
+
+Code repository: OpenCDMP-internal
+Synced range:    1d9c1856e04d14d314771d05a62b4e9bc01394ab .. 408a8a1c6f360ee2592e78abcd613d8eada0204c
+
+Last synced commit (HEAD at sync time):
+  Full SHA:  408a8a1c6f360ee2592e78abcd613d8eada0204c
+  Short SHA: 408a8a1c
+  Date:      2026-10-13 12:08:30 +0300
+  Subject:   Rewrite the READMEs for public readers
+  Tag:       (none)
+
+Corresponds to docs release: v2.0.0 (Unreleased)
+
+Sync history:
+  - 2026-07-07: initial v1.4.0 sync through eb7f8f3c ("fixes", 2026-07-06)
+  - 2026-07-14: re-synced through f1f8ff02. Commits eb7f8f3c..f1f8ff02 were
+    reviewed; the only doc-relevant change (#343 import/export for prefilling
+    sources and reference types) is documented in reference-types.md and
+    prefilling-sources.md. The remaining commits are bug fixes, styling,
+    websocket/plan-suggestion-preview internals, and a blueprint validation
+    (at least one section must have description templates) that was already
+    documented.
+  - 2026-09-11: re-synced through 1c16b9e0 (184 commits, f1f8ff02..1c16b9e0).
+    Documented: tenant transfer (export/import bundles, copy, purge; new
+    tenant-transfer.md), webhooks (verified), reports / Insights group
+    (verified), statistics and KPI service (pages un-hidden; bootstrap at
+    startup; per-type charts), plan version comparison with clone provenance,
+    "what's new" guided tours and the tenant switch, per-asset evaluation
+    results and the NotEvaluated status (evaluator-base contract change),
+    three-step "Add a new asset" wizard, plan editor toolbar redesign and
+    Collaborators side sheet, export options dialog and selective export,
+    DOCX template validation on upload, richer plugin configuration field
+    types, deposit preview file manifest and widgets, blueprint / blueprint
+    type filters, prefilling source list semantics (#359), invite type labels
+    ("Existing collaborator" / "New collaborator"), Material icon dropdown,
+    Format / Plain Text toggle, RDA affiliation semantics, search syntax
+    (SQLUtils), 1.3 -> 1.4 maintenance migration actions, upgrade notes
+    (db 01.01.006/007/009, new env vars, Elasticsearch reindex), multipart
+    upload limit, ANNOTATION_SERVICE_URL. Changelog v1.4.0 rewritten.
+    Not documented (internal only): CLAUDE.md / skill additions, lint and
+    dependency housekeeping, i18n syncs, styling-only commits.
+  - 2026-09-21: re-synced through 0216674d6 (8 commits, 1c16b9e0..0216674d6).
+    Documented: deposit preview required-group validation (required-group `*`
+    marker and validation error for empty required repeatable groups / empty
+    required tag fields, in deposit-a-plan.md); Dashboard and "Start a new
+    plan" guided tours (new bullets in profile-settings.md's tour list); the
+    new shared admin-listing UI (scope tabs, search with `/` shortcut, filter
+    chips, "More filters", Show deleted, column picker, density toggle,
+    sortable headers, sticky header, relative dates, empty states, row
+    click/ctrl-click) documented once in new administering/admin-listings.md
+    and cross-linked from the 16 affected admin pages (entity-locks, webhooks,
+    tenants, plan-statuses, asset-statuses, templates, blueprints,
+    annotation-statuses, template-types, blueprint-types,
+    notification-templates, tenant-users, users, supportive-material,
+    languages, reference-types, prefilling-sources), each page's stale
+    "Pagination"/"Filtering" sections replaced with a pointer plus a "This
+    page's filters" list of its own filter chips; webhooks tenant scoping
+    (opens on "Owned by [tenant]", Shared/All tabs available); entity-locks
+    Target Type/Users filter-chip split and the Shared chip on the Target
+    column; notification-templates' Type/Kind/Channel filter chips;
+    description-template-listing and plan-blueprint-listing gained a Type
+    filter chip and column (from the small "bug fixes" commit 2eb294f3a).
+    Not documented: inbox/outbox repository internals, KPI bootstrap task
+    startup ordering, tenant interceptor tweak, a Spring open-in-view /
+    metrics cache-binder config change (startup-warning silencing only), a
+    pom.xml version bump, and a Contact field editor UX polish that seeds one
+    empty row for an empty required Contact field (no doc page describes that
+    level of UI detail).
+  - 2026-10-07: re-synced through a8546262 (123 commits, 0216674d6..a8546262).
+    Terminology: the UI now says "Organisation" for a tenant and relabels the
+    roles (System Administrator, Installation Manager, Signed-in User,
+    Organisation Admin, Member, Template Manager, Content & Workflow Manager);
+    using/ and administering/ prose follows it, deployment/ and developers/
+    keep "tenant" for code-level concepts (STYLE_GUIDE "Organisation and
+    tenant", glossary, CLAUDE.md note). Documented: admin menu regroup and
+    Settings hub, drawer-based admin screens (Types page, statuses from the
+    workflow diagram, Users, Organisations, help pages, notification
+    templates); the shared Details/Structure/Review blueprint and asset
+    template editor (previous editors removed); redesigned reference type and
+    prefilling source editors, test-source endpoints, reference Entries tab
+    with Used only, immutable manual references (#307); language texts as
+    overrides; Answers (formerly Reports) with installation-wide scope and
+    limit; Usage dashboard and Quotas (hidden _ pages kept hidden); Flyway
+    migrations at startup from 1.2 (upgrade guide rewritten, Docker example
+    single compose up, postgres init), Maintenance page as server-side runs
+    with migration history (migration actions removed); Data Transfer
+    (formerly Tenant Transfer) comparing Flyway versions; audit event id
+    fixes; redesigned Publish (deposit) dialog, per-organisation repository
+    settings and deposit file choice, deposit plugin contract
+    (repository-deposit-base 1.4.7-dev); redesigned profile page; plan editor
+    Save = save and continue; evaluation box visibility; public plans/assets
+    across organisations; import error for missing internal references;
+    deposit plugin "Largest response (bytes)". Changelog v1.4.0 updated and
+    renamed v2.0.0 (the next release is 2.0.0; 1.4.x-dev were its pre-releases).
+    Not documented: Angular 22 / standalone / Node 24 internals (one line in
+    the changelog's Dependencies), lint and i18n housekeeping, Claude
+    guidance, the reverted webhook fan-out change, small UI and bug fixes.
+    Screenshots now outdated: plans/deposit-a-plan/plan-deposit.png,
+    profile-settings/* (link-account.png no longer referenced),
+    reference/reference-type-manual-insert.png (no longer referenced),
+    plans/evaluators/evaluate-plan-overview.png (recheck).
+  - 2026-10-07: re-synced through 35bc0a91 (9 commits + merge, a8546262..35bc0a91).
+    Corrected statements that described bugs now fixed: webhooks of the
+    default organisation receive only its own events (webhooks.md,
+    how-it-fits-together.md); the API enforces workflow transitions (error
+    210; workflows.md, api-usage.md); the shipped Keycloak realm needs no
+    role corrections (keycloak.md, production.md); Elasticsearch passwords
+    in .env (ELASTIC_PASSWORD, ELASTIC_API_PASSWORD; elk.env removed), 1 GB
+    heap, KC_BOOTSTRAP_ADMIN_* (infrastructure.md, production.md,
+    keycloak.md, deployment troubleshooting). Documented: safer role
+    changes in Users (errors 199/209, not signed in, membership warnings),
+    entity locks of other organisations not linked, publish "Couldn't load
+    the review" state, Start new version permission tooltip, Delete hidden
+    on published plans, Cancel prompt only when dirty, notification channel
+    wording, report endpoints in Swagger, asset persist needs properties,
+    Finalise label spelling in the structure editor, per-version usage
+    counts. Not documented: toast, tour theme, dependency and admin listing
+    refresh fixes. Screenshot now outdated:
+    administering/templates/template-finalize-checklist.png (Finalise).
+  - 2026-10-08: re-synced through 000011f3 (6 commits, 35bc0a91..000011f3),
+    plus plugin repo commits of 2026-10-08: repository-deposit-base 8370205,
+    f10d00f; zenodo 15d2175; ckan e515f00; dataverse 89cccb1; dspace ed6abc2;
+    fedora 0f070be; file-transformer-rda-json a1e60d7. Documented: Settings
+    hub shows values inherited from the Default organisation ("Set by the
+    installation", "Use your own value"), Overview counts, inherited plan and
+    asset workflows; Installation Managers become Members of new
+    organisations; System Administrator role locked for Installation Managers
+    in the Users drawer; finalize dialog warnings; plugin status checked once
+    per session and shared with the Overview; plugin URLs may end in "/";
+    Docker example registries note, help pages from the mounted material
+    folder, rolled logs under LOGGING_PATH; deposit plugins: "Owners and
+    editors", Zenodo "None" label, Dataverse grants (Grants setting,
+    DEPOSIT_DATAVERSE_GRANTS_CODE), related publications per reference,
+    nameless contacts; DepositConfiguration depositType/accessToken as older
+    fields. Removed statements describing fixed bugs: settings pages showing
+    the built-in value although the Default organisation's applied
+    (how-it-fits-together, tenant-configuration), inherited workflow shown
+    without moves (workflows), rolled logs always in /logs
+    (logging-and-monitoring, backend/index), Docker example serving built-in
+    help texts (backend/index), plugin URL without trailing slash
+    (plugin-services); changelog plugin-settings fallback corrected to the
+    whole record. Not documented: dragula styles, skill/CLAUDE notes, the
+    max-answers message (shown only in an edge case), undoFinalize guard
+    (changelog only), Zenodo conference config list (unused), jsPDF 4
+    (changelog Dependencies). Screenshots added:
+    administering/settings/setting-inherited.png,
+    administering/workflows/plan-workflow-inherited.png. Not refreshed:
+    administering/users/all-accounts-drawer.png (the new lock shows only to
+    an Installation Manager; still accurate for a System Administrator).
+  - 2026-10-08: re-synced through 716fb92c (11 commits, 000011f3..716fb92c),
+    plus plugin repo commits repository-deposit-ckan 1089390 and
+    repository-deposit-dspace 37f0921. Documented: status panel icon
+    (Material icon searched by name, or an uploaded image) and account
+    roles under "Anyone with one of these roles in this installation"
+    (workflows.md; the note on hidden settings now lists only description,
+    order, signed-in and anonymous access); icon search in the blueprint
+    and template icon picker (structure-editor.md); notification template
+    subject and message required; comment edit keeps mentions, role chips
+    per reply author and current roles only (comments.md); plan overview
+    comment count (plan-overview.md); error 178 for fixed-template sections
+    (api-usage.md); CKAN extras merged by key; DSpace public page kept as
+    the first dc.identifier.uri; from 4bec52a1, the empty-workflow message,
+    no Reset to default on the Default organisation's workflow, and the
+    Plugins page re-checking reachability on every visit (plugins.md).
+    Re-checked against the new code and still
+    accurate: Share hidden and collaborator list read-only on finalized
+    plans (now also refused by the API, error 119), edit lock and Remove
+    waiting for Save, comment visibility, edit/delete rights, single comment
+    status, per-question comment count, plan-workflow, versions, imports,
+    and both troubleshooting pages. The API still lets owners remove a
+    collaborator from a finalized plan; the UI list stays read-only, so
+    the docs keep saying it cannot change. Not documented: permission caching and
+    OnPush performance commits, asset labels in the plan editor lists,
+    the inherited settings file and secret fixes (docs already describe
+    them), duplicate
+    Semantics.json entries, copyToStorage errors, and the WIP DSpace
+    preview mapper (repository-deposit-dspace a8b9c94, "In Progress";
+    dspace-semantics.md still says DSpace has no review step). Screenshots
+    replaced: administering/workflows/plan-status-drawer.png,
+    administering/notification-templates/notification-templates.png,
+    administering/workflows/plan-workflow-diagram.png and
+    asset-workflow-diagram.png (no Reset to default on Default).
+  - 2026-10-08: re-synced through 64cdbc66 (3 commits, 716fb92c..64cdbc66:
+    7106d735 and 667813a8 merged in 64cdbc66, plus 6ea2d2fc). Documented:
+    the Allowed changes grid of Plan & asset workflows, where moves between
+    statuses are now ticked and saved with the save bar instead of in the
+    status panel (workflows.md: new #allowed-changes, status panel, Who can
+    change a status, Set up a workflow; troubleshooting.md "A status is
+    missing"); Default organisation statuses opening read-only in other
+    organisations (workflows.md: new #shared-statuses, Authorization);
+    error 119 when persist adds users to a finalized plan (api-usage.md);
+    the icon field keeping an icon name saved earlier (structure-editor.md).
+    Changelog: new bullet for the grid and shared statuses; fixes for RDA
+    import duplicate template rows, Copy Asset to Plan section names, the
+    icon field, removed people in comment chips and mentions, and the
+    creation-consent lock. Re-checked and still accurate: glossary, FAQ,
+    getting-started, how-it-fits-together, plan-workflow, comments.md (role
+    chips and mentions already said current members), invite and email
+    notification pages, entity-locks. Not documented: unlock hardening and
+    moveToStorage removal (internal), the invite notification comparison
+    (the double invite notification is not fixed). Screenshots replaced:
+    administering/workflows/plan-workflow-diagram.png,
+    asset-workflow-diagram.png, plan-workflow-inherited.png (organisation
+    test13), plan-status-drawer.png; added plan-allowed-changes.png and
+    shared-status-drawer.png.
+  - 2026-10-09: re-synced through 1d9c1856 (2 commits, 64cdbc66..1d9c1856).
+    Documented: the admin rename (Answers -> Research Insights, Insights group
+    -> Analytics) across pages, sidebar, glossary, FAQ, changelog and the
+    Research Insights start screenshot; export settings shown only for
+    switched-on export plugins, and deposits skipping files whose transformer
+    is switched off (f143d525).
+
+  - 2026-10-13: re-synced through 408a8a1c (13 commits, 1d9c1856..408a8a1c).
+    Documented: webhooks enabled by default (9ce02517; WEBHOOKS_ENABLED
+    default true in webhooks.md, troubleshooting.md, backend/index.md,
+    changelog). Changelog 2.0.0 Service Versions lists the plugins at 2.0.0.
+    Re-checked and still accurate: invites on finalized plans (323eaa38,
+    7c5426fb; existing roles stay locked). Not documented: query-class
+    refactors, unlock row lock, KPI table migration V2.0.0.007 (KPI pages
+    are hidden), sidebar flicker, comment-only 1.4 -> 2.0.0 tour renames,
+    cookie text, email viewport, README rewrites, Docker example tags.
+
+Next sync: diff from 408a8a1c onward.

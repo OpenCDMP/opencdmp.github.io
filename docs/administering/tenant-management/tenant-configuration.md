@@ -1,181 +1,115 @@
 ---
-sidebar_position: 12
-description: Configure the tenant you are logged in with
+sidebar_position: 1
+description: The Settings hub of an organisation, how its settings are saved, and where each settings page is documented
 ---
 
-# Tenant Configuration
+# Organisation settings
 
-This page allows administrators to configure the tenant they are logged into. Settings here control the tenant's locale, branding, registered plugins, workflow, and display preferences.
+The organisation settings let administrators configure the organisation they are working in: its branding, the defaults of new users, the plugins it offers and their settings, its workflows, what plans and lists show first, notifications, and what users see when they sign in for the first time.
+
+Each settings page is described on a page of its own, listed [below](#settings-pages) in the order of the menu.
 
 ## Authorization
 
-Only users with the global **Admin** role or the tenant-specific **TenantAdmin** role can access this page.
+The settings hub is open to the **System Administrator** and **Organisation Admin** roles. The **Content & Workflow Manager** role reaches only some of its pages: **Languages & texts**, **Plan & asset workflows**, **Help pages & legal**, and **Notification templates**; for this role, **Settings** opens on **Plan & asset workflows**. The menu lists only the pages you can open. See [Roles](/docs/administering/how-it-fits-together.md#roles).
 
 ## Navigation
 
-This page is available from the `Tenant Configuration` link in the side navigation menu.
+Switch the sidebar to the **Admin** view and choose **Settings** under **Organisation**. The page opens on the **Overview**, and a menu on the left leads to each page, in groups: **Appearance**, **Integrations**, **Workflows**, **Content**, and **Communication**.
 
 ---
 
-## Default Tenant Locale
+## How settings are saved
 
-Configure the default locale applied to new users of this tenant.
+Each group of settings shows the value that applies to the organisation, and where it comes from:
 
-- **Timezone** — The default timezone for date and time display.
-- **Culture** — The locale/culture setting for number and date formatting.
-- **Language** — The default interface language for users of this tenant.
+- **Default**: neither the organisation nor the Default organisation has saved a value, so the built-in value applies.
+- **Set by the installation**: the organisation follows the value the Default organisation saved (see [what falls back](/docs/administering/how-it-fits-together.md#the-default-organisation-and-inheritance)). The value is shown read-only. **Use your own value** starts the organisation's own copy of it, which you can then edit; saving creates it, and **Discard** goes back to the shared value.
+- **Changed**: the organisation has its own value. **Reset to default** removes it, after a confirmation, so the Default organisation's value, or the built-in one, applies again.
 
-Users can override these defaults in their own [Profile Settings](/docs/using/profile-settings.md).
+![The Blueprint for new plans card of an organisation that follows the Default organisation: the tag Set by the installation, the Use your own value link, and the shared blueprint shown read-only](/images/administering/settings/setting-inherited.png)
 
----
+Changes are not stored until you save. While a page has unsaved changes, a bar at the bottom shows how many places changed, with **Save changes** and **Discard**. Settings that need attention (for example a required field left empty) are reported there, and saving waits until they are fixed. Leaving a page with unsaved changes asks for confirmation first.
 
-## App Theme
-
-Select the visual theme applied to the UI when this tenant is active. Each tenant can have a different theme, supporting custom branding.
-
-For information on creating and customizing themes, see [Theming](/docs/deployment/configuration/frontend/theming.md).
+Languages & texts, Webhooks, Plan & asset workflows, Comment statuses, Help pages & legal, and Notification templates also open inside the hub.
 
 ---
 
-## Plugin Registration
+## Overview
 
-The following three sections register external plugin services with this tenant. Each plugin type has a separate section. Plugins registered here become available to users of this tenant.
+A card for each page of the hub, grouped as in the menu, with a short description. For the pages that store organisation settings, the card also shows their state: *Using the defaults*, or how many of its settings are customized and when they were last updated, and how many follow the Default organisation (*set by the installation*). The **Plugins** card shows how many plugins are offered to users and how many are not responding. Click a card to open its page.
 
-:::tip
-The **Transformer Id**, **Repository Id**, and **Evaluator Id** you enter here must exactly match the `fileTransformerId`, `repositoryId`, or `evaluatorId` returned by the plugin's configuration endpoint (`GET /api/file-transformer/formats`, `GET /api/deposit/configuration`, or `GET /api/evaluator/config`). Mismatches will cause the plugin to fail silently.
-:::
-
-### Deposit Plugins
-
-Register [repository deposit services](/docs/optional-services/deposit-services/index.md) available to users for DOI assignment. Toggle **Disable System Sources** to hide any platform-wide deposit plugins for this tenant.
-
-Click **Add Source** to register a new deposit plugin. For each plugin:
-
-| Field | Description |
-|-------|-------------|
-| **Repository Id** | Must match the `repositoryId` returned by the plugin's `/api/deposit/configuration` endpoint |
-| **URL** | Base URL of the running deposit service (e.g. `https://my-deposit-service.example.com`) |
-| **Issuer URL** | The Keycloak realm URL used to issue tokens for authenticating calls to this plugin (e.g. `https://keycloak.example.com/realms/opencdmp`) |
-| **Client Id** | The Keycloak client ID used by OpenCDMP to authenticate with this plugin |
-| **Client Secret** | The corresponding client secret |
-| **Scope** | The OAuth2 scope requested when authenticating (e.g. `openid`) |
-| **PDF Transformer Id** | The Transformer Id of the file transformer to use for generating PDF files when depositing. Must match a registered file transformer. |
-| **RDA Transformer Id** | The Transformer Id of the file transformer to use for generating RDA JSON files when depositing. |
-
-### Evaluator Plugins
-
-Register [evaluator services](/docs/optional-services/evaluator-services.md) available to users for plan and description assessment.
-
-Click **Add Source** to register a new evaluator plugin. For each plugin:
-
-| Field | Description |
-|-------|-------------|
-| **Repository Id** | Must match the `evaluatorId` returned by the plugin's `/api/evaluator/config` endpoint |
-| **URL** | Base URL of the running evaluator service |
-| **Issuer URL** | Keycloak realm URL for token issuance |
-| **Client Id** | Keycloak client ID |
-| **Client Secret** | Client secret |
-| **Scope** | OAuth2 scope |
-
-### File Transformer Plugins
-
-Register [file transformer services](/docs/optional-services/file-transformers/index.md) available to users for import and export operations.
-
-Click **Add Source** to register a new transformer plugin. For each plugin:
-
-| Field | Description |
-|-------|-------------|
-| **Transformer Id** | Must match the `fileTransformerId` returned by the plugin's `/api/file-transformer/formats` endpoint. This value is also referenced in the **PDF Transformer Id** and **RDA Transformer Id** fields of deposit plugins. |
-| **URL** | Base URL of the running transformer service |
-| **Issuer URL** | Keycloak realm URL for token issuance |
-| **Client Id** | Keycloak client ID |
-| **Client Secret** | Client secret |
-| **Scope** | OAuth2 scope |
+![The Overview page of the organisation settings: the section menu on the left and a card for each page, grouped as Appearance, Integrations, Workflows, Content, and Communication](/images/administering/settings/settings-overview.png)
 
 ---
 
-## Extra Logo
+## Settings pages
 
-Upload an additional logo displayed alongside the platform logo in the navigation bar. This is useful for tenant-specific branding (e.g., an institution's logo).
+### Appearance
 
----
+#### Branding {#branding}
 
-## Notification Preferences
+Main color, logo, and custom style variables. See [Branding](/docs/administering/tenant-management/branding.md).
 
-Configure the default notification channels and their priority for each notification event in this tenant. These defaults apply to all users unless overridden in their individual profile settings.
+#### Language & region {#language--region}
 
-For each notification type, you can specify whether notifications are sent via **email**, **in-app**, or both, and in what order they are attempted.
+The default language, timezone, and format of new users. See [Language & region](/docs/administering/tenant-management/language-and-region.md).
 
----
+#### Languages & texts
 
-## Plan Workflow
+The languages people can pick, and your own wording for any text. See [Languages & texts](/docs/administering/system-configuration/languages.md).
 
-Configure the lifecycle workflow for plans in this tenant. The workflow defines:
+### Integrations
 
-- **Starting Status** — the status assigned to a plan when it is first created.
-- **Status Transitions** — which status changes are permitted (e.g., Draft → Under Review → Finalized).
+#### Plugins {#plugins}
 
-Click **Add status transition** to define each allowed move between statuses.
+Export formats, repositories, and evaluators: offer or hide them, connect your own, and adjust their settings. See [Plugins](/docs/administering/tenant-management/plugins.md), and on that page:
 
-:::note
-If no workflow is configured here, the platform uses its built-in default workflow. Statuses must be created first on the [Plan Statuses](/docs/administering/system-configuration/plan-statuses.md) page.
-:::
+- <a id="add-a-plugin"></a>[Add a plugin](/docs/administering/tenant-management/plugins.md#add-a-plugin): connect a plugin that runs outside the installation.
+- <a id="plugin-page"></a>[Plugin page](/docs/administering/tenant-management/plugins.md#plugin-page): a plugin's settings and connection.
+- <a id="repositories"></a>[Repositories](/docs/administering/tenant-management/plugins.md#repositories): the settings that decide how users publish plans.
 
-For a full explanation of how workflows operate, see [Plan Workflow](/docs/administering/system-configuration/plan-workflow.md).
+#### Webhooks
 
----
+Addresses that are called when plans and assets change. See [Webhooks](/docs/administering/webhooks.md).
 
-## Description Workflow
+### Workflows
 
-Configure the lifecycle workflow for descriptions in this tenant. Works identically to the Plan Workflow but applies to individual descriptions.
+#### Plan & asset workflows
 
-:::note
-If no workflow is configured, the platform uses its built-in default. Statuses must be created first on the [Description Statuses](/docs/administering/system-configuration/description-statuses.md) page.
-:::
+The statuses plans and assets move through, and who can move them. See [Plan & asset workflows](/docs/administering/system-configuration/workflows.md).
 
-For a full explanation, see [Description Workflow](/docs/administering/system-configuration/description-workflow.md).
+#### Comment statuses
 
----
+The states a comment thread can be in. See [Comment statuses](/docs/administering/system-configuration/annotation-statuses.md).
 
-## Default Plan Blueprint
+### Content
 
-Select the blueprint that pre-populates the blueprint selector when users [create a new plan](/docs/using/plans/create-or-edit-a-plan.md). Users can still choose a different blueprint.
+#### Content defaults {#content-defaults}
 
-:::note
-If the selected blueprint is updated to a new finalized version, this setting automatically points to the latest version.
-:::
+What people see first when they start a plan and browse the lists. See [Content defaults](/docs/administering/tenant-management/content-defaults.md), and on that page:
 
----
+- <a id="blueprint-for-new-plans"></a>[Blueprint for new plans](/docs/administering/tenant-management/content-defaults.md#blueprint-for-new-plans): the blueprint pre-selected for a new plan.
+- [Featured blueprints and asset templates](/docs/administering/tenant-management/content-defaults.md#featured-blueprints-and-asset-templates): what is offered first.
+- <a id="references-shown-in-lists"></a>[References shown in lists](/docs/administering/tenant-management/content-defaults.md#references-shown-in-lists): the reference types shown on the rows of My Plans and My Assets.
 
-## Featured Entities
+#### Help pages & legal
 
-Control which blueprints appear as quick-access options on the [Home page](/docs/using/home.md). The order you arrange them here is the order displayed to users.
+The FAQ, user guide, and policy pages. See [Help pages & legal](/docs/administering/system-configuration/supportive-material.md).
 
-- Select blueprints to feature from the list of finalized blueprints.
-- Reorder them using the drag handles.
-- Remove any blueprint from the featured list at any time.
+### Communication
 
-:::note
-If no featured entities are configured, the featured section does not appear on the Home page.
-:::
+#### Notifications {#notifications}
 
----
+The channels each notification uses, and which is tried first. See [Notifications](/docs/administering/tenant-management/notifications.md).
 
-## Plugin Configuration
+#### Notification templates
 
-Configure the system-level and user-level values for registered plugins. When a plugin declares [ConfigurationFields](/docs/developers/plugins/common-models.md#plugin-configuration-models) in its configuration, those fields appear here for administrators to fill in.
+The wording of every email and in-app message. See [Notification templates](/docs/administering/system-configuration/notification-templates.md).
 
-Examples of system-level configuration values:
-- A Zenodo community ID applied to all deposits
-- A template file used by a file transformer
-- An API endpoint for an evaluator
+#### Users & onboarding {#users--onboarding}
 
-User-level configuration fields appear in each user's [Profile Settings](/docs/using/profile-settings.md) instead.
+What people see when they sign in for the first time. See [Users & onboarding](/docs/administering/tenant-management/users-and-onboarding.md), and on that page:
 
----
-
-## View Preferences
-
-Configure which reference columns are displayed on the [My Plans](/docs/using/plans/my-plans.md) and [My Descriptions](/docs/using/descriptions/my-descriptions.md) listing pages.
-
-Select which reference types (e.g., Grant, Organization) should appear as columns in those views, helping users quickly identify key metadata at a glance.
+- <a id="terms-and-conditions"></a>[Terms and conditions](/docs/administering/tenant-management/users-and-onboarding.md#terms-and-conditions): the terms users accept, and their versions.
+- <a id="guided-tours"></a>[Guided tours](/docs/administering/tenant-management/users-and-onboarding.md#guided-tours): turn the page tours on or off.

@@ -1,14 +1,15 @@
 ---
 sidebar_position: 2
+description: How OpenCDMP notifies users by email and in the application, and where the notification channels are configured
 ---
 
 # Notifications
 
-The `Notifications Service` is responsible to inform users about important events taking place in the platform that relate with them. The contents of these notifications can be [configured](administering/system-configuration/notification-templates.md) and they depend on the type of notification. By type, we mean the event that triggered them. For example, if a user gets invited to a [plan](using/plans/index.md), this is considered an event and a notification gets pushed to the user it refers to.
+The `Notifications Service` informs users about important events in the platform that relate to them. The contents of these notifications can be [configured](/docs/administering/system-configuration/notification-templates.md) and depend on the type of notification, that is, the event that triggered it. For example, when a user is invited to a [plan](/docs/using/plans/index.md), a notification is sent to that user.
 
-The notifications sent, can use one of the following available channels. They can either be `InApp` or `Email`. More details about these notification channels can be found on the links below.
+Notifications are sent through one of two channels: `InApp` or `Email`. Each organisation decides which channels every notification may use (**Settings > Notifications**), and users choose which channel comes first in their profile.
 
-## How Notifications Flow
+## How notifications flow
 
 ```mermaid
 graph LR
@@ -29,11 +30,11 @@ graph LR
         InApp --> UserUI["Notification bell<br/>(Webapp)"]
     end
 
-    style Event fill:#fff4e1
-    style RabbitMQ fill:#f0e1ff
-    style NotifService fill:#e1f5ff
-    style Email fill:#ffe1e1
-    style InApp fill:#e1ffe1
+    style Event fill:#fff4e1,color:#1a1a1a,stroke:#555
+    style RabbitMQ fill:#f0e1ff,color:#1a1a1a,stroke:#555
+    style NotifService fill:#e1f5ff,color:#1a1a1a,stroke:#555
+    style Email fill:#ffe1e1,color:#1a1a1a,stroke:#555
+    style InApp fill:#e1ffe1,color:#1a1a1a,stroke:#555
 ```
 
 import DocCardList from '@theme/DocCardList';

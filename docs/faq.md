@@ -3,81 +3,67 @@ sidebar_position: 10
 description: Answers to frequently asked questions about OpenCDMP
 ---
 
-# Frequently Asked Questions
+# Frequently asked questions
+
+Something not working? See [Troubleshooting](/docs/troubleshooting.md).
 
 ---
 
 ## General
 
-### What is the difference between a Plan and a Description?
+### What is the difference between a Plan and an Asset?
 
-A **Plan** is the top-level entity — it represents the overall Output Management Plan (DMP, SMP, etc.) and holds metadata such as title, contacts, funders, and access rights.
-
-A **Description** is a detailed entry within a plan about a specific research output, such as a dataset, a piece of software, or a physical sample. A plan can contain many descriptions. The structure of each description is defined by a **Description Template** chosen at creation time.
+A **Plan** is the Output Management Plan itself (a DMP, an SMP, and so on), with its title, contacts, funders, and access rights. An **Asset** is an entry in the plan about one research output, such as a dataset or a piece of software; a plan can hold many. See [Plans](/docs/using/plans/index.md) and [Assets](/docs/using/assets/index.md).
 
 ---
 
-### What is the difference between a Blueprint and a Description Template?
+### What is the difference between a Blueprint and an Asset Template?
 
-A **Blueprint** defines the structure of a *plan* — its sections, plan-level fields (contacts, grants, access rights), and which description templates are allowed in each section.
-
-A **Description Template** defines the structure of a *description* — the questions users answer about a specific research output (fields, field types, visibility rules).
-
-Think of the blueprint as the plan's skeleton and the description template as the form users fill in for each output.
+A **Blueprint** defines the structure of a *plan*: its sections, plan-level fields, and the asset templates each section offers. An **Asset Template** defines the questions of an *asset*. See [Blueprints](/docs/using/blueprints.md) and [Asset Templates](/docs/using/blueprints.md#asset-templates).
 
 ---
 
 ### Can I use OpenCDMP without an external repository (Zenodo, Dataverse, etc.)?
 
-Yes. Deposit services are optional. You can create, edit, export, and evaluate plans without ever depositing to an external repository. Deposit is only needed if you want a DOI assigned to your plan.
+Yes. You can create, edit, download, and evaluate plans without publishing them. Publishing to a repository is needed only to get a DOI.
 
 ---
 
 ### Can I have multiple versions of a plan?
 
-Yes. Once a plan is finalized, you can create a **New Version** from the plan overview. The new version starts as a draft copy of the finalized plan and is tracked separately. All versions are accessible from the plan listing. See [Versions](/docs/using/plans/versions.md).
+Yes. Once a plan is finalized, **Start new version** on the plan overview creates a copy that you can change. Earlier versions are reached from the **Version** dropdown, where you can also compare two versions. See [Versions](/docs/using/plans/versions.md).
 
 ---
 
-## Plans and Descriptions
+## Plans and assets
 
-### Why can't I edit a finalized plan or description?
+### Why can't I edit a finalized plan or asset?
 
-Finalized plans and descriptions are locked to preserve the integrity of the published record. To make changes, the plan or description must be transitioned back to a Draft-type status — if the configured workflow allows it. Contact your administrator if no such transition is available.
+Finalized plans and assets are locked. Move them back to a draft status, if the workflow allows it, or start a new version of the plan. Ask your administrator if neither is offered. See [Plan workflow](/docs/using/plans/plan-workflow.md).
 
 ---
 
 ### How do I invite collaborators to my plan?
 
-From the Plan Overview page, click **Invite** in the Plan Authors panel. Enter the collaborator's email address and assign their role (Contributor or Viewer). Section-level access can also be assigned to restrict a collaborator to specific parts of the plan. See [Invite Collaborators](/docs/using/plans/invite-collaborators.md).
+Open the **Collaborators** panel from the plan overview or the plan editor, click **Share**, pick an existing collaborator or enter an email address, choose a role, and click **Send invite**. Only plan owners can invite, also after the plan is finalized. See [Work together](/docs/using/plans/invite-collaborators.md).
 
 ---
 
 ### How do I add a value that is not in the reference list?
 
-If a reference field does not contain the value you need, you can add it manually. Click the **Add manually** option in the reference picker, fill in the required fields (reference ID, label, and any type-specific fields), and save. See [Adding a Reference Manually](/docs/using/references.md#adding-a-reference-manually).
+Click **Insert it manually** under the field's search bar, enter the **Name** and any details, and click **Add**. See [Add a reference manually](/docs/using/references.md#adding-a-reference-manually).
 
 ---
 
-### What file formats are supported for export and import?
+### What file formats are supported for download and import?
 
-**Export:**
-- PDF — full plan document (requires the DOCX or PDF file transformer)
-- DOCX — editable Word document (requires the DOCX file transformer)
-- JSON — RDA maDMP or RAiD format (requires the respective JSON transformer)
-- XML — OpenCDMP native format
-
-**Import:**
-- XML — OpenCDMP native format (simplest path, no mapping required)
-- JSON — RDA maDMP or RAiD format (requires template and section mapping)
-
-Available formats depend on which [File Transformer Services](/docs/optional-services/file-transformers/index.md) your administrator has configured.
+Plans download as PDF, Word, RDA JSON, RAiD JSON, or XML, and import from XML, RDA JSON, or RAiD JSON. The formats offered depend on the [file transformer services](/docs/optional-services/file-transformers/index.md) your installation runs; XML is always available. See [Which format?](/docs/using/download.md#which-format) and [Import a plan](/docs/using/plans/imports.md).
 
 ---
 
 ### Can I import an existing DMP from another tool?
 
-Yes, if your DMP can be exported in RDA maDMP JSON or XML format. During JSON import, you will be asked to select a blueprint and map each description in the file to a description template and section. See [Plan Imports](/docs/using/plans/imports.md).
+Yes, if the tool exports RDA maDMP JSON. During the import, you choose a blueprint and map each entry of the file to an asset template and section. See [Import a plan](/docs/using/plans/imports.md).
 
 ---
 
@@ -85,17 +71,19 @@ Yes, if your DMP can be exported in RDA maDMP JSON or XML format. During JSON im
 
 ### What is a DOI and how do I get one?
 
-A **DOI** (Digital Object Identifier) is a permanent, citable identifier assigned to a published record. In OpenCDMP, a DOI is assigned when you **deposit** a finalized plan to an external repository such as Zenodo or Dataverse. After a successful deposit, the DOI appears on the Plan Overview page. See [Deposit a Plan](/docs/using/plans/deposit-a-plan.md).
+A **DOI** is a permanent, citable identifier. You get one by publishing a finalized plan to a repository such as Zenodo with **Publish**; it then appears on the plan overview. Publishing is not the same as making a plan public: see [Public plan](/docs/glossary.md#public-plan) and [Publish](/docs/glossary.md#publish). See [Publish a plan](/docs/using/plans/deposit-a-plan.md).
 
 ---
 
 ### Do I need to log in to Zenodo (or another repository) to deposit?
 
-It depends on how the deposit service is configured by your administrator:
+Only when you publish under your own repository account. Under **Publish as**, the organisation's account needs no login; your own account uses the credentials saved in your [profile](/docs/using/profile-settings.md#repository-accounts), typed in the dialog, or, for Zenodo, a sign-in pop-up. Your organisation decides which of the two you may use.
 
-- If the service uses **system-level credentials** (PluginDefault), no personal login is required.
-- If the service supports **OAuth2 login**, you will be redirected to the repository to authorize the connection.
-- If the service uses **profile credentials**, you need to save your personal access token in [Profile Settings](/docs/using/profile-settings.md) before depositing.
+---
+
+### Publishing failed. What now?
+
+The dialog says why, and nothing was published. See [Publishing fails and no DOI is returned](/docs/using/troubleshooting.md#deposit-fails-no-doi-returned).
 
 ---
 
@@ -106,47 +94,64 @@ It depends on how the deposit service is configured by your administrator:
 | Goal | Evaluator |
 |---|---|
 | Check compliance with the RDA maDMP JSON schema | **Evaluator RDA maDMP** |
-| Assess alignment with open science and OSTrails framework | **Evaluator OSTrails** |
-| Check FAIR principles (after deposit to Zenodo) | **Evaluator OpenAIRE FAIR** |
+| Assess alignment with open science and the OSTrails framework | **Evaluator OSTrails** |
+| Check the published records of the plan's assets against the FAIR principles | **Evaluator OpenAIRE FAIR** |
 
-Your administrator may have configured additional custom evaluators. See [Evaluators](/docs/using/plans/evaluators.md).
-
----
-
-### The OpenAIRE FAIR evaluator requires a deposit — why?
-
-The FAIR evaluator retrieves the published record from the repository using the plan's DOI to check Findability and Accessibility. Without a DOI, there is no publicly accessible record to assess. Deposit the plan first, then run the FAIR evaluation.
+Your installation may offer others. See [Evaluate a plan or asset](/docs/using/plans/evaluators.md).
 
 ---
 
-## Configuration (Administrators)
+### The OpenAIRE FAIR evaluator reports assets as "Not evaluated". Why? {#openaire-fair-not-evaluated}
+
+The evaluator assesses the published record behind each asset's persistent identifier, typically a DOI. An asset without one has nothing to assess. Publish the output, record its identifier in the asset, and evaluate again. See [Evaluator OpenAIRE FAIR](/docs/optional-services/evaluator-services.md#evaluator-openaire-fair).
+
+---
+
+## Configuration (administrators)
 
 ### What are semantics and do I need to configure them?
 
-Semantics are optional string tags assigned to blueprint or description template fields to declare what concept each field represents. They are used by:
-
-- **File transformers** — to map field values to the correct positions in exported formats (RDA maDMP, RAiD, Zenodo, etc.)
-- **Prefilling sources** — to identify which fields to populate with fetched data
-- **Evaluators** — to locate specific fields without relying on template IDs
-
-If you use any of the built-in export formats or prefilling, you should assign semantics using the suggested values. If you build custom plugins, you can define your own semantic strings. See [Semantics](/docs/administering/content-management/blueprints/semantics.md).
+Semantics are tags on blueprint and template questions that say what each question means. Download formats, repositories, prefilling sources, and evaluators use them to find the right answers. Assign them when you use any of these. See [Semantics](/docs/administering/content-management/templates/semantics.md).
 
 ---
 
 ### What is the difference between a plan status and the internal status?
 
-A **status** is a named state displayed to users (e.g., "Under Review", "Approved"). Administrators create and name these freely.
-
-The **internal status** is a fixed platform concept — either **Draft** or **Finalized** (for plans; descriptions also have **Canceled**) — assigned to each status. It controls whether editing is allowed: Draft statuses allow editing, Finalized statuses lock the plan or description.
-
-This separation lets administrators define meaningful workflow names while the platform enforces the correct editing behaviour. See [Plan Statuses](/docs/administering/system-configuration/plan-statuses.md).
+A **status** is a state that you name, such as "Under Review". What it **counts as** (draft, finalised, or a step in between) decides whether the plan can still be edited, published, or versioned. See [What a status counts as](/docs/administering/system-configuration/workflows.md#internal-statuses).
 
 ---
 
-### Can I create a custom evaluator or file transformer?
+### Why do users not see a blueprint, template, or status?
 
-Yes. OpenCDMP's plugin architecture allows you to build custom services using the provided Maven base packages. Each plugin is an independent Spring Boot microservice. Once deployed and registered in Tenant Configuration, it becomes available to users alongside the built-in services.
+Usually because it is not finalized, belongs to another organisation, or the workflow does not lead to it. See [Troubleshooting for administrators](/docs/administering/troubleshooting.md).
 
-- [How to create a File Transformer](/docs/developers/plugins/file-transformers.md)
-- [How to create a Deposit Service](/docs/developers/plugins/deposit.md)
-- [How to create an Evaluator](/docs/developers/plugins/evaluator.md)
+---
+
+### How can I see how a question was answered across all plans in my organisation? {#how-can-i-see-how-a-question-was-answered-across-all-plans-in-my-tenant}
+
+Use **Research Insights** in the **Analytics** group of the admin menu. It counts the answers to a question across the organisation, with breakdowns and a CSV export. See [Research Insights](/docs/administering/reports.md).
+
+---
+
+<!-- kpi disabled  -->
+<!-- ### Where can I see usage statistics such as the number of plans over time?
+
+The **Usage** page (**Analytics > Usage**) shows charts of plans, assets, references, users, blueprints, and templates over time, with an organisation-wide or installation-wide scope depending on your role. It requires the optional [KPI Service](/docs/optional-services/kpi.md) to be deployed and enabled. See [Statistics](/docs/administering/statistics.md).
+
+--- -->
+
+### Can OpenCDMP notify an external system when a plan changes?
+
+Yes, with **webhooks**: signed HTTP `POST` requests sent when, for example, a plan is finalized or published. A system administrator must enable them for the installation. See [Webhooks](/docs/administering/webhooks.md).
+
+---
+
+### Can I move an organisation's content to another installation or copy it to another organisation? {#can-i-move-a-tenants-content-to-another-installation-or-copy-it-to-another-tenant}
+
+Yes. A system administrator exports, imports, copies, or purges an organisation's content on the **Data Transfer** page (**Installation > Data Transfer**). See [Data Transfer](/docs/administering/tenant-management/tenant-transfer.md).
+
+---
+
+### Can I create a custom evaluator, file transformer, or deposit service?
+
+Yes. Each plugin is a separate Spring Boot service built on the OpenCDMP base packages. Once deployed, a system administrator registers it for the installation, or an organisation administrator connects it with **Add plugin** under **Settings > Plugins**. See [Plugins](/docs/developers/plugins/index.md).

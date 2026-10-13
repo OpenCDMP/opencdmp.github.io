@@ -1,48 +1,44 @@
 ---
 sidebar_position: 1
-description: View details about the field types available in blueprints
+description: The preset fields and input types that the questions of a plan blueprint can use
 ---
 
-# Field Types
+# Blueprint field types
 
-Blueprint fields are organized into four categories.
+Blueprint questions share the field model of [asset templates](/docs/administering/content-management/templates/field-types.md). When you add a question or an input to a blueprint section, you choose either:
 
-## System Fields
+- a **Preset field**, which stores the answer as a core plan property, or
+- an input type, such as **Free text**, **Number**, **Date**, **Single choice**, **Reference**, or **File upload**.
 
-Predefined fields that represent core plan metadata. Each system field type can only be added once per blueprint.
+## Preset fields {#system-fields}
 
-| System Field | What It Captures |
+Preset fields represent core plan metadata. Each preset field can be added only once per blueprint.
+
+| Preset field | What it captures | Required in the blueprint |
+|---|---|---|
+| **Title** | The display name of the plan | Yes |
+| **Description** | A free-text summary of the plan | Yes |
+| **Language** | The language of the plan. Options come from the configured [Languages](/docs/administering/system-configuration/languages.md) | Yes |
+| **Access** | Whether the plan is `Public` or `Restricted` | Yes |
+| **Contact** | A responsible contact person for the plan | No |
+
+:::warning
+Every blueprint must contain the **Title**, **Description**, **Language**, and **Access** preset fields, and authors must always answer them: the **Required** setting is locked. The **Required preset fields** bar of the Structure tab adds the missing ones.
+:::
+
+:::note
+A question with a preset field cannot be repeated, and preset fields cannot be the target of a conditional rule. They always represent a single, unique plan property and are always visible.
+:::
+
+## Input types
+
+Blueprint questions offer the same input types as asset templates, grouped as **Text and numbers** (free text, text area, rich text, number), **Choices and dates** (yes/no, single choice, multiple choice, tick box, date), and **Linked data and files** (reference, plan or asset in OpenCDMP, tags, dataset identifier, file upload). For each type, its settings, and how it is stored, see the [asset template field types](/docs/administering/content-management/templates/field-types.md).
+
+The types most used in blueprints are:
+
+| Input type | Use in a plan |
 |---|---|
-| **Title** | The display name of the plan |
-| **Description** | A free-text summary of the plan |
-| **Language** | The language of the plan. Options come from the configured [Languages](/docs/administering/system-configuration/languages.md) |
-| **Contact** | A responsible contact person for the plan |
-| **Access Rights** | Whether the plan is `Public` or `Restricted` |
-| **User** | A user registered on the platform |
-
-## Reference Type Fields
-
-Link a blueprint field to a [Reference Type](/docs/administering/system-configuration/reference-types.md). Users search for and select values from the configured source (e.g., a grant from OpenAIRE, an organization from ROR).
-
-When adding a Reference Type field, you select which Reference Type it connects to.
-
-## Extra Fields
-
-Free-form fields for any additional plan-level metadata not covered by system or reference type fields.
-
-| Data Type | Description |
-|---|---|
-| **Text** | A single-line text input |
-| **Rich Text** | A formatted text editor (bold, italic, lists, links) |
-| **Date** | A date picker |
-| **Number** | A numeric input |
-
-## Upload Fields
-
-A file attachment at the plan level. Requires additional configuration:
-
-| Setting | Description |
-|---|---|
-| **Max File Size** | The maximum file size users can upload (required) |
-| **File Types** | Restrict uploads to specific file types by selecting from the available list |
-| **Other File Types** | If a required file type is not in the list, add it manually with a name and MIME type |
+| **Free text**, **Text area**, **Rich text** | Plan-level answers such as a project summary or a data policy statement |
+| **Number**, **Date** | Quantities, budgets, and project dates |
+| **Reference** | Values from a [Reference Type](/docs/administering/system-configuration/reference-types.md), such as a grant from OpenAIRE or an organization from ROR. Supports multiple selection. |
+| **File upload** | A file attachment at the plan level. Set the **Max size** and the **Allowed file types**. |

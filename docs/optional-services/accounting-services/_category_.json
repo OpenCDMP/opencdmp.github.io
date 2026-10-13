@@ -1,9 +1,0 @@
-{
-  "label": "Accounting Service",
-  "position": 6,
-  "className": "hidden",
-  "link": {
-    "type": "doc",
-    "id": "index"
-  }
-}

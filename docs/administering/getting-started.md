@@ -1,600 +1,74 @@
 ---
 sidebar_position: 1
 title: Getting Started
-description: Complete guide for administrators setting up and managing OpenCDMP
+description: The order in which to set up a new organisation in OpenCDMP, from creating it to the first published plan
 ---
 
-# Getting Started - Administrator's Guide
+# Getting started
 
-This guide helps administrators set up and configure OpenCDMP for their organization. Whether you're deploying a new instance or managing an existing one, this walkthrough covers the essential tasks to get your organization's OpenCDMP environment operational.
+This checklist takes a new organisation from creation to its first published plan. Each step names the page to use and links to its full description. Read [How it fits together](/docs/administering/how-it-fits-together.md) first: it explains how blueprints, templates, reference types, and plugins depend on each other, which role can do what, and what a new organisation already shares with the Default organisation, so that you do not rebuild what is already there.
 
----
+All pages below are in the **Admin** view: switch the toggle at the top of the side navigation menu from **User View** to **Admin**. [Administering OpenCDMP](/docs/administering/index.md#the-admin-menu) lists the menu.
 
-## Prerequisites
+## 1. Create the organisation
 
-Before you begin, ensure you have:
+A System Administrator or an Installation Manager goes to **Installation > Organisations**, clicks **Create Organisation**, and enters the **Name**, the **Code**, and the **Description**. The code appears in the organisation's addresses (`/t/<code>/...`) and cannot be changed later. See [Organisations](/docs/administering/tenant-management/tenants.md).
 
-- ✅ **OpenCDMP deployed** - See [Deployment Guide](deployment/install/index.md)
-- ✅ **Admin access** - Installation Admin or Tenant Admin role
-- ✅ **Keycloak configured** - Authentication system set up
-- ✅ **Basic understanding** of your organization's:
-  - Research data management policies
-  - Required plan types (DMP, SMP, etc.)
-  - User groups and permissions needed
-  - External systems to integrate (Zenodo, institutional repository, etc.)
+Skip this step if your organisation already exists, or if the installation serves a single organisation from the Default organisation.
 
----
+## 2. Appoint the first Organisation Admin
 
-## Overview: Administrator Roles
+A new organisation is never without an administrator: every System Administrator of the installation becomes its **Organisation Admin** when it is created, and every Installation Manager becomes a **Member**. To hand it over to its own administrator, select the new organisation in the organisation menu (the organisation button in the top bar), then either invite the person with the **Organisation Admin** role from **Organisation > Users**, or give the role to their existing account. Both ways are described in [The first Organisation Admin](/docs/administering/tenant-management/tenants.md#first-organisation-admin).
 
-OpenCDMP has different admin levels with specific permissions:
+## 3. Add users and give them roles
 
-| Role | Scope | Capabilities |
-|------|-------|--------------|
-| **Installation Admin** | Entire OpenCDMP instance | System configuration, tenant management, global settings, usage limits |
-| **Tenant Admin** | Single tenant/organization | Full tenant administration — all Config Manager and Plan Manager capabilities, plus: reference types, prefilling sources, tenant users, annotation statuses, tenant configuration |
-| **Tenant Config Manager** | Tenant configuration | Manage languages, supportive material, plan statuses, description statuses, notification templates |
-| **Tenant Plan Manager** | Content management | Manage blueprints, description templates, template types |
+In **Organisation > Users**, click **Invite users** to invite people by email with their organisation roles; people join the organisation when they accept. To change someone's roles later, click the person and tick them in the drawer. Give **Member** to everyone who writes plans, and the managing roles only to those who need them; a Template Manager who also writes plans needs **Member** too. See [Users](/docs/administering/user-management/tenant-users.md) and [Roles](/docs/administering/how-it-fits-together.md#roles).
 
-:::info Role Hierarchy
-**Tenant Admin** has all permissions of both Config Manager and Plan Manager, plus additional tenant-specific administration capabilities.
-:::
+## 4. Work through the Settings
 
-```mermaid
-graph TB
-    subgraph "Global Roles"
-        InstallAdmin["<b>Installation Admin</b><br/>System-wide configuration,<br/>all tenants, global settings"]
-        GlobalUser["<b>User</b><br/>Create and manage own plans"]
-    end
+**Organisation > Settings** opens on an overview with a card per section. Anything you do not change follows the Default organisation's settings, or the built-in defaults (see [what falls back](/docs/administering/how-it-fits-together.md#the-default-organisation-and-inheritance)), so change only what your organisation needs. See [Organisation settings](/docs/administering/tenant-management/tenant-configuration.md).
 
-    subgraph "Tenant-Level Roles"
-        TenantAdmin["<b>Tenant Admin</b><br/>Full tenant administration"]
-        TenantUser["<b>Tenant User</b><br/>Belongs to this tenant"]
-        ConfigMgr["<b>Tenant Config Manager</b><br/>Languages, statuses,<br/>notification templates"]
-        PlanMgr["<b>Tenant Plan Manager</b><br/>Blueprints, description<br/>templates, template types"]
-    end
+![The Overview of the Settings hub: the section menu on the left, and cards for Branding, Language & region, Languages & texts, Plugins, Webhooks, Plan & asset workflows, and Comment statuses, some marked Using the defaults and others showing how many of their settings differ from the defaults](/images/administering/settings/settings-overview.png)
 
-    InstallAdmin -.->|Can manage| TenantAdmin
-    TenantAdmin -->|Includes all of| ConfigMgr
-    TenantAdmin -->|Includes all of| PlanMgr
+1. **Branding**: the main color and the logo. See [Branding](/docs/administering/tenant-management/branding.md).
+2. **Language & region**: the default language, timezone, and format of new users. See [Language & region](/docs/administering/tenant-management/language-and-region.md).
+3. **Languages & texts**: the languages people can pick, and your own wording for any text of the application. See [Languages](/docs/administering/system-configuration/languages.md).
+4. **Plugins**: which export formats, repositories, and evaluators your users get, and their settings. See [Plugins](/docs/administering/tenant-management/plugins.md).
+5. **Notifications** and **Notification templates**: the channels each notification uses, and its wording. See [Notifications](/docs/administering/tenant-management/notifications.md) and [Notification templates](/docs/administering/system-configuration/notification-templates.md).
+6. **Users & onboarding**: the terms and conditions people accept before first use, and the guided tours. Terms are not inherited from the Default organisation: without your own, nobody is asked to accept any. See [Users & onboarding](/docs/administering/tenant-management/users-and-onboarding.md).
+7. **Help pages & legal**: the About, FAQ, User Guide, and policy pages, if the built-in texts do not suit you. See [Help pages & legal](/docs/administering/system-configuration/supportive-material.md).
 
-    style InstallAdmin fill:#ff6b6b
-    style GlobalUser fill:#d3d3d3
-    style TenantAdmin fill:#4ecdc4
-    style TenantUser fill:#b8e0b8
-    style ConfigMgr fill:#45b7d1
-    style PlanMgr fill:#87ceeb
-```
+## 5. Check the reference types
 
-This guide focuses on **Tenant Admin** tasks, which are most common for organizational administrators.
+Reference types are the look-up lists behind questions such as funder, grant, license, or researcher. A new organisation already sees the reference types of the Default organisation, marked **Shared by default organisation** in **Data Sources > Reference Types**. Create your own only for sources you are missing, such as an institutional directory. See [Reference Types](/docs/administering/system-configuration/reference-types.md).
 
----
+## 6. Build the asset templates
 
-## Step 1: Access Administrative Features
+Asset templates hold the questions about each output of a plan, such as a dataset or software. Create them under **Templates > Asset Templates**, preview them on the **Review** tab, and finalize them: only finalized templates can be offered in a blueprint. Start from a shared template or copy its sections if one comes close. See [Asset Templates](/docs/administering/content-management/templates/index.md).
 
-1. **Log in** to OpenCDMP with your admin credentials
-2. Administrative features are accessible through the side navigation menu
-3. Depending on your role (Tenant Admin, Config Manager, or Plan Manager), you'll see different administrative options in the navigation
+## 7. Build the plan blueprints
 
-:::info Navigation
-Administrative pages like **Blueprints**, **Description Templates**, **Tenant Configuration**, **Users**, and other management features are available directly from the side navigation menu based on your permissions.
-:::
+A blueprint defines the sections of a plan, the questions about the plan as a whole, and which asset templates authors can use in each section. Create it under **Templates > Plan Blueprints** and finalize it. Then, under **Settings > Content defaults**, choose the blueprint for new plans and the featured blueprints and templates. See [Plan Blueprints](/docs/administering/content-management/blueprints/index.md) and [Content defaults](/docs/administering/tenant-management/content-defaults.md).
 
----
+## 8. Add prefilling sources (optional)
 
-## Step 2: Configure Tenant Settings
+A prefilling source lets authors start an asset from a record in another system, such as Zenodo. Create it under **Data Sources > Prefilling Sources**, then switch it on in the blueprint sections that collect assets. Its fill rules reach template questions through [semantics](/docs/administering/content-management/templates/semantics.md). See [Prefilling Sources](/docs/administering/system-configuration/prefilling-sources.md).
 
-Your **tenant** represents your organization within OpenCDMP. Configure it first:
+## 9. Set up the workflows
 
-### Basic Tenant Information
+Under **Settings > Plan & asset workflows**, check the statuses plans and assets move through, who may move work into each status, and what people can do in it: **Publish**, **Download**, and **Evaluate**. Until you save your own, the organisation follows the Default organisation's workflows. See [Plan & asset workflows](/docs/administering/system-configuration/workflows.md).
 
-1. Navigate to **Tenant Configuration**
-2. Fill in essential information:
-   - **Tenant Name**: Your organization's name
-   - **Tenant Code**: Short identifier (e.g., "UNIVERSITY-LAB")
-   - **Description**: Brief description of your organization
-   - **Logo**: Upload your organization's logo
-   - **Primary Color**: Brand color for theming
+## 10. Test with a plan
 
-3. **Save** your changes
+Sign in as a Member, or ask one to help, and go through a plan from start to end: create it from your blueprint, add an asset to each section, invite a collaborator, change its status, download it, and finalize it. Check that the expected notifications arrive; the [Notification Log](/docs/administering/notification-log.md) shows what was sent. The user's side is described in [Your first plan](/docs/using/getting-started.md).
 
-### Default Settings
+## 11. Set up publishing
 
-Configure defaults for new plans:
-- **Default Blueprint**: The blueprint shown first when users create plans
-- **Default Language**: Primary language for your organization
-- **Default Timezone**: Your organization's timezone
+To let users publish plans to a repository such as Zenodo and get a DOI, follow [Set up publishing to a repository](/docs/administering/publishing-setup.md).
 
-Learn more in [Tenant Configuration](administering/tenant-management/tenant-configuration.md).
+## After launch
 
----
-
-## Step 3: Set Up User Management
-
-### Understanding User Roles
-
-OpenCDMP uses role-based access control:
-
-- **User**: Can create and manage their own plans
-- **Tenant User**: Belongs to your organization, sees org-specific content
-- **Tenant Config Manager**: Can configure languages, supportive material, plan/description statuses, and notification templates
-- **Tenant Plan Manager**: Can manage blueprints, description templates, and template types
-- **Tenant Admin**: Full administrative access - includes all Config Manager and Plan Manager permissions, plus reference types, prefilling sources, tenant users, annotation statuses, and tenant configuration
-
-### Adding Users
-
-#### Option A: Invite Users Individually
-
-1. Go to **Users** or **Tenant Users**
-2. Click **Invite User** or **Add User**
-3. Enter user details:
-   - Email address
-   - Name
-   - Role(s)
-4. Click **Send Invitation**
-5. User receives an email with login instructions
-
-#### Option B: SSO/Keycloak Integration
-
-If using Single Sign-On:
-1. Users authenticate via your organization's SSO
-2. First login creates their OpenCDMP account automatically
-3. Assign roles after first login in **Users**
-
-Learn more in [Tenant Users](administering/user-management/tenant-users.md).
-
----
-
-## Step 4: Create Your First Blueprint
-
-A **Blueprint** defines the structure of plans in your organization.
-
-### Understanding Blueprints
-
-Blueprints determine:
-- What fields users must fill in
-- Which description templates can be used
-- Workflow and validation rules
-
-### Creating a Blueprint
-
-1. Navigate to **Blueprints**
-2. Click **New Blueprint** or **Create Blueprint**
-3. **Basic Information**:
-   - **Title**: e.g., "University Data Management Plan"
-   - **Description**: Explain what this blueprint is for
-   - **Status**: Draft (while building), Finalized (when ready for use)
-
-4. **Add Sections**:
-   - Click **Add Section**
-   - Enter section title (e.g., "Project Information", "Data Collection", "Storage & Preservation")
-   - Add a description if needed
-   - Set section as required or optional
-   - Add a description templates if needed
-
-5. **Add Fields to Sections**:
-   For each section, add fields:
-   - **Text fields**: Short answer (project title, PI name)
-   - **Text areas**: Long answer (project description)
-   - **Date fields**: Start/end dates
-   - **File uploads**: Supporting documents
-   - **Reference fields**: Link to grants, organizations, publications
-
-6. **Configure Field Properties**:
-   - **Required**: Must be filled to finalize plan
-
-7. **Finalize Blueprint**:
-   - Review all sections and fields
-   - Change status to **Finalized**
-   - Blueprint is now available for users
-
-
-Learn more in [Blueprints](administering/content-management/blueprints/index.md).
-
----
-
-## Step 5: Create Description Templates
-
-**Description Templates** define the structure of detailed content within plans (datasets, software, publications, etc.).
-
-### Why Description Templates Matter
-
-Users add descriptions to plans to document:
-- Individual datasets they'll create
-- Software components
-- Publications and outputs
-- Samples, models, prototypes
-
-Templates ensure consistency and completeness.
-
-### Creating a Template
-
-1. Navigate to **Description Templates**
-2. Click **Create Description Template**
-3. **Template Information**:
-   - **Title**: e.g., "Dataset Description Template"
-   - **Description**: What this template is for
-   - **Type**: Dataset, Software, Publication, or custom type
-   - **Language**: Primary language
-   - **Status**: Draft (while building), Finalized (when ready)
-
-4. **Add Template Fields**:
-   Similar to blueprint fields but more types of fields. Some of these are:
-   - **Text fields**: Short answer (project title, PI name)
-   - **Text areas**: Long answer (project description)
-   - **Date fields**: Start/end dates
-   - **Dropdowns**: Predefined options
-   - **File uploads**: Supporting documents
-   - **Reference fields**: Link to grants, organizations, publications
-
-5. **Organize into Pages/Sections**:
-   - Group related fields together
-   - Create multiple pages if template is long
-   - Use logical flow (collection → storage → preservation → access)
-
-6. **Set Validation Rules**:
-   - Required fields
-   - Format validation (URLs, emails, etc.)
-   - Conditional requirements
-
-7. **Finalize Template**:
-   - Test the template by creating a sample description
-   - Change status to **Finalized**
-   - Template is now available in blueprints
-
-
-Learn more in [Description Templates](administering/content-management/templates/index.md).
-
----
-
-## Step 6: Configure Reference Types
-
-**Reference Types** allow users to link plans to external systems and databases.
-
-### Common Reference Types
-
-- **Grants/Funding**: Link to grant databases
-- **Organizations**: Institutional repositories
-- **Researchers**: ORCID, institutional directories
-- **Publications**: DOI, PubMed, arXiv
-- **Datasets**: Existing data repositories
-- **Projects**: Project management systems
-
-### Setting Up Reference Types
-
-1. Navigate to **Reference Types**
-2. Review pre-configured types (if any)
-3. **Add New Reference Type**:
-   - **Name**: e.g., "ORCID", "Grant Database", "Institutional Repository"
-   - **Description**: What this reference type connects to
-   - **Code**: Short identifier
-   - **API Configuration**: If integrating with external API
-     - Endpoint URL
-     - Authentication (API key, OAuth)
-     - Search/query parameters
-
-4. **Configure Fields**:
-   - What information to fetch from the external system
-   - How to display it to users
-   - What data to store in OpenCDMP
-
-5. **Test the Integration**:
-   - Search for a known entity (researcher, grant, etc.)
-   - Verify data is fetched correctly
-   - Check display formatting
-
-Learn more in [Reference Types](administering/system-configuration/reference-types.md).
-
----
-
-## Step 7: Set Up Supportive Material
-
-**Supportive Material** provides guidance and information to users within the application.
-
-### Types of Supportive Material
-
-- **User Guide**: How to use OpenCDMP
-- **About**: Information about your OpenCDMP instance and organization
-- **FAQ**: Frequently asked questions
-- **Glossary**: Definitions of key terms
-- **Terms of Service**: Usage policies
-- **Cookie Policy**: Privacy information
-
-### Adding Supportive Material
-
-1. Navigate to **Supportive Material**
-2. Click **Add Material** or **New Material**
-3. Select **Type**: User Guide, About, FAQ, etc.
-4. **Language**: Choose language (can have multiple translations)
-5. **Content**:
-   - Use rich text editor
-   - Add formatting, links, images
-   - Provide clear, helpful information
-6. **Save**
-
-:::tip Priority Content
-Start with:
-1. Brief "About" page explaining your OpenCDMP purpose
-2. Short FAQ covering common questions (How do I create a plan? Who can see my plans?)
-3. User Guide link to your detailed documentation
-:::
-
-Learn more in [Supportive Material](administering/system-configuration/supportive-material.md).
-
----
-
-## Step 8: Configure Prefilling Sources (Optional but Recommended)
-
-**Prefilling Sources** automatically populate plan fields from external systems, reducing manual data entry.
-
-### Common Prefilling Sources
-
-- **ORCID**: Auto-fill researcher information
-- **Grant databases**: Import grant details
-- **Institutional repositories**: Fetch project information
-- **OpenAIRE**: Pull publication and funding data
-
-### Setting Up Prefilling
-
-1. Navigate to **Prefilling Sources**
-2. Click **Add Source** or **New Prefilling Source**
-3. **Configure Source**:
-   - **Name**: e.g., "ORCID Integration"
-   - **Endpoint**: API URL
-   - **Authentication**: API key or OAuth
-   - **Field Mapping**: Map external fields to OpenCDMP fields
-
-4. **Test Prefilling**:
-   - Try prefilling a plan with sample data
-   - Verify fields are populated correctly
-   - Check for any data transformation issues
-
-5. **Enable for Users**:
-   - Make available in relevant blueprints
-   - Add help text explaining how to use prefilling
-
-Learn more in [Prefilling Sources](administering/system-configuration/prefilling-sources.md).
-
----
-
-## Step 9: Configure Plan Statuses
-
-**Plan Statuses** define the possible states that a plan can have and their behavior.
-
-### Understanding Plan Statuses
-
-Plan statuses determine:
-- Whether a plan is editable or not
-- What actions are available (deposit, export, evaluate)
-- Who can access the plan
-- The display color and icon
-
-### Common Plan Statuses
-
-- **Draft**: Work in progress (editable)
-- **Finalized**: Complete and ready (not editable)
-- **Published**: If a finalized plan has been deposited
-
-### Creating Plan Statuses
-
-1. Navigate to **Plan Statuses**
-2. Review existing statuses
-3. **Add Custom Status** (if needed):
-   - **Name**: e.g., "Under Review", "Approved by PI", "Submitted to Funder"
-   - **Description**: When this status is used
-   - **Internal Status**: Draft (editable) or Finalized (not editable)
-   - **Available Actions**: Deposit, Export, Evaluate
-   - **Authorization**: Who can access plans with this status (by role)
-   - **Status Color**: Display color for this status
-   - **Icon**: Display icon for the status change action
-
-4. **Save** the status
-
-:::note
-Before a plan status can be used, it must be defined in the Plan Workflow (see Step 10).
-:::
-
-Learn more in [Plan Statuses](administering/system-configuration/plan-statuses.md).
-
----
-
-## Step 10: Configure Plan Workflow
-
-**Plan Workflow** defines the lifecycle transitions between plan statuses.
-
-### Understanding Plan Workflow
-
-The workflow determines:
-- What status a plan starts with when created
-- Which status transitions are allowed
-- The sequence of status changes throughout the plan lifecycle
-
-### Configuring Plan Workflow
-
-1. Navigate to **Tenant Configuration**
-2. Find the **Plan Workflow** section
-3. **Set Starting Status**: The status assigned when a new plan is created
-4. **Add Status Transitions**: Click **Add status transition** to define allowed transitions
-   - From which status
-   - To which status
-
-5. **Save** the workflow configuration
-
-:::info
-If the plan workflow is not defined for a specific tenant, the default workflow is used.
-:::
-
-Learn more in [Plan Workflow](using/plans/plan-workflow.md) and [Tenant Configuration](administering/tenant-management/tenant-configuration.md).
-
----
-<!-- accounting disabled -->
-<!-- ## Step 11: Create Usage Limits (Optional)
-
-**Usage Limits** control resource consumption per user or tenant.
-
-### Why Use Usage Limits?
-
-- Prevent system overload
-- Fair resource allocation
-- Manage costs
-- Enforce policies
-
-### Configuring Limits
-
-1. Navigate to **Usage Limits**
-2. **Create Limit**:
-   - **Type**: Plans per user, Descriptions per plan
-   - **Value**: Maximum allowed
-   - **Period**: Per month, per year
-
-3. **Save** and **Monitor**:
-   - Check usage reports
-   - Adjust limits as needed
-
-Learn more in [Usage Limits](administering/usage-limits.md).
-
---- -->
-
-## Step 11: Test the System End-to-End
-
-Before rolling out to users, test the complete workflow:
-
-### Testing Checklist
-
-1. ✅ **User Registration/Login**
-   - Create a test user account
-   - Verify login works
-   - Check user profile
-
-2. ✅ **Plan Creation**
-   - Create a plan using your blueprint
-   - Fill in all sections
-   - Add descriptions using your templates
-   - Test field validation
-
-3. ✅ **Collaboration**
-   - Invite a test collaborator
-   - Verify they receive invitation
-   - Check their access permissions
-   - Test simultaneous editing
-
-4. ✅ **Plan Workflow**
-   - Change plan status
-   - Verify workflow transitions
-   - Check notifications are sent
-
-5. ✅ **Export**
-   - Export plan to PDF
-   - Export to DOCX
-   - Check format and content
-
-6. ✅ **Deposit** (if configured)
-   - Deposit a test plan to repository
-   - Verify DOI is assigned
-   - Check metadata accuracy
-
-7. ✅ **Search and Discovery**
-   - Search for plans
-   - Test filters
-   - Verify visibility settings
-
-8. ✅ **Notifications**
-   - Trigger various notifications
-   - Check email delivery
-   - Verify content and formatting
-
----
-
-## Step 12: Train Your Users
-
-Once the system is configured and tested:
-
-### Create Training Materials
-
-1. **Getting Started Guide**: Link to [Your First Plan](using/getting-started.md)
-2. **Video Tutorials**: Screen recordings of common tasks
-3. **FAQ**: Organization-specific questions
-4. **Cheat Sheet**: One-page reference for key tasks
-
-### Conduct Training Sessions
-
-1. **Administrator Training**: For additional admins and config managers
-2. **Power User Training**: For principal investigators and data managers
-3. **General User Training**: For all researchers creating plans
-4. **Drop-in Sessions**: Regular office hours for questions
-
-### Provide Ongoing Support
-
-1. **Help Desk**: Email or ticketing system for support requests
-2. **User Forum**: Community Q&A space
-3. **Regular Updates**: Share tips, new features, best practices
-4. **Feedback Mechanism**: Collect user input for improvements
-
----
-
-### Content Updates
-
-- Keep blueprints current with funder requirements
-- Update templates based on user feedback
-- Refresh supportive material
-- Add new reference types as needed
-
----
-
-## Common Administrative Tasks
-
-### Adding a New Blueprint
-
-1. Go to **Blueprints** → **New Blueprint**
-2. Follow blueprint creation steps above
-3. Finalize and publish
-
-### Modifying an Existing Template
-
-1. Go to **Description Templates**
-2. Find the template
-3. Create a **new version** (don't edit published version)
-4. Make changes
-5. Finalize new version
-6. Old version remains for existing plans
-
-### Handling a Support Request
-
-1. Understand the user's issue
-2. Reproduce the problem if possible
-3. Check documentation and known issues
-4. Provide solution or escalate to technical team
-5. Update FAQ if it's a common issue
-
----
-
-### Advanced Configuration
-
-- [Keycloak SSO Integration](deployment/configuration/keycloak.md)
-- [Frontend Theming](deployment/configuration/frontend/theming.md)
-- [API Integration](developers/integration.md)
-- [Custom Plugins](developers/plugins/index.md)
-
----
-
-## Related Guides
-
-- [Your First Plan](using/getting-started.md) - User walkthrough
-- [Blueprints Administration](administering/content-management/blueprints/index.md) - Detailed blueprint guide
-- [Tenant Configuration](administering/tenant-management/tenant-configuration.md) - Tenant settings
-- [User Management](administering/user-management/tenant-users.md) - Managing users
-
----
-
-## Need Help?
-
-- **Installation Issues**: See [Deployment Guide](deployment/install/index.md)
-- **Configuration Questions**: Check [Configuration Documentation](deployment/configuration/index.md)
-- **GitHub Issues**: [Report bugs or request features](https://github.com/OpenCDMP/OpenCDMP/issues)
-- **Community**: Join discussions and ask questions
-
----
-
-:::tip Continuous Improvement
-OpenCDMP administration is an iterative process. Start with the basics, learn from your users, and gradually enhance your instance to meet your organization's evolving needs.
-:::
+- [Research Insights](/docs/administering/reports.md) counts how questions were answered across the organisation.
+- [Webhooks](/docs/administering/webhooks.md) tell other systems when plans are finalized, change status, or are published.
+- [Data Transfer](/docs/administering/tenant-management/tenant-transfer.md) copies a configured organisation to another organisation or installation.
+- A new version of a finalized blueprint or template is made with **New Version** from its row menu; plans and assets already started keep the version they began with.

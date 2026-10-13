@@ -1,29 +1,36 @@
-# For Developers
+---
+title: API & Integration
+description: Integrate with the OpenCDMP REST API, receive webhooks, read reports and audit events, and build file transformer, deposit, and evaluator plugins
+---
 
-Welcome to the OpenCDMP developer documentation. This section provides comprehensive guides for integrating with OpenCDMP, building plugins, and using the REST API.
+# API & Integration
 
-## Quick Start
+This section is for developers who integrate other systems with OpenCDMP or extend it with plugins.
 
-New to OpenCDMP API? Start here:
+## Quick start
 
-1. **[Swagger UI](swagger.md)** - Interactive API documentation with all endpoints
-2. **[Integration Guide](integration.md)** - OAuth2/Keycloak authentication setup
+New to the OpenCDMP API? Start here:
 
-## API Documentation
+1. **[Integrating with OpenCDMP](/docs/developers/integration.md)**: get a token from Keycloak for a user or a service account
+2. **[Swagger UI](/docs/developers/swagger.md)**: try every endpoint interactively
+3. **[API usage](/docs/developers/api-usage.md)**: request conventions, lookups, paging, the `x-tenant` header, and common operations
 
-- **[Swagger UI](swagger.md)** - Complete interactive API documentation with request/response examples
+The Keycloak side of a service account is in [Create an integration client](/docs/deployment/configuration/keycloak.md#integration-client).
 
-## Integration
+## More endpoints and events
 
-- **[Integration Guide](integration.md)** - OAuth2/Keycloak integration overview
+- **[Reports](/docs/developers/reports.md)**: aggregate the answers stored in plans and assets
+- **[Webhooks](/docs/developers/webhooks.md)**: signed HTTP callbacks for plan and asset events, with payload format, signature verification, and retries
 
 ## Logging and auditing
 
-- **[Logging and auditing](logging-and-auditing.md)** - Log file structure, configuration, troubleshooting log levels, and the complete audit event reference
+- **[Logging and auditing](/docs/developers/logging-and-auditing.md)**: logging conventions for code in the services
+- **[Audit events](/docs/developers/audit-events.md)**: every audit event and its id
+- **[Logging and monitoring](/docs/deployment/configuration/logging-and-monitoring.md)**: where the logs are and how to read them, for operators
 
-## Plugin Development
+## Plugin development
 
-Build custom integrations for OpenCDMP:
+Build file transformers, deposit services, and evaluators. To run one against a local installation, see [Run and test a plugin locally](/docs/developers/plugins/run-locally.md).
 
 import DocCardList from '@theme/DocCardList';
 

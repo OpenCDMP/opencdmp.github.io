@@ -1,155 +1,158 @@
+---
+description: Build, version, and finalize the plan blueprints that define the sections and questions of a plan
+---
 import DocCardList from '@theme/DocCardList';
 
-# Blueprints
+# Plan Blueprints
 
-In this page, there is a listing where you can view details about all the available plan blueprints.
+The **Plan Blueprints** page lists the plan blueprints of the organisation. From it you create, import, edit, version, and finalize blueprints.
 
 :::info
 
-**Plan Blueprints** describe how a [Plan](using/plans/index.md) is structured. All the sections and fields a Plan is consisting of, are referenced here. More details will follow in the next sections.
+**Plan Blueprints** describe how a [Plan](/docs/using/plans/index.md) is structured. All the sections and questions a Plan consists of are defined here.
 
 :::
 
-The information displayed by default is: the `display name` of the blueprints, the `status`, the `version` and timestamps for the `creation` and `updates` of the records. There is also a `code` attribute which is defined during the creation of the blueprints, cannot change afterwards and is used internally during the imports and exports. At the top right corner of the listing you can also select which columns to display.
+By default, the listing shows the `name` of each blueprint with its `code` underneath, its `status`, `type`, and `version`, and when it was last `updated`. The code is defined when the blueprint is created, cannot change afterwards, and is used internally during imports and exports. At the top right corner of the listing you can also select which columns to display.
 
 :::tip
 
-For plan blueprints, all the columns are visible by default.
+The `created` timestamp is hidden by default. Turn it on from the **Display settings** button.
 
 :::
 
-You can create new blueprints by clicking to the `+ Create Plan Blueprint` button at the top right of the page. You can otherwise import one if you have it in **XML** file format by clicking the `Import` button, upload the file and provide a name for your blueprint in the popup form.
+You can create new blueprints by clicking the `Create Plan Blueprint` button at the top right of the page. To import a blueprint from an **XML** file, click the `Import` button, upload the file, and enter a name for the blueprint in the popup form. The imported blueprint is added to the listing as a new blueprint.
 
-There are also many more actions available for plan blueprints. When you clink on the three dots at the last column of a plan, you can perform one of the following actions:
+The three dots in the last column of a blueprint offer these actions:
 
-- **Edit**
-- **New Version**: Create a new version of this blueprint.<br/>*This action is available if one blueprint has `Finalized` status (more details in [statuses](administering/content-management/blueprints/index.md#statuses) section).*
-- **Clone**
-- **All Plan Blueprint Versions**: View all the versions of this blueprint.<br/>*In the listing, only the last versions of blueprints are displayed, by default.*
+- **Edit**: Open the blueprint in the [editor](#edit-form).<br/>*Only `Draft` blueprints can be edited. For a `Finalised` blueprint the menu shows **View** instead, which opens it read-only.*
+- **New Version**: Create a new version of this blueprint.<br/>*This action is available on the current version of a `Finalised` blueprint (more details in [statuses and versions](#statuses)).*
+- **Clone**: Open a copy of the blueprint as a new blueprint.
+- **All Plan Blueprint Versions**: Open the [version history](/docs/administering/content-management/structure-editor.md#version-history) of this blueprint.<br/>*In the listing, only the latest versions of blueprints are displayed.*
 - **Download XML**: Download the structure of the blueprint in XML format.
 - **Delete**
 
+Rows that you cannot edit, which are finalized blueprints and blueprints shared by the default organisation, show an eye icon (**View**) and a clone icon next to the menu. They open read-only.
+
+This listing is organisation-scoped and supports the standard [admin listing](/docs/administering/admin-listings.md) controls: scope tabs, search, filter chips, Show deleted, column picker, and density. See that page for details.
+
 ## Authorization
 
-Only users that have the global **Admin** role or the tenant specific **TenantAdmin** role or the tenant specific **TenantPlanManager** role can access this page.
+Open to the **System Administrator**, **Organisation Admin**, and **Template Manager** roles. See [Roles](/docs/administering/how-it-fits-together.md#roles).
 
 ## Navigation
 
-This view is available when the user presses the `Plan Blueprints` link from the side navigation menu.
+In the side navigation menu, switch to the **Admin** view and go to **Templates > Plan Blueprints**.
 
-## Pagination
+## This page's filters
 
-Not all the records are being displayed at once. By default, there is a pagination of 10 records applied to them.
+- **Status**: its own filter chip. Filter blueprints by their status. The status can either be `Draft` or `Finalised`.<br/>*By default, no status is selected (more details in [statuses and versions](#statuses)).*
+- **Type**: its own filter chip, shown once at least one [blueprint type](/docs/administering/content-management/types.md) exists. Filter blueprints by their type.<br/>*By default, no type is selected.*
 
-You can control how many records are being displayed at any time, by adjusting the `items per page` control at the bottom left corner of the table.
-
-## Filtering
-
-There is a filtering option available for plan blueprints.
-
-- **Is Active**: By toggling this control you can view only the active or only the disabled blueprints.<br/>*By default, this option is set to true.*
-- **Status**: Filter blueprints by their status. The status can either be `Draft` or `Finalized`.<br/>*By default, no status is selected (more details in [statuses](administering/content-management/blueprints/index.md#statuses) section).*
-
-In order for the filters to apply, you have to click the `Apply filters` button. 
-
-You can also clear any filters already applied, by pressing the `clear all filters` option, located at the top of the popup.
+For the search, scope tabs, Show deleted, column picker, and density controls shared with other administration pages, see [Admin listings](/docs/administering/admin-listings.md).
 
 ---
 
-## Edit form
+## The editor {#edit-form}
 
-When you try to add new plan blueprints or edit existing ones, the **plan blueprint editing form** will appear, which is divided into three parts.
+When you create, edit, clone, or create a new version of a plan blueprint, the editor opens. Asset templates use the same editor, described in [The blueprint and template editor](/docs/administering/content-management/structure-editor.md): the header and banners, the problems panel, the outline, sections, questions and inputs, copying and moving, the Review tab, finalizing, and the version history. The sections below cover what only blueprints have.
 
-1. **General Info**: this part contains main info about blueprint.
-    - **Name**: The display name of the blueprint.
-    - **Code**: The unique identification code which is used internally during the imports and exports.<br/>*The `code` remains the same for all next versions of this template.*
-    - **Description**: Info about the blueprint.
-    - **Plan Blueprint type**: Select the type of blueprint from the available ones. There is more information at the [Plan blueprint types](administering/content-management/blueprints/blueprint-types.md) section.
-    - **DOCX template**: Here we can upload exclusively a docx file for the **[docx file transformer service](https://hub.docker.com/r/opencdmp/file-transformer-docx)** which operates as a template for the [export of a plan](using/plans/exports.md). Uploaded file alter how a plan can be shown (more information about docx template [here](/docs/optional-services/file-transformers/docx-templates.md)).<br/>*This is optional, there is a default template.*
-   
-2. **Form**: this part contains the actual content of the blueprint. A blueprint is divided into  `sections` and `fields`. There is more information about how to create a blueprint at the [Blueprint outline form](administering/content-management/blueprints/index.md#blueprint-outline-form) section.
+---
 
-3. **Preview**: When the blueprint is ready, you can navigate to this page to view a preview of your blueprint.<br/>*This tab is available only for editing a existing one.*
+## Details tab
 
-### Blueprint outline form
+The **About this blueprint** card works as described in [Details tab](/docs/administering/content-management/structure-editor.md#details-tab). In a blueprint:
 
-#### Section form
-You can edit and see all **sections** by clicking the `Form` tab. You can add one or more by clicking the `Add Section` button. You can also delete a section by clicking the `delete` icon next to its name.
+- **Type**: The [blueprint type](/docs/administering/content-management/types.md), which groups this blueprint with others of the same kind in the library.<br/>*This is optional.*
+- **Description and use cases**: Shown in the blueprint library and when an author starts a new plan.<br/>*This is optional.*
 
-For every section you add, a new form part appears where you can specify everything about that blueprint section. You can specify:
+### Plan creation consent {#plan-creation-consent}
 
-- **Section Name**
-- **Section Description**<br/>*This is optional.*
+Switch on **Ask for consent** to make authors accept a statement once, before a plan based on this blueprint is created. They cannot proceed without accepting.
 
-### Description Templates form
+- **Consent message** *(required when consent is on)*: One sentence, shown as the title of the consent step.
+- **Consent details** *(optional)*: The full text authors can expand before accepting, such as links to data policies or legal notices.
 
-Each section can have one or more **description templates** attached to it. When you 'attach' a [description template](administering/content-management/templates/index.md) to a blueprint, every [plan](using/plans/index.md) that inherits from that blueprint could have a [description](using/descriptions/index.md) that inherits from that template. More details will follow. If you want to have a specific description templates as default option you can add by clicking on the `Add Description Template` button. For every template you add, a new form part appears where you can specify everything about the template attachment. You can also delete one template clicking on the `delete` icon on the right end of its form.
-
-- **Description Template**: The [template](administering/content-management/templates/index.md) you want to add.
-
-- **Editable Description Templates**: When the option is checked, users will be able to **edit** the attached description templates in their plans.  
-If this option is **unchecked**, the templates will be **read-only** and cannot be modified by the plan users.
-
-:::info
-- This option is only visible when **Description Templates** is enabled.
-- If Editable description templates is unchecked, at least one Description Template must be added.
+:::note
+If a plan is created through a method other than direct creation (for example import, clone, or new version), the plan is created automatically, but the user must accept the consent before they can edit it.
 :::
-- **Min Multiplicity**: The minimum amount of [descriptions](using/descriptions/index.md) with this [description template](administering/content-management/templates/index.md) that a [plan](using/plans/index.md) based on this blueprint has to have.<br/>*This is optional.*
-- **Max Multiplicity**: The maximum amount of [descriptions](using/descriptions/index.md) with this [description template](administering/content-management/templates/index.md) that a [plan](using/plans/index.md) based on this blueprint has to have.<br/>*This is optional.*
+
+### How authors will see it
+
+The side card previews the blueprint in the blueprint library and, when consent is on, the consent step before the plan is created.
+
+---
+
+## Structure tab {#blueprint-outline-form}
+
+The Structure tab holds the blueprint's **sections**, which can hold **subsections** and **questions**. It works as described in [Structure tab](/docs/administering/content-management/structure-editor.md#structure-tab), with these differences.
+
+### Required preset fields {#required-preset-fields}
+
+A new blueprint can **Start with Basics**: a first section holding the four required preset fields. The **Required preset fields** bar lists **Title**, **Description**, **Language**, and **Access**, ticked once they are in place. While **Contact** is missing, the bar mentions it as optional; add it with **Add question** > **Preset field**. Click a missing required preset to add it, or **Add the missing ones to** *section* to add them all to one section. See [Preset fields](/docs/administering/content-management/blueprints/field-types.md#system-fields).
+
+![The Structure tab of a new plan blueprint, with the Required preset fields bar and the How do you want to start? card offering Start with Basics, Add an empty section, and Copy sections from another blueprint](/images/administering/blueprints/blueprint-structure-start.png)
+
+:::warning
+
+A blueprint must contain the **Title**, **Description**, **Language**, and **Access** preset fields. It cannot be saved without them.
+
+:::
+
+### Assets in this section {#asset-templates-form}
+
+Each top-level section can collect [assets](/docs/using/assets/index.md). Switch on **Assets in this section** to let authors add assets, such as datasets or software, in the section. Subsections show a link to the top-level section that holds these settings.
+
+- **Templates authors can use**: The [asset templates](/docs/administering/content-management/templates/index.md) offered in the section. Click **Add asset template** to pick one or more finalized templates; templates already in the section are not listed. Drag the rows to reorder them, use the eye icon to preview a template, and **Remove** to take it out.
+- **Authors add** *minimum* **to** *maximum*: How many assets with the template a plan must and may have. Leave a box empty for *any*.
+- **Authors may add other templates**: Besides the ones listed, authors can pick any finalized asset template. When this is off, at least one template must be listed.
+
+![The Structure tab of a finalized blueprint: the outline on the left, and the Research outputs section on the right with Assets in this section switched on and three asset templates listed, each with the number of assets authors add](/images/administering/blueprints/blueprint-structure-assets-section.png)
 
 :::tip
 
-Let's clarify a little bit more about our description multiplicity options. There are 4 **special cases**.
+The asset multiplicity options have four **special cases**:
 
-- If we select a `minimum` and not a `maximum`, it is **mandatory** and there is **no limit** on the amount.
-- If we select a `maximum` and not a `minimum`, it is **not mandatory** and there is a **limit** on the amount.
-- If we select the **same** `minimum` and `maximum`, we imply **only** that specific amount possible.
-- if we select nothing, it is **not mandatory** and there is **no limit** on the amount.
+- With a `minimum` and no `maximum`, the template is **mandatory** and there is **no limit** on the amount.
+- With a `maximum` and no `minimum`, the template is **not mandatory** and there is a **limit** on the amount.
+- With the **same** `minimum` and `maximum`, **only** that specific amount is possible.
+- With neither, the template is **not mandatory** and there is **no limit** on the amount.
 
 :::
 
 :::warning
-At least one section should have description templates.
+At least one section of the blueprint must collect assets. The blueprint cannot be saved otherwise.
 :::
 
-##### Prefilling Sources form
-Each section that has description templates, also contains prefilling sources option. More details about prefilling sources and how these are configured can be found [here](administering/system-configuration/prefilling-sources.md). In blueprint, you specify which of the available prefilling sources will be available for the user to select, when he creates a [description](using/descriptions/index.md) for this section.
+Turning **Assets in this section** off removes the section's templates and prefilling settings; when templates are listed, you confirm first. A section that collects assets cannot be moved inside another section.
 
+#### Prefilling {#prefilling-sources-form}
 
-You can add one or more **fields** by clicking the `Add Field` button. For every field you add, a new form part appears where we can specify everything about that field.
+**Prefill assets from repositories** lets authors import an asset's metadata from a [prefilling source](/docs/administering/system-configuration/prefilling-sources.md) instead of typing it (the **Import** option of the new-asset wizard). The switch is unavailable when no prefilling source is configured.
 
-### Fields form
+- By default, every configured source of the organisation is offered.
+- Click **Limit to specific sources** to offer only the sources you pick, and **Use all sources instead** to go back.
 
-For a field you can specify:
-
-- **Field Type**: There are four field types available. `System`, `External Reference`, `Custom` and `Upload`. There is more information available in the [Field Types](administering/content-management/blueprints/field-types.md?t=blueprint) section.
-- **System Field**: The specific system field we want to add. <br/>*Only applicable if we add a field of type `System`.*
-- **Reference Type**: The type of external reference we want to add. For more information, you can refer to the [Reference Types](administering/system-configuration/reference-types.md) section of our docs.<br/>*Only applicable if we add a field of type `External Reference`.*
-- **Label**: A label for the field.<br/>*This is optional if we add a field of type `System` or `External Reference`.*
-- **Placeholder**: Text that will appear to the input if it is empty. <br/>*This is optional.*
-- **Description**: A short description for the field. <br/>*This is optional.*
-- **Semantics**: Select from a list of predefined fields coming from Zenodo or rda specifications. There is more information available in the [Semantics](administering/content-management/blueprints/semantics.md) section.<br/>*This is optional.*
-- **Required**: You can make the field mandatory if you click the checkbox.<br/>*By default, this is set to false.*
-- **Multiple**: You can specify if you allow the addition of multiple fields of the selected type if you click the checkbox.<br/>*Only applicable if we add a field of type `External Reference`. By default, this is set to false.*
-
-:::warning
-
-Blueprint must contains a `System` field of the following types: `Title`, `Description`, `Language` and `Access`.
-
+:::note
+With no sources picked, the section offers every active source.
 :::
 
+### Questions
+
+Blueprint questions use the same input types as asset templates, including [conditional questions](/docs/administering/content-management/templates/conditional-questions.md) and semantics. See [Field Types](/docs/administering/content-management/blueprints/field-types.md).
 
 ---
 
-## Statuses 
+## Review tab
 
-When a blueprint is created for the first time it acquires the `Draft` status. When you edit an existing one, you can press the `Finalize` button and the blueprint gets `Finalized` Status. 
-
-:::warning
-- Only `Finalized` blueprints are available to plans.
-- If a blueprint has been finalized, you cannot edit it again.
-:::
+The Review tab previews the blueprint in three moments: **Starting a new plan** (the blueprint in the library, the consent step, and the sections the author then works through), **Filling the plan**, and **Download**, which also shows where the assets added to each section appear. In the plugin coverage, the values the attached asset templates fill also count. See [Review tab](/docs/administering/content-management/structure-editor.md#review-tab).
 
 ---
 
-<br/><DocCardList />
+## Statuses and versions {#statuses}
+
+A new blueprint is a `Draft`. Only `Finalised` blueprints are available to plans, and a finalized blueprint cannot be edited again: create a new version, or clone it. Authors keep getting the current version until you finalize the next one, and plans already started stay on the version they were created with. See [Finalizing and new versions](/docs/administering/content-management/structure-editor.md#statuses) and [Version history](/docs/administering/content-management/structure-editor.md#version-history).
+
+---
+
+<DocCardList />

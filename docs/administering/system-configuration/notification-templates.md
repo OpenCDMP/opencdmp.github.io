@@ -1,96 +1,61 @@
 ---
-sidebar_position: 10
-description: Manage all notification templates
+sidebar_position: 7
+description: Customize the wording of notifications
 ---
 
 # Notification Templates
 
-In this page, there is a listing where you can view details about all the notification templates.
+The **Notification templates** page lists every message the platform sends, by email or in the application, and lets you change the wording of any of them for your organisation.
 
 :::info
-Notification Templates describe how a notification is structured. There are default templates in [notification service](optional-services/notifications/index.md) but in this page you can create your own.
+Every notification has a built-in text, provided by the [notification service](/docs/optional-services/notifications/index.md). Customize a notification to use your own wording for this organisation. The notifications you do not customize keep the built-in text and pick up future improvements.
 :::
 
-The information displayed by default is: the `type` of the notifications, the `status`, the `precedence (kind)`, the notification `channel` to which it applies and timestamps for the `creation` and `updates` of the records. At the top right corner of the listing you can also select which columns to display.
+## The notification list
 
-:::tip
+The left side of the page lists the notifications, grouped into **Plans**, **Assets**, **Comments**, **Account**, **Support**, and **Other**. Counters at the top show how many are customised and how many use the built-in text, and a **Customised** badge marks each customised notification. Click a notification to open it in the editor beside the list.
 
-For notification templates, all the columns are visible by default.
+![The Notification templates page: the notifications grouped by topic on the left, and the editor of the selected notification with its channel, language, subject, and message](/images/administering/notification-templates/notification-templates.png)
 
+:::info
+Plan collaboration changes have their own notifications, which you can customize separately:
+
+- **Plan Role Added**: a collaborator is granted a role on a plan.
+- **Plan Role Changed**: a collaborator's role on a plan is changed.
+- **Plan Role Removed**: a specific role is removed from a collaborator on a plan.
+- **Plan Access Removed**: a user is removed from a plan.
 :::
 
-You can also create new or edit / remove notification templates by clicking to the `+ Create Notification Template` button at the top right corner of the page or to the three dots at the last column, respectively.
+## Editing a notification
+
+The editor shows the state of the selected text: **Built-in text**, **Customised for this organisation**, **Customised by the default organisation**, or **Unsaved changes**.
+
+1. If the notification is sent on both channels, choose **Email** or **In App**.
+2. Select the **Language**. If there is no built-in text in that language yet, the English text is shown, and saving creates a version in the selected language.
+3. Edit the **Subject** and the **Message**. The message is HTML. Details in braces, like `{plan-name}`, are filled in for each person when the message is sent.
+4. To add a detail, click it under **Insert a detail**. A dashed detail, marked *not used*, is one that the built-in message uses but yours does not yet.
+5. Check the result in **Preview, with example details**.
+6. Click **Save**. The **Subject** and the **Message** are required: while either is empty, saving marks it *Required* instead.
+
+For email, **More email options: copies and attachments** holds:
+
+- **Also send a copy to** and **Send a hidden copy to**: email addresses, separated by commas.
+- **When the sender adds copies too** and **When the sender adds hidden copies too**: how your addresses combine with copies the sender adds (`Not Override`, `Additive`, or `Replace`).
+- **Allow attachments**: when checked, the notification can have attachments.
+
+Other actions:
+
+- **Send a test to me** sends the message as it is in the editor to your own email address or in-app notifications.
+- **Reset to built-in text** removes this organisation's wording and goes back to the built-in text.
+
+:::note
+Older versions of the notification service cannot show their built-in texts. In that case the page says so, customizing starts from an empty message, and **Send a test to me** is not available.
+:::
 
 ## Authorization
 
-Only users that have the global **Admin** role or the tenant specific **TenantAdmin** role or the tenant specific **TenantConfigManager** role can access this page.
+Users with the **System Administrator**, **Organisation Admin**, or **Content & Workflow Manager** role can access this page and customize notifications. See [Roles](/docs/administering/how-it-fits-together.md#roles).
 
 ## Navigation
 
-This view is available when the user presses the `Notification Templates` link from the side navigation menu.
-
-## Pagination
-
-Not all the records are being displayed at once. By default, there is a pagination of 10 records applied to them.
-
-You can control how many records are being displayed at any time, by adjusting the `items per page` control at the bottom left corner of the table.
-
-## Filtering
-
-There is a filtering option available for tenants.
-
-- **Is Active**: By toggling this control you can view only the active or only the disabled notification templates.<br/>*By default, this option is set to true.*
-- **Type**: You can filter templates by the type which infers to the event this notification template applies to.<br/>*By default, no type is selected.*
-- **Kind**: You can filter templates by their precedence.<br/>*By default, no kind is selected.*
-- **Channel**: You can filter templates by the channel they are used in.<br/>*By default, no channel is selected.*
-
-:::note
-
-More details about some of the above options are discussed in the editing form section below.
-
-:::
-
-In order for the filters to apply, you have to click the `Apply filters` button. 
-
-You can also clear any filters already applied, by pressing the `clear all filters` option, located at the top of the popup.
-
----
-
-## Edit form
-
-When you try to add new notification templates or edit existing ones, the **notification template editing form** will appear containing the following sections.
-
-### Main information section
-
-- **Notification Type**: The notification type this template applies to.
-- **Language**: The language of the template.
-- **Kind**: The precedence of this template. A kind can either be `Draft`, `Primary`, `Secondary` or `Default`.
-- **Channel**: The notification channel this template will be used. The channel can be either `Email` or `InApp`.
-
-:::info
-To **override** default template that exists in notification service you must select `Primary` for field **Kind** 
-:::
-
-### Subject section
-
-For the subject, we can specify the following:
-
-- **Subject Text**: The subject itself.
-- **Subject Key**: The key referring to the subject on the template.
-
-### Body section
-
-For the body, we can specify the following:
-
-- **Body Text**: The actual contents of the template.
-- **Body Key**: The key referring to the body on the template.
-
-### Extra options section
-
-- **Allow Attachments**: When checked, the notification can have attachments.<br/>*By default, this option is set to false.*
-- **Priority Key**
-- **CC**
-- **CC Mode**: It can either be `Not Override`,`Additive` or `Replace`.
-- **BCC**
-- **BCC Mode**: It can either be `Not Override`,`Additive` or `Replace`.
-- **Extra Data Keys**
+In the side navigation menu, switch to the **Admin** view, go to **Organisation > Settings**, and open **Notification templates** (in the **Communication** group of the section menu).
