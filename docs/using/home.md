@@ -1,13 +1,13 @@
 ---
 sidebar_position: 2
-description: The first page after you log in, with your recent plans and assets, usage counts, navigation, guided tours, the Support menu, notifications, and the organisation switcher
+description: The first page after you log in, with the recommended blueprints and templates, your recent plans and assets, usage counts, navigation, guided tours, the Support menu, notifications, and the organisation switcher
 ---
 
 # Dashboard
 
 When you log in, the **Dashboard** is the first page to appear. It gives an overview of your recent [Plans](/docs/using/plans/index.md) and [Assets](/docs/using/assets/index.md), along with usage counts and a guide to help you get started.
 
-![Dashboard with the Assets tab selected, the status chips, and the My Overview card](/images/home/home-page.png)
+![Dashboard with the recommended blueprints and templates, the All tab of recent activity, and the My Overview card](/images/home/home-page.png)
 *Dashboard*
 
 ## Navigation
@@ -25,6 +25,17 @@ Users with administrator permissions see a **Switch view** toggle at the top of 
 :::
 
 The **top navigation bar** holds the logo, a **Support** menu, the language selector, the [organisation button](#switch-organisation), the [notifications bell](#notifications), and your user avatar (or the **Log in** button).
+
+## Recommended blueprints and templates {#recommended}
+
+When the organisation features blueprints or asset templates, a **Recommended blueprints and templates** panel appears above the activity tabs. Outside the default organisation, its heading reads **From** followed by the organisation's name.
+
+The panel shows three cards at a time: the featured blueprints first, then the featured asset templates, in the order the organisation set. Page through them with the arrow buttons; the count next to **Hide**, for example *1–3 of 6*, shows which ones are on screen. Each card shows whether it is a **Plan Blueprint** or an **Asset Template**, its name, its type when it has one, its version, how many plans or assets use it, and the start of its description.
+
+- **Start a plan with it**, on blueprint cards, opens the new plan wizard with that blueprint already selected.
+- **See details** opens the blueprint or template in the [Library](#library).
+
+**Hide** collapses the panel to its heading, and **Show** opens it again. The panel is open again the next time you visit the Dashboard. Administrators choose what appears here under [Featured blueprints and asset templates](/docs/administering/tenant-management/content-defaults.md#featured-blueprints-and-asset-templates).
 
 ## Recent activity
 

@@ -59,6 +59,12 @@ These variables enable the [Statistics](/docs/administering/statistics.md) page,
 | --- | --- | --- | --- | --- |
 | `LOGGING_ENABLED` | Writes the webapp's log messages to the browser console. | No | `false` | `true` |
 
+### Test installation banner
+
+| Env Variable | Description | Required | Default Value | Example |
+| --- | --- | --- | --- | --- |
+| `TEST_INSTALLATION_MESSAGE_ENABLED` | Shows a "This is a test environment." banner on every page, for test and staging installations. | No | `false` | `true` |
+
 ## Overrides {#overrides}
 
 To change other values of `config.json`, mount a `config-override.json` file at `/usr/share/nginx/html/assets/config/config-override.json` in the webapp container (the Docker example has the volume line commented out in `docker-compose.override.yml`). The webapp merges it over `config.json` when it loads: objects are merged key by key, and any other value that is not `null` in the override replaces the value of `config.json`, including values set from the environment variables. List only the keys you change. The sections you can change are listed below.

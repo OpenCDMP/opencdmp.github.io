@@ -35,6 +35,8 @@ The Zenodo deposit service supports three ways to authenticate:
 
 See the [Zenodo authentication documentation](https://developers.zenodo.org/#authentication) for details.
 
+After a deposit under a user's own account, the service reads the token's Zenodo user from `<DEPOSIT_ZENODO_URL>me` and reports its full name (else its username) and email, which OpenCDMP shows when a later version of the plan is published. The OAuth 2.0 sign-in asks for the `user:email` scope for this; a personal access token without that scope may give no email, and then only the name is shown. If Zenodo does not answer, the deposit is not affected.
+
 ### Zenodo API
 
 | Env Variable | Description | Required | Default Value | Example |

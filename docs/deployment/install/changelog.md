@@ -22,22 +22,31 @@ The Notification Service and Annotation Service are closed-source components dis
 
 | Service | Version | Released |
 |---|---|---|
-| API Service | 2.0.0 | 2026-10-13 |
-| Webapp | 2.0.0 | 2026-10-13 |
+| API Service | 2.0.1 | 2026-10-23 |
+| Webapp | 2.0.1 | 2026-10-23 |
 | File Transformer — Docx | 2.0.0 | 2026-10-13 |
 | File Transformer — RDA maDMP | 2.0.0 | 2026-10-13 |
 | File Transformer — RAiD | 2.0.0 | 2026-10-13 |
-| Deposit Service — Zenodo | 2.0.0 | 2026-10-13 |
-| Deposit Service — DSpace | 2.0.0 | 2026-10-13 |
-| Deposit Service — CKAN | 2.0.0 | 2026-10-13 |
-| Deposit Service — Dataverse | 2.0.0 | 2026-10-13 |
-| Deposit Service — Fedora | 2.0.0 | 2026-10-13 |
+| Deposit Service — Zenodo | 2.0.1 | 2026-10-23 |
+| Deposit Service — DSpace | 2.0.1 | 2026-10-23 |
+| Deposit Service — CKAN | 2.0.1 | 2026-10-23 |
+| Deposit Service — Dataverse | 2.0.1 | 2026-10-23 |
+| Deposit Service — Fedora | 2.0.1 | 2026-10-23 |
 | Evaluator — RDA maDMP | 2.0.0 | 2026-10-13 |
-| Evaluator — OSTrails DMP Evaluation Service | 2.0.0 | 2026-10-13 |
+| Evaluator — OSTrails DMP Evaluation Service | 2.0.1 | 2026-10-23 |
 | Evaluator — OpenAIRE FAIR | 2.0.0 | 2026-10-13 |
 | RDA maDMP API | 2.0.0 | 2026-10-13 |
 | Notification Service | 0.0.23 | — |
 | Annotation Service | 0.0.25 | — |
+
+### Patch Releases
+
+| Version | Released | Changes |
+|---|---|---|
+| API and Webapp 2.0.1 | 2026-10-23 | Plugin client secrets stay on the server, encrypted, and are masked in audit and logs; recommended blueprints and templates per organisation on the Dashboard; a test-environment banner (`TEST_INSTALLATION_MESSAGE_ENABLED`); the account that must publish a new version of a deposited plan; the deposit plugin's validation message instead of a system error; plan editor, evaluation and reference fixes. The upgrade runs two database migrations at startup (DOI metadata, and encryption of stored API sign-in bodies, which does not need Keycloak) |
+| repository-deposit-base 2.0.1 | 2026-10-23 | Optional `POST /api/deposit/account` endpoint that names the account a deposit used |
+| Deposit services 2.0.1 | 2026-10-23 | Values are checked before sending and the repository's validation errors are shown; the account a deposit used is reported; Zenodo receives its token in a header; the DSpace review follows the collection's submission form |
+| OSTrails evaluator 2.0.1 | 2026-10-23 | Reads the test list in the service's current format |
 
 ### Highlights
 
@@ -161,6 +170,7 @@ Follow [Upgrading from 1.2 or 1.3 to 2.0](/docs/deployment/install/upgrade.md#up
 
 ### File Transformer — RDA maDMP
 
+- Exports used values of version 1.2 of the RDA DMP Common Standard. They now follow 1.3: shared data access is written as `restricted`, any PID system is accepted, an empty host URL is left out, and ROR funder and re3data host identifiers get their own types. Files in version 1.2 still import.
 - Semantic objects and answer keys build whole RDA objects, such as one distribution with its host and licences. See the [RDA JSON semantics reference](/docs/optional-services/file-transformers/rda-json-semantics.md).
 - The grants and funders reference types and the repository of the plan identifier are set per organisation in **Settings > Plugins**.
 - All ten examples of the RDA DMP Common Standard import.
@@ -181,6 +191,7 @@ Follow [Upgrading from 1.2 or 1.3 to 2.0](/docs/deployment/install/upgrade.md#up
 
 ### Evaluator — RDA maDMP
 
+- Validation used the 1.2 schema, which rejects the 1.3 values the RDA JSON transformer writes, such as `restricted`. It now uses the 1.3 schema, which still accepts the `shared` of 1.2 files.
 - The evaluator can read the plan's RDA JSON from a folder it shares with the API service (`RDA_MADMP_USE_SHARED_STORAGE`, `STORAGE_PATH`).
 
 ### Evaluator — OSTrails DMP Evaluation Service

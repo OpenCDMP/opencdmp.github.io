@@ -65,6 +65,8 @@ Click **Configure** on a plugin to open its page. The header has the switch that
   |-------|-------------|
   | **Largest response (bytes)** | The largest response the platform accepts from the repository service; *Responses larger than this are refused.* Required, at least `1`. Set to `6554000` when the repository is added. |
 
+  The saved **Client secret** is never shown again. The field reads **Stored encrypted. Leave empty to keep it.** Leave it empty to keep the saved secret, or type a new one to replace it. **Test connection** uses the saved secret when the field is empty.
+
 When the plugin sorts its settings into groups (as the DOCX transformer and the repositories do), the **Settings** tab shows a menu of the groups, with the number of changed settings in each. Every setting shows its description and whether it holds its own value (**Changed**, with its own **Reset to default**) or follows the plugin's default (**Plugin default**). Settings that pick a reference type list the organisation's reference types.
 
 ![The page of the DOCX transformer: the Offered to users switch, the Settings and Connection tabs, and the menu of setting groups](/images/administering/settings/plugin-docx-settings.png)
@@ -82,7 +84,7 @@ The settings of a repository decide how your users [publish plans](/docs/using/p
 
 | Group | Settings |
 |---|---|
-| **Who publishes** | **Ways to publish**: the organisation's account and users' own accounts, only the organisation's account, or only users' own accounts. **Preselected**: the choice users see selected when both are allowed (users with saved credentials always start on their own account). **Organisation account name**: what users see as the organisation's account in **Publish as**. |
+| **Who publishes** | **Ways to publish**: the organisation's account and users' own accounts, only the organisation's account, or only users' own accounts. **Preselected**: the choice users see selected when both are allowed (users with saved credentials start on their own account, and users publishing a new version of a plan published under the organisation's account start on that account). **Organisation account name**: what users see as the organisation's account in **Publish as**, and in the notice about an earlier version published under it. |
 | **Organisation account** | The credentials of the organisation's own account in the repository (an **Access token**, or a **Username** and **Password**), used when users publish under the organisation's account. Empty: the installation's account is used. |
 | **[Repository] record** | Defaults for the records your users create, such as the community or collection, publisher, license, language, which plan members are credited as authors (**Authors from plan members**), and whether a public plan's page is linked from the record (**Link the public plan page**). An empty setting uses the installation's value. |
 | **Files** | **Files to deposit**: which of **Plan document**, **Machine-actionable plan (RDA JSON)**, and **Supporting files** are uploaded with the record. Empty: every file the repository accepts. A file whose export plugin is switched off is never uploaded. |

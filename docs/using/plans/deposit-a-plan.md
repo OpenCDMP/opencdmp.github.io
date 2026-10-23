@@ -41,7 +41,7 @@ The **Account** step asks under which account the record is published (**Publish
 ![The Account step of the Publish to Zenodo dialog, offering the organisation's Zenodo account and the user's own Zenodo account](/images/plans/deposit-a-plan/publish-account.png)
 *Account step*
 
-Your organisation decides which of the two you may use, and which one is selected when you open the dialog. If you have saved credentials for the repository in your [profile](/docs/using/profile-settings.md#repository-accounts), your own account is selected and tagged **Connected**.
+Your organisation decides which of the two you may use, and which one is selected when you open the dialog. If you have saved credentials for the repository in your [profile](/docs/using/profile-settings.md#repository-accounts), your own account is selected and tagged **Connected**. When an earlier version of the plan was published to the same repository under the organisation's account, the organisation's account is selected instead; see [Publish a new version](#depositing-a-new-version).
 
 When only the organisation's account is allowed, the step shows no choice, only a note such as **Published under the organisation's [repository] account**. When no way is set up, the dialog shows **There is no way set up to publish to [repository]. Contact your administrator.**
 
@@ -126,13 +126,25 @@ If the repository does not publish the plan, the dialog says why, for example **
 - **Use the organisation's account**, when you tried your own account and the organisation's account is allowed.
 - **Cancel** to close the dialog.
 
+When an earlier version of the plan is on the same repository, the failure step also repeats which account must publish the new version (see [Publish a new version](#depositing-a-new-version)).
+
 If the review cannot be loaded after you click **Continue**, the dialog shows **Couldn't load the review**: *[repository] didn't return the details to review. Nothing was published. Try again, or go back and choose another account.* Expand **Details** for the repository's message, then click **Try again**, **Back** to return to the account step, or **Cancel**.
 
 See [Troubleshooting: publishing fails](/docs/using/troubleshooting.md#deposit-fails-no-doi-returned) for common causes and solutions.
 
 ## Publish a new version {#depositing-a-new-version}
 
-Each version of a plan is published separately. When you publish a new version of a plan whose earlier version was published, the deposit service adds a new version to the existing repository record. The previous DOI remains valid and points to the earlier version.
+Each version of a plan is published separately. When an earlier version of the plan is already on the same repository, the deposit service adds a new version to the existing repository record. The previous DOI remains valid and points to the earlier version.
+
+The repository usually accepts a new version only from the account that published the earlier one. The **Account** step then names that version and who published it, for example:
+
+| Earlier version published by | The notice reads, for example |
+|---|---|
+| You, with your own account | **You published version 1 of this plan to Zenodo with the account [account], so this one is published as its new version. Use [account] again, or Zenodo will refuse it.** |
+| Another collaborator, with their own account | **[collaborator] published version 1 of this plan to Zenodo with the account [account], so this one is published as its new version. Only [account] can publish it, so ask [collaborator] to publish this version.** |
+| The organisation's account | **Version 1 of this plan was published to Zenodo under the organisation's account, so this one is published as its new version. Publish it under the organisation's account again, or Zenodo will refuse it.** |
+
+The account is named when the repository service reports it; otherwise the notice says only that the same account must be used. For the organisation's account, the notice uses the account name your organisation set, if any, and the organisation's account is selected when the dialog opens. The other choices remain available.
 
 ## View and use the DOI {#viewing-and-using-the-doi}
 

@@ -72,7 +72,7 @@ Opening or creating a prefilling source shows the prefilling source editor. Its 
 - **Close**: Returns to the listing.
 - **Save**: Saves the prefilling source. A note next to the buttons says whether there are unsaved changes.
 - **More actions** (three dots):
-  - **Export XML**: Downloads the prefilling source's definition as an XML file, which can be used as a backup or shared with another environment.
+  - **Export XML**: Downloads the prefilling source's definition as an XML file, which can be used as a backup or shared with another environment. The file leaves out the [authentication](/docs/administering/system-configuration/api-sources.md#authentication) request body, so type it again after an import.
   - **Import XML**: Loads a previously exported XML file into the editor, replacing the connection, search, full record, and fill rules with the ones in the file.
   - **Delete**: Removes the prefilling source. *Only available when editing an existing prefilling source.*
 

@@ -20,6 +20,7 @@ When a user deposits a plan to a repository, the OpenCDMP backend:
 4. Wraps it in a `PlanDepositModel` alongside the user's authentication info (`AuthInfo`).
 5. Calls `POST /api/deposit` on your microservice.
 6. Expects a DOI string back as the response.
+7. When the user published under their own account, calls `POST /api/deposit/account` to learn which repository account the credentials belong to (see [Reporting the account a deposit used](#reporting-the-account-a-deposit-used)).
 
 Your service is responsible for everything in between: authenticating with the repository, uploading files, publishing the record, and returning the minted DOI.
 
@@ -64,6 +65,13 @@ public interface DepositClient {
         throw new UnsupportedOperationException("vocabulary search not supported");
     }
 
+    // Optional — return the repository account that the credentials in
+    // planDepositModel belong to, or null when you cannot tell. Called after a
+    // successful deposit under a user's own account. Default returns null.
+    default DepositAccount account(PlanDepositModel planDepositModel) {
+        return null;
+    }
+
     // Exchange an OAuth2 authorization code for an access token.
     // Called during the OAuth2 redirect flow. Returns the access token.
     String authenticate(String code);
@@ -100,6 +108,12 @@ public interface DepositController {
         throw new UnsupportedOperationException("vocabulary search not supported");
     }
 
+    // Optional — same contract as DepositClient.account(); default returns null.
+    @PostMapping("/account")
+    default DepositAccount account(@RequestBody PlanDepositModel planDepositModel) {
+        return null;
+    }
+
     @GetMapping("/authenticate")
     String authenticate(@RequestParam("authToken") String code);
 
@@ -113,7 +127,7 @@ public interface DepositController {
 
 ### 3. PlanDepositModel
 
-The input to `deposit()` and `preview()`: the plan data, the user's credentials, and, once a preview round-trip has happened, the user's edits.
+The input to `deposit()`, `preview()`, and `account()`: the plan data, the user's credentials, and, once a preview round-trip has happened, the user's edits.
 
 ```java
 public class PlanDepositModel {
@@ -507,6 +521,23 @@ if (previousDoi != null && !previousDoi.isBlank()) {
 }
 ```
 
+The platform sets `previousDOI` from the latest earlier version of the plan that has a DOI on the same repository. Repositories usually accept a new version only from the account that published the earlier one, which is why the platform asks your service for that account.
+
+#### Reporting the account a deposit used {#reporting-the-account-a-deposit-used}
+
+After a successful deposit under a user's own account (`AuthInfoFromUserProfile` or `oAuth2Flow`), OpenCDMP calls `account()` (`POST /api/deposit/account`) and stores the result with the plan's DOI. When a later version of the plan is published, the publish dialog names that account. It is never called for a deposit under the organisation's account (`PluginDefault`), so that account's identity is not stored or shown to users.
+
+The request carries the same `AuthInfo` the deposit used and a `PlanModel` with only `planBlueprint` set, so that `DepositPluginSettings` can read your plugin settings. It has none of the plan's content or files. Return a `DepositAccount`:
+
+```java
+public class DepositAccount {
+    private String id;    // The account's identifier in the repository
+    private String name;  // A name to show users, for example the full name and email
+}
+```
+
+Return `null` when the repository cannot tell. The call is made after the DOI is minted, so an error or a missing endpoint never fails the deposit: the platform logs a warning and stores no account. Services built on an earlier `repository-deposit-base` keep working without it. The Zenodo service is a complete example: it reads the token's user from Zenodo's `me` endpoint.
+
 ### Step 3 — Implement DepositController
 
 Create a `@RestController` that implements the controller interface:
@@ -625,7 +656,7 @@ The following open-source deposit services are part of the OpenCDMP platform and
 | `repository-deposit-fedora` | Fedora | [GitHub](https://github.com/OpenCDMP/repository-deposit-fedora) | [Fedora semantics](/docs/optional-services/deposit-services/fedora-semantics.md) |
 
 :::tip
-All five support [preview](/docs/developers/plugins/deposit-preview.md). Zenodo's `ZenodoPreviewMapper` class is the most complete example of the `toPreview()` / `applyOverrides()` pattern, including hidden sections and locked values. All five declare `uploadedFiles` and the shared [organisation settings](#6-depositpluginsettings).
+All five support [preview](/docs/developers/plugins/deposit-preview.md) and [`account()`](#reporting-the-account-a-deposit-used). Zenodo's `ZenodoPreviewMapper` class is the most complete example of the `toPreview()` / `applyOverrides()` pattern, including hidden sections and locked values. All five declare `uploadedFiles` and the shared [organisation settings](#6-depositpluginsettings).
 :::
 
 ---

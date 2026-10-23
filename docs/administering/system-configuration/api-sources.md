@@ -44,6 +44,8 @@ Some APIs require a token. Turn on **Needs a token** to configure it in three st
 
 With the toggle off, the API is called without a token.
 
+The request body usually holds a password or a client secret, so it is stored encrypted and never shown again after you save. The field then reads **Stored encrypted. Leave empty to keep it.** Leave it empty to keep the saved body, or type a new one to replace it. Tests use the saved body when the field is empty, and **Export XML** leaves it out.
+
 ---
 
 ## Search rules {#search-rules}

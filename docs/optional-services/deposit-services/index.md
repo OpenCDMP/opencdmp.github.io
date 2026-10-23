@@ -32,6 +32,8 @@ Users [publish a plan](/docs/using/plans/deposit-a-plan.md) to a repository unde
 
 Each organisation chooses which of the two its users may use. Credentials are stored encrypted, both in the organisation settings and in user profiles, and are never shown again once saved.
 
+With each DOI the platform records how the plan was published (under the organisation's account, with saved or typed credentials, or by signing in) and which user published it. For a user's own account it also records the repository account the credentials belong to, as the service reports it: all five services do, and the Fedora service reports the username the deposit signed in with. The organisation's account is never looked up, so its identity in the repository is not stored or shown to users. When a later version of the plan is published to the same repository, the publish dialog uses this record to tell users which account must publish it, because a repository usually accepts a new version only from the account that published the earlier one. See [Publish a new version](/docs/using/plans/deposit-a-plan.md#depositing-a-new-version).
+
 With the record, the platform uploads the files the repository accepts: the **Plan document** (PDF), the **Machine-actionable plan (RDA JSON)**, and, when the plan or its assets hold uploaded files, the **Supporting files** (a ZIP archive). An organisation can narrow this list with the **Files to deposit** setting. When the organisation has switched off the export plugin that produces the plan document or the RDA JSON, that file is not uploaded. All five services accept all three files.
 
 All five repositories let users review and edit the record's metadata before it is published. For DSpace, the **Submission** setting then decides whether the record is published in the archive, submitted to the collection's review workflow, or left as a draft.
@@ -45,8 +47,8 @@ Each organisation adjusts how its users publish to a repository on the repositor
 | Group | Setting | Description | Repositories |
 |---|---|---|---|
 | **Who publishes** | **Ways to publish** | The organisation's account and users' own accounts (default), only the organisation's account, or only users' own accounts | All |
-| | **Preselected** | The choice users see selected when both are allowed: users' own accounts (default) or the organisation's account. Users with saved credentials always start on their own account. | All |
-| | **Organisation account name** | What users see as the organisation's account in **Publish as**. Empty: "The organisation's [repository] account". | All |
+| | **Preselected** | The choice users see selected when both are allowed: users' own accounts (default) or the organisation's account. Users with saved credentials start on their own account, unless an earlier version of the plan was published to the repository under the organisation's account. | All |
+| | **Organisation account name** | What users see as the organisation's account in **Publish as**, and in the notice about an earlier version published under it. Empty: "The organisation's [repository] account". | All |
 | **Organisation account** | **Access token** | The token of the organisation's account in the repository. Empty: the installation's account is used. | Zenodo, CKAN, Dataverse |
 | | **Username** / **Password** | The credentials of the organisation's account in the repository. Empty: the installation's account is used. | DSpace, Fedora |
 | **[Repository] record** | **Authors from plan members** | Which plan members are credited as authors: every member (default), owners and editors, owners only, or none, so that only the authors mapped through semantics (or, for Zenodo, added in the review) are credited | Zenodo, Dataverse, DSpace, Fedora |

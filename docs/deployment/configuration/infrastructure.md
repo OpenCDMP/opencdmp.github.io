@@ -60,6 +60,7 @@ The [changelog](/docs/deployment/install/changelog.md) lists the service version
 | `KEYCLOAK_CLIENT_ID` | Keycloak client of the webapp. | Yes | - | `webapp` |
 | `KEYCLOAK_SCOPE` | Scopes the webapp requests. They must include `api` and, for comments and notifications, `annotation` and `notification`. | No | `openid profile email address phone api notification annotation identity_provider` | `openid profile email api notification annotation identity_provider` |
 | `LOGGING_ENABLED` | Enables the webapp's logging to the browser console. | No | `false` | `true` |
+| `TEST_INSTALLATION_MESSAGE_ENABLED` | Shows a test-environment banner on every page. | No | `false` | `true` |
 
 These settings are described in more detail in the [frontend configuration](/docs/deployment/configuration/frontend/index.md).
 

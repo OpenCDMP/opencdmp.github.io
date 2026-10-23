@@ -61,7 +61,7 @@ Opening or creating a reference type shows the reference type editor. Its header
 - **Save**: Saves the reference type. A note next to the buttons says whether there are unsaved changes.
 - **More actions** (three dots):
   - **Test all sources**: Opens a dialog where you search all the sources together, as users do, and see the mapped values of the result you select. Shown once the type has a source.
-  - **Export XML**: Downloads the reference type's definition as an XML file, which can be used as a backup or shared with another environment.
+  - **Export XML**: Downloads the reference type's definition as an XML file, which can be used as a backup or shared with another environment. The file leaves out the [authentication](/docs/administering/system-configuration/api-sources.md#authentication) request bodies, so type them again after an import.
   - **Import XML**: Loads a previously exported XML file into the editor, replacing the type's fields and sources with the ones in the file.
   - **Delete**: Removes the reference type. *Only available when editing an existing reference type.*
 
