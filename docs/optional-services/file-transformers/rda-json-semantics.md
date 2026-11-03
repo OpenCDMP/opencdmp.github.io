@@ -31,6 +31,19 @@ Grouped RDA structures (`dmp.project.funding`, `dmp.dataset.distribution`, `dmp.
 
 [Answer options that stand for key values](/docs/administering/content-management/templates/semantics.md#answer-options-that-stand-for-key-values) are read as if inputs with those keys had been answered; an input answered explicitly wins over the option. An option marked **Exports nothing** leaves the object out.
 
+### Picked references {#picked-references}
+
+A reference input can carry keys itself, take them from its [reference type](/docs/administering/content-management/templates/semantics.md#keys-from-reference-types), or both. A key the input carries takes the picked reference's ID; a key the type gives its Reference ID, Name, Description, or a field takes that value of the picked reference.
+
+In the lists of RDA (affiliations of the plan, the contact, contributors, and creators; creators; contributors; project fundings; metadata standards; technical resources; alternate and related identifiers of the plan and of datasets), each picked reference makes one entry, and the answer's other values are copied into each:
+
+- Two organisations picked for a creator's affiliation give two affiliations.
+- Reference inputs that fill the same keys are alternatives, so each of their picks is its own entry.
+- Reference inputs that fill different keys complete each other: one funder and two grants picked in one project answer give two fundings, each with the funder.
+- Entries nested in another (a creator's affiliations, a project's fundings) belong to the answer of that entry.
+
+Distributions, hosts, and licences are filled from picked references as described in [Distributions](#distributions).
+
 ### Example: a distribution from a few plain questions
 
 A "Data sharing" section described as `rda.dataset.distribution` contains:
@@ -393,6 +406,7 @@ The transformer also imports RDA maDMP JSON files into a plan, using the same se
 - When a dataset has no distribution, an option marked **Exports nothing** on a distribution question is selected.
 - A `data_access` of `shared` or `restricted` selects whichever of the two options the input offers.
 - A question that takes a single answer keeps the first matching object; for example, a non-repeating project question keeps the first of two projects.
+- [Picked references](#picked-references) are rebuilt from the file: the reference ID from the input's own key, else from the type's Reference ID key, and the name, description, and fields from the type's other keys, the name falling back to the ID. OpenCDMP links each to an existing reference of the type with the same ID, or adds it as a new reference. Each entry of a list gets its own answer. A multiple-select input takes all entries in one answer when the question takes a single answer or has nothing else to fill them with. Entries nested in another become the picks of that entry's answer, for example the affiliations of each creator or the funder and grants of each project.
 - `dmp_id` is written back to the inputs carrying the `rda.dmp.dmp_id` semantics, unless it is a UUID typed `other`, which is the id OpenCDMP exports for a plan without a DOI. An imported plan is a new plan and gets its own id.
 
 Some values are not read back on import. The editors mark those keys, using the plugin's [semantics manifest](#semantics-manifest).

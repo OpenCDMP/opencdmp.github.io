@@ -20,7 +20,7 @@ The plugin reads a field's value as follows:
 - Date fields give the date as `yyyy-MM-dd`.
 - Select and radio fields give the label of each chosen option.
 - Tag fields give each tag.
-- Reference fields give the code of each selected reference.
+- Reference fields give the code of each selected reference. A reference field without the semantic still answers it when its [reference type](/docs/administering/content-management/templates/semantics.md#keys-from-reference-types) gives the semantic to the reference's ID, name, description, or one of its fields: each selected reference then gives that value.
 - Identifier fields give the identifier.
 
 Fields marked **Several** in the tables below keep every value. Fields marked **One** take one value: when several fields carry the semantic, the record keeps only one of their values, so map each of these semantics to a single field.

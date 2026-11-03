@@ -10,7 +10,9 @@ The [Zenodo deposit plugin](https://hub.docker.com/r/opencdmp/repository-deposit
 
 ## How the plugin resolves fields
 
-Every semantic on this page works on plan blueprint inputs and on asset template inputs alike. The two exceptions are the contributor name and license link semantics, which go on fields of a reference type (see [License](#license) and [Contributors](#contributors)).
+Every semantic on this page works on plan blueprint inputs and on asset template inputs alike. The two exceptions are the contributor name and license link semantics, which go on a reference type (see [License](#license) and [Contributors](#contributors)).
+
+A **Reference Types** input can also take semantics from its [reference type](/docs/administering/content-management/templates/semantics.md#keys-from-reference-types): when the type gives a semantic to the reference's ID, name, description, or one of its fields, each chosen reference gives that value, even though the input itself does not carry the semantic.
 
 The plugin reads the blueprint's answers first, then the answers of each of the plan's assets:
 
@@ -28,7 +30,7 @@ The plugin reads the blueprint's answers first, then the answers of each of the 
 | **Dataset Identifier**, **Validator** | The identifier. |
 | **Tags** | Each tag as a separate value. For an additional title or a related identifier, the tags are joined with `, `. |
 | **Select**, **Radio Box** | The value of each chosen option, or its label when the option has no value. Semantics with fixed values, such as the additional title type, match on this value. |
-| **Reference Types** | The identifier of each chosen reference, not its label. |
+| **Reference Types** | The identifier of each chosen reference, not its label. For a semantic the input takes from its reference type, the part of each reference that carries it. |
 
 **Upload**, **Internal Plans**, and **Internal Assets** inputs and the blueprint's system fields (such as the plan's title or description) are not read, even when they carry a semantic.
 
@@ -95,7 +97,7 @@ Put the three semantics on inputs of the same field set, in a blueprint or an as
 
 Each answer of an input that carries one of these semantics, in a blueprint or an asset template, becomes one `metadata.related_identifiers[]` entry. The relation type is the last part of the semantic, in lowercase. To set the scheme, add one of the [scheme semantics](#related-identifier-scheme-semantics) to the same input; without one, the scheme is `other`. Empty answers are skipped.
 
-On a **Reference Types** input, the identifier is the reference's identifier. When the reference has a `pid` field and a `pidTypeField` field with an accepted PID type (such as `doi`, `handle`, `orcid`, or `ROR`), its PID is sent instead. References of the organisation and researcher reference types always send their identifier. An answer with several references still gives one related identifier.
+On a **Reference Types** input, the identifier is the reference's identifier. When the reference has a `pid` field and a `pidTypeField` field with an accepted PID type (such as `doi`, `handle`, `orcid`, or `ROR`), its PID is sent instead. References of the organisation and researcher reference types always send their identifier. An answer with several references still gives one related identifier. A **Reference Types** input that takes the related identifier semantic from its reference type instead gives one related identifier per chosen reference; its scheme comes from a scheme semantic the reference type carries, when the input has none.
 
 | Relation type | Semantic |
 |---|---|
@@ -214,7 +216,7 @@ Each answer of an input that carries one of these semantics becomes one `metadat
 
 Licenses come from the plan's license references, of the reference type set in the organisation's **Licences** setting. The plugin looks up each reference's identifier in Zenodo's license vocabulary and sends a match as `metadata.rights[].id`. When the lookup fails, it sends a custom license instead, with the reference's identifier as the title, its description as the description, and the link below. A plan without license references gets the organisation's **Default licence** setting, if set.
 
-The only semantic goes on a field of the license reference type, not on a blueprint or template input:
+The only semantic goes on the license reference type, on one of its fields or on its reference ID, name, or description, not on a blueprint or template input:
 
 | Zenodo field | Semantic | Notes |
 |---|---|---|
@@ -224,7 +226,7 @@ The only semantic goes on a field of the license reference type, not on a bluepr
 
 The plan's researcher references, of the reference type set in the organisation's **Researchers** setting, become `metadata.contributors[]` with the role `researcher` and the reference's label as the name. A researcher from ORCID also gets the ORCID iD as an identifier. No affiliation is sent.
 
-Two semantics on fields of the researcher reference type set the name parts:
+Two semantics on the researcher reference type, on its fields or on its reference ID, name, or description, set the name parts:
 
 | Zenodo field | Semantic | Notes |
 |---|---|---|

@@ -22,20 +22,20 @@ The Notification Service and Annotation Service are closed-source components dis
 
 | Service | Version | Released |
 |---|---|---|
-| API Service | 2.0.1 | 2026-10-23 |
-| Webapp | 2.0.1 | 2026-10-23 |
-| File Transformer — Docx | 2.0.0 | 2026-10-13 |
-| File Transformer — RDA maDMP | 2.0.0 | 2026-10-13 |
-| File Transformer — RAiD | 2.0.0 | 2026-10-13 |
-| Deposit Service — Zenodo | 2.0.1 | 2026-10-23 |
-| Deposit Service — DSpace | 2.0.1 | 2026-10-23 |
-| Deposit Service — CKAN | 2.0.1 | 2026-10-23 |
-| Deposit Service — Dataverse | 2.0.1 | 2026-10-23 |
-| Deposit Service — Fedora | 2.0.1 | 2026-10-23 |
-| Evaluator — RDA maDMP | 2.0.0 | 2026-10-13 |
-| Evaluator — OSTrails DMP Evaluation Service | 2.0.1 | 2026-10-23 |
-| Evaluator — OpenAIRE FAIR | 2.0.0 | 2026-10-13 |
-| RDA maDMP API | 2.0.0 | 2026-10-13 |
+| API Service | 2.0.2 | 2026-11-03 |
+| Webapp | 2.0.2 | 2026-11-03 |
+| File Transformer — Docx | 2.0.1 | 2026-11-03 |
+| File Transformer — RDA maDMP | 2.0.1 | 2026-11-03 |
+| File Transformer — RAiD | 2.0.1 | 2026-11-03 |
+| Deposit Service — Zenodo | 2.0.2 | 2026-11-03 |
+| Deposit Service — DSpace | 2.0.2 | 2026-11-03 |
+| Deposit Service — CKAN | 2.0.2 | 2026-11-03 |
+| Deposit Service — Dataverse | 2.0.2 | 2026-11-03 |
+| Deposit Service — Fedora | 2.0.2 | 2026-11-03 |
+| Evaluator — RDA maDMP | 2.0.1 | 2026-11-03 |
+| Evaluator — OSTrails DMP Evaluation Service | 2.0.2 | 2026-11-03 |
+| Evaluator — OpenAIRE FAIR | 2.0.1 | 2026-11-03 |
+| RDA maDMP API | 2.0.1 | 2026-11-03 |
 | Notification Service | 0.0.23 | — |
 | Annotation Service | 0.0.25 | — |
 
@@ -47,6 +47,12 @@ The Notification Service and Annotation Service are closed-source components dis
 | repository-deposit-base 2.0.1 | 2026-10-23 | Optional `POST /api/deposit/account` endpoint that names the account a deposit used |
 | Deposit services 2.0.1 | 2026-10-23 | Values are checked before sending and the repository's validation errors are shown; the account a deposit used is reported; Zenodo receives its token in a header; the DSpace review follows the collection's submission form |
 | OSTrails evaluator 2.0.1 | 2026-10-23 | Reads the test list in the service's current format |
+| API and Webapp 2.0.2 | 2026-11-03 | Organisation slides at the top of the Dashboard, with a Fill or Fit choice for each image; semantics on a reference type's id, name and description; conditional rules between inputs of the same question; template check issues shown on finalized blueprints and asset templates; input labels as placeholders in the plan and asset forms; fixes for "First value only" on JSONPath filter paths and templated fields with a missing placeholder; the plan touch maintenance task releases its database session between batches |
+| common-models 2.0.1, file-transformer-base 2.0.1, evaluator-base 2.0.1, repository-deposit-base 2.0.2 | 2026-11-03 | Semantics for a reference type's id, name and description; the base libraries build on common-models 2.0.1 |
+| File transformers 2.0.1 | 2026-11-03 | RDA JSON and RAiD export and import a picked reference's id, name or fields through its reference type's semantics; export and import requests are audited by id and file name instead of their full payload |
+| Deposit services 2.0.2 | 2026-11-03 | Keys are read through the reference type of a picked reference; the images run on `eclipse-temurin:21-jre-noble` instead of Alpine, where outgoing HTTPS calls failed; DSpace reports the repository's errors and checks that the previous item can be versioned; Dataverse creates datasets with a dataset type |
+| Evaluators 2.0.1 / OSTrails 2.0.2 | 2026-11-03 | Evaluation requests are audited by plan or asset id instead of the full model |
+| RDA maDMP API 2.0.1 | 2026-11-03 | Builds on common-models 2.0.1 |
 
 ### Highlights
 

@@ -27,9 +27,9 @@ If the selected blueprint is updated to a new finalized version, this setting au
 - **Featured blueprints**: shown first, in this order, when starting a plan.
 - **Featured asset templates**: shown first when adding an asset to a plan.
 
-Both lists also fill the [Recommended blueprints and templates](/docs/using/home.md#recommended) panel on the Dashboard, blueprints first and then asset templates, each in the order set here. A blueprint card there starts a plan with that blueprint.
+Add items from the finalized ones, reorder them by dragging (or with Alt and the left or right arrow key), and remove them at any time.
 
-Add items from the finalized ones, reorder them by dragging (or with Alt and the left or right arrow key), and remove them at any time. If nothing is featured, the panel does not appear on the Dashboard.
+To show these items on members' Dashboard too, add the slide **Recommended blueprints and templates** under [Information on the Dashboard](/docs/administering/tenant-management/users-and-onboarding.md#information-on-the-dashboard), as the **Also on the Dashboard** note on this card says. The slide always shows the current lists, blueprints first and then asset templates, each in the order set here, and a blueprint card there starts a plan with that blueprint. If nothing is featured, the slide is not shown.
 
 ## References shown in lists
 

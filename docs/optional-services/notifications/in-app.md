@@ -45,6 +45,7 @@ The following events can generate in-app notifications:
 | Asset finalized | An asset you are involved in was finalized |
 | Asset evaluation completed | An evaluation was run on an asset of a plan you are a member of |
 | Asset template invitation | You were added to the users of an asset template |
+| Plan blueprint invitation | You were added to the users of a plan blueprint |
 | Organisation invitation | You were invited to join an organisation |
 | Plan suggestion | An external system suggested a new plan, or changes to a plan |
 | Account merge confirmation | A request to link accounts was initiated |

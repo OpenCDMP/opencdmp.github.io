@@ -105,8 +105,10 @@ The first row of the table lists the three built-in fields every entry has: **Re
 Expand a row to set its details:
 
 - **Help text shown to users**: An optional explanation shown under the field when users add an entry by hand.
-- **Semantics**: Optional semantic tags that classify the meaning of the field for interoperability. Pick suggestions, or type your own and press <kbd>Enter</kbd>. See [Semantics](/docs/administering/content-management/templates/semantics.md).
+- **Semantics**: Optional semantic keys the field's value supplies when an entry is picked, for example `rda.dmp.contributor.mbox` on an email field. Pick suggestions, or type your own and press <kbd>Enter</kbd>. See [Keys from reference types](/docs/administering/content-management/templates/semantics.md#keys-from-reference-types).
 - **Remove field**: Deletes the field.
+
+Expand the built-in row to set the keys the entry's identity supplies: **Reference ID semantics** (its reference ID, for example a ROR or ORCID address), **Name semantics** (its name), and **Description semantics** (its description). With these set, a reference input needs no keys of its own: every entry picked in it gives its values to the export, and the import fills the input back.
 
 Adding, renaming, or removing a field updates every source's mappings straight away: a renamed field keeps its mapping, and a removed field loses it.
 

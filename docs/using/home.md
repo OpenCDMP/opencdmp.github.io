@@ -1,13 +1,13 @@
 ---
 sidebar_position: 2
-description: The first page after you log in, with the recommended blueprints and templates, your recent plans and assets, usage counts, navigation, guided tours, the Support menu, notifications, and the organisation switcher
+description: The first page after you log in, with your organisation's slides, your recent plans and assets, usage counts, navigation, guided tours, the Support menu, notifications, and the organisation switcher
 ---
 
 # Dashboard
 
 When you log in, the **Dashboard** is the first page to appear. It gives an overview of your recent [Plans](/docs/using/plans/index.md) and [Assets](/docs/using/assets/index.md), along with usage counts and a guide to help you get started.
 
-![Dashboard with the recommended blueprints and templates, the All tab of recent activity, and the My Overview card](/images/home/home-page.png)
+![Dashboard with the organisation's slides showing the recommended blueprints and templates, the All tab of recent activity, and the My Overview card](/images/home/home-page.png)
 *Dashboard*
 
 ## Navigation
@@ -26,16 +26,23 @@ Users with administrator permissions see a **Switch view** toggle at the top of 
 
 The **top navigation bar** holds the logo, a **Support** menu, the language selector, the [organisation button](#switch-organisation), the [notifications bell](#notifications), and your user avatar (or the **Log in** button).
 
-## Recommended blueprints and templates {#recommended}
+## Slides from your organisation {#recommended}
 
-When the organisation features blueprints or asset templates, a **Recommended blueprints and templates** panel appears above the activity tabs. Outside the default organisation, its heading reads **From** followed by the organisation's name.
+Above the activity tabs, a section headed **From** and your organisation's name shows the slides your organisation's administrators prepared, one at a time. When your organisation has no slides of its own, you see the Default organisation's slides, and the heading reads **From** and the platform name. When there is nothing to show, the section does not appear.
 
-The panel shows three cards at a time: the featured blueprints first, then the featured asset templates, in the order the organisation set. Page through them with the arrow buttons; the count next to **Hide**, for example *1–3 of 6*, shows which ones are on screen. Each card shows whether it is a **Plan Blueprint** or an **Asset Template**, its name, its type when it has one, its version, how many plans or assets use it, and the start of its description.
+- Move between slides with the arrow buttons or the dots below them. The count next to **Hide**, for example *2 of 4*, shows which slide is on screen. Slides change only when you select an arrow or a dot.
+- **Hide** folds the section into one line with the number of slides, and **Show** opens it again. The choice is saved for your account. The section opens again by itself when the administrators add a slide or change the text, image, or button of one.
+
+A slide is one of two kinds.
+
+**Content slides** have a title and a text, an optional image on the right, and an optional button. The button opens a web page in a new tab or starts an email to the address the organisation set. The texts appear in your language when the organisation wrote them in it, and otherwise in the organisation's default language. When a text is longer than the slide, **Read more** opens the whole slide in a window.
+
+**Recommended blueprints and templates** shows the blueprints and asset templates your organisation features, blueprints first, in the order the organisation set. A slide holds up to three cards and fewer on a narrow screen, so several items take several slides in a row. Each card shows whether it is a **Plan Blueprint** or an **Asset Template**, its name, its type when it has one, its version, how many plans or assets use it, and the start of its description.
 
 - **Start a plan with it**, on blueprint cards, opens the new plan wizard with that blueprint already selected.
 - **See details** opens the blueprint or template in the [Library](#library).
 
-**Hide** collapses the panel to its heading, and **Show** opens it again. The panel is open again the next time you visit the Dashboard. Administrators choose what appears here under [Featured blueprints and asset templates](/docs/administering/tenant-management/content-defaults.md#featured-blueprints-and-asset-templates).
+Administrators manage the slides under [Information on the Dashboard](/docs/administering/tenant-management/users-and-onboarding.md#information-on-the-dashboard), and choose the recommended items under [Featured blueprints and asset templates](/docs/administering/tenant-management/content-defaults.md#featured-blueprints-and-asset-templates).
 
 ## Recent activity
 

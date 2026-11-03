@@ -18,7 +18,7 @@ The value a field gives depends on its type:
 - Single and multiple choice fields give the label of each chosen option.
 - Date fields give the date as `yyyy-MM-dd`.
 - Number, Yes / No, and tick box fields give the value as text (`true` or `false` for the last two).
-- Reference fields give the identifier of each chosen reference, not its name.
+- Reference fields give the identifier of each chosen reference, not its name. A reference field without the semantic still answers it when its [reference type](/docs/administering/content-management/templates/semantics.md#keys-from-reference-types) gives the semantic to the reference's ID, name, description, or one of its fields: each chosen reference then gives that value. A reference field that answers an author, contact, keyword, or other identifier semantic this way gives one entry per chosen reference, wherever the field sits in the blueprint or template.
 - Dataset identifier fields give the identifier.
 - Other field types, such as file uploads, preset fields, and links to plans or assets, give nothing.
 
@@ -31,6 +31,7 @@ Subjects, contributor types, and publication identifier and relation types are c
 | Purpose | Semantic | Notes |
 |---|---|---|
 | Target dataverse collection | `dataverse.identifier` | The alias of the dataverse collection the dataset is created in. First value only. Falls back to the organisation's **Dataverse collection** [setting](/docs/optional-services/deposit-services/index.md#organisation-settings), then to the installation's collection. A new version of an already published plan updates the existing dataset, so this value only matters for the first deposit. It is not written into the dataset metadata. |
+| Dataset type | `dataverse.dataset.type` | The [dataset type](https://guides.dataverse.org/en/latest/user/dataset-management.html#dataset-types) the dataset is created with, by its name in the Dataverse instance, for example `software` or `outputmanagementplan`. The first value that the target collection allows is used. Falls back to the installation's dataset type (`DEPOSIT_DATAVERSE_DATASET_TYPE`) when the collection allows it; otherwise no type is sent and Dataverse creates a `dataset`. A collection allows the types a Dataverse superuser lists in its `allowedDatasetTypes` attribute, and only `dataset` when it lists none. When the collection allows more than one type, users can pick another in the review. Dataverse sets the type only when the dataset is created, so a new version keeps it. |
 
 ## Values that are always set (not semantic-driven)
 
@@ -184,7 +185,7 @@ Blueprint **or** asset template, on the inputs of one question. Use any of these
 
 ### Reference type semantics
 
-`dataverse.related_publication.identifier` and `dataverse.related_publication.identifier_type` also work on the fields of a [reference type](/docs/administering/system-configuration/reference-types.md#fields). Every reference of that type chosen in a plan or asset reference field adds one related publication entry: the value of the field with `identifier` becomes the `publicationIDNumber`, and the value of the field with `identifier_type` becomes the `publicationIDType` when it is one of the instance's identifier types.
+Every `dataverse.related_publication.*` semantic also works on a [reference type](/docs/administering/content-management/templates/semantics.md#keys-from-reference-types): on its fields, or on its reference ID, name, and description. Every reference of that type chosen in a plan or asset reference field adds one related publication entry, with each value taken from the part of the reference that carries the semantic. For example, the reference ID with `identifier` becomes the `publicationIDNumber`, and the name with `citation` becomes the `publicationCitation`. The identifier type and relation type are kept only when they are values of the instance's vocabularies.
 
 ## Citation — `keyword` (compound, question) {#citation--keyword-compound-field-set--asset-template-only}
 
@@ -219,7 +220,7 @@ Every semantic works on both plan blueprint and asset template fields.
 | `dataverse.publication.relation_type.*` | The same field as a `dataverse.publication.type.*` semantic |
 | `dataverse.author.*` | The inputs of one question |
 | `dataverse.point_of_contact.*` | The inputs of one question |
-| `dataverse.related_publication.*` | The inputs of one question; `identifier` and `identifier_type` also on reference type fields |
+| `dataverse.related_publication.*` | The inputs of one question; also on a reference type |
 | `dataverse.keyword.*` | The inputs of one question |
 | `dataverse.other_identifier.*` | The inputs of one question |
 

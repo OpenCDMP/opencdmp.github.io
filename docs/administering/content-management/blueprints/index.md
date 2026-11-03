@@ -32,13 +32,15 @@ The three dots in the last column of a blueprint offer these actions:
 - **Download XML**: Download the structure of the blueprint in XML format.
 - **Delete**
 
+[Editors](#editors) of a blueprint who have none of the roles below see only **Edit** (**View** on a `Finalised` blueprint), and **Download XML** on the blueprints they own.
+
 Rows that you cannot edit, which are finalized blueprints and blueprints shared by the default organisation, show an eye icon (**View**) and a clone icon next to the menu. They open read-only.
 
 This listing is organisation-scoped and supports the standard [admin listing](/docs/administering/admin-listings.md) controls: scope tabs, search, filter chips, Show deleted, column picker, and density. See that page for details.
 
 ## Authorization
 
-Open to the **System Administrator**, **Organisation Admin**, and **Template Manager** roles. See [Roles](/docs/administering/how-it-fits-together.md#roles).
+Open to the **System Administrator**, **Organisation Admin**, and **Template Manager** roles. Users added as [editors](#editors) of a blueprint can also open this page, which then lists only the blueprints they edit, and can edit those blueprints. See [Roles](/docs/administering/how-it-fits-together.md#roles).
 
 ## Navigation
 
@@ -65,6 +67,17 @@ The **About this blueprint** card works as described in [Details tab](/docs/admi
 
 - **Type**: The [blueprint type](/docs/administering/content-management/types.md), which groups this blueprint with others of the same kind in the library.<br/>*This is optional.*
 - **Description and use cases**: Shown in the blueprint library and when an author starts a new plan.<br/>*This is optional.*
+
+### Editors {#editors}
+
+**Editors** are the people who can change this blueprint, in addition to administrators. Click **Manage editors** to open the side panel:
+
+- Search people by name or email to add them. New editors join as members and get an email with a link to the blueprint.
+- Use the role button of a person to **Make owner**, **Make member**, or **Remove from blueprint**. Owners and members can both change the blueprint; only owners can also download it as XML.
+
+On a saved blueprint, changes to editors save immediately, even when the blueprint is finalized. On a new blueprint, they are saved with the blueprint when you first save it.
+
+Editors cannot create, import, clone, or delete blueprints, or create a new version, unless one of the roles above lets them.
 
 ### Plan creation consent {#plan-creation-consent}
 

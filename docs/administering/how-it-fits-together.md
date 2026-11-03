@@ -103,6 +103,7 @@ The Default organisation itself sees only its own records, never those of other 
 | Language & region (defaults of new users) | Fallback |
 | Content defaults (blueprint for new plans, featured blueprints and templates, references shown in lists) | Fallback |
 | Guided tours | Fallback; when neither organisation has saved the setting, tours are on |
+| Information on the Dashboard (slides) | Fallback: without slides of its own, the organisation's members see all of the Default organisation's slides. The recommended slide always shows the featured items that apply to the member's own organisation. See [Information on the Dashboard](/docs/administering/tenant-management/users-and-onboarding.md#information-on-the-dashboard). |
 | Plugin settings | Fallback, for all plugins together: once your organisation saves the settings of any plugin, none of the Default organisation's plugin settings apply. An empty setting takes the plugin's own default. A blueprint or asset template can override them, setting by setting, in its **Export template** card. |
 | Which plugins are offered, and plugins added with **Add plugin** | No fallback: each organisation starts from the plugins the installation registers |
 | Terms and conditions | No fallback: without terms of its own, the organisation's users are not asked to accept any |

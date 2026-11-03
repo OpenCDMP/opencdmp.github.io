@@ -109,7 +109,8 @@ The wording of every email and in-app message. See [Notification templates](/doc
 
 #### Users & onboarding {#users--onboarding}
 
-What people see when they sign in for the first time. See [Users & onboarding](/docs/administering/tenant-management/users-and-onboarding.md), and on that page:
+What people see when they first sign in, and the information on their Dashboard. See [Users & onboarding](/docs/administering/tenant-management/users-and-onboarding.md), and on that page:
 
+- <a id="information-on-the-dashboard"></a>[Information on the Dashboard](/docs/administering/tenant-management/users-and-onboarding.md#information-on-the-dashboard): the slides members see at the top of their Dashboard.
 - <a id="terms-and-conditions"></a>[Terms and conditions](/docs/administering/tenant-management/users-and-onboarding.md#terms-and-conditions): the terms users accept, and their versions.
 - <a id="guided-tours"></a>[Guided tours](/docs/administering/tenant-management/users-and-onboarding.md#guided-tours): turn the page tours on or off.

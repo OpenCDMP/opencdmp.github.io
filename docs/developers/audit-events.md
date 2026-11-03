@@ -95,7 +95,7 @@ Assets are called *descriptions* in the API and data model, so audit event names
 | 6014 | `Description_PersistMultiple` | Create or update multiple Assets |
 | 6015 | `Description_Clone` | Clone an Asset |
 
-### Blueprints (3000–3011)
+### Blueprints (3000–3012)
 
 | Event ID | Event name | Trigger |
 |---|---|---|
@@ -111,6 +111,7 @@ Assets are called *descriptions* in the API and data model, so audit event names
 | 3009 | `PlanBlueprintType_Lookup` | Retrieve a single Blueprint type |
 | 3010 | `PlanBlueprintType_Persist` | Create or update a Blueprint type |
 | 3011 | `PlanBlueprintType_Delete` | Delete a Blueprint type |
+| 3012 | `PlanBlueprint_AssignUsers` | Set the editors of a Plan Blueprint |
 
 ### Asset templates (8000–8008)
 

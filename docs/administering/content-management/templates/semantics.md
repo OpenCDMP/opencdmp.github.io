@@ -51,6 +51,19 @@ Keys are always stored in full. Under an object, the editor may show a key short
 The same object on two sections or questions is allowed: the export merges them. The import cannot tell them apart, so it fills only the first one.
 :::
 
+## Keys from reference types {#keys-from-reference-types}
+
+A reference input can take its keys from its [reference type](/docs/administering/system-configuration/reference-types.md#fields) instead of carrying them itself. In the type's **Fields** tab, expand the built-in row to set **Reference ID semantics**, **Name semantics**, and **Description semantics**, and expand any other field to set its **Semantics**. A picked reference then supplies each key with its ID, name, description, or the value of that field.
+
+For example, an `organisations` type whose Reference ID semantics is `rda.dataset.creator.affiliation.affiliation_id.identifier` and whose Name semantics is `rda.dataset.creator.affiliation.name` makes every organisation picked in a creator question an affiliation of that creator, with its ROR id and name, without any key on the input.
+
+- **A key on the input wins.** A key the input carries itself takes the picked reference's ID, as before; the type's keys add the other values.
+- **One object per picked reference.** Two organisations picked in one answer give two affiliations, and the answer's other values are copied into each.
+- **Alternatives and complements.** Reference inputs of one answer that fill the same keys are alternatives: each of their picks is an object of its own. Inputs that fill different keys complete each other: a funder and two grants picked in one project answer give two fundings, each with the funder.
+- **Import.** A transformer that imports the object rebuilds the picked references from the file, with the ID, name, description, and fields its type's keys give. OpenCDMP links each one to an existing reference of the type with the same ID, or adds it as a new reference.
+
+The [RDA maDMP JSON](/docs/optional-services/file-transformers/rda-json-semantics.md#picked-references) and [RAiD JSON](/docs/optional-services/file-transformers/raid-json-semantics.md#how-the-transformer-resolves-fields) file transformers and the [Zenodo](/docs/optional-services/deposit-services/zenodo-semantics.md#how-the-plugin-resolves-fields), [Dataverse](/docs/optional-services/deposit-services/dataverse-semantics.md#how-the-plugin-resolves-fields), [DSpace](/docs/optional-services/deposit-services/dspace-semantics.md#how-the-plugin-resolves-fields), [CKAN](/docs/optional-services/deposit-services/ckan-semantics.md#how-the-plugin-resolves-fields), and [Fedora](/docs/optional-services/deposit-services/fedora-semantics.md#how-the-plugin-resolves-fields) deposit services read keys this way. The deposit services take one value per chosen reference; the rules on alternatives, complements, and import apply to the file transformers.
+
 ## Answer options that stand for key values {#answer-options-that-stand-for-key-values}
 
 A select or radio input can let one answer set several keys at once. Each option can carry a list of key/value pairs, for example:

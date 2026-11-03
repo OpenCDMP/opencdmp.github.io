@@ -4,7 +4,7 @@ description: The editor shared by plan blueprints and asset templates, from the 
 
 # The blueprint and template editor
 
-Plan blueprints and asset templates are built in the same editor. [Plan Blueprints](/docs/administering/content-management/blueprints/index.md) and [Asset Templates](/docs/administering/content-management/templates/index.md) cover what is specific to each, such as their required preset fields, the assets a blueprint section collects, and the editors of a template.
+Plan blueprints and asset templates are built in the same editor. [Plan Blueprints](/docs/administering/content-management/blueprints/index.md) and [Asset Templates](/docs/administering/content-management/templates/index.md) cover what is specific to each, such as their required preset fields, the assets a blueprint section collects, and the editors of a blueprint or template.
 
 The editor opens when you create, edit, clone, or create a new version of a blueprint or template. In the examples below, *template* stands for either.
 
@@ -56,7 +56,7 @@ The **Export template** card holds the settings of the export plugins your organ
 
 The **How authors will see it** side card previews the template as authors meet it.
 
-The Details tab of a blueprint also holds the [plan creation consent](/docs/administering/content-management/blueprints/index.md#plan-creation-consent), and that of an asset template its language and its [editors](/docs/administering/content-management/templates/index.md#editors).
+The Details tab of a blueprint also holds its [editors](/docs/administering/content-management/blueprints/index.md#editors) and the [plan creation consent](/docs/administering/content-management/blueprints/index.md#plan-creation-consent), and that of an asset template its language and its [editors](/docs/administering/content-management/templates/index.md#editors).
 
 ---
 

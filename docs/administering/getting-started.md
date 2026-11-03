@@ -35,7 +35,7 @@ In **Organisation > Users**, click **Invite users** to invite people by email wi
 3. **Languages & texts**: the languages people can pick, and your own wording for any text of the application. See [Languages](/docs/administering/system-configuration/languages.md).
 4. **Plugins**: which export formats, repositories, and evaluators your users get, and their settings. See [Plugins](/docs/administering/tenant-management/plugins.md).
 5. **Notifications** and **Notification templates**: the channels each notification uses, and its wording. See [Notifications](/docs/administering/tenant-management/notifications.md) and [Notification templates](/docs/administering/system-configuration/notification-templates.md).
-6. **Users & onboarding**: the terms and conditions people accept before first use, and the guided tours. Terms are not inherited from the Default organisation: without your own, nobody is asked to accept any. See [Users & onboarding](/docs/administering/tenant-management/users-and-onboarding.md).
+6. **Users & onboarding**: the slides on members' Dashboard, the terms and conditions people accept before first use, and the guided tours. Terms are not inherited from the Default organisation: without your own, nobody is asked to accept any. See [Users & onboarding](/docs/administering/tenant-management/users-and-onboarding.md).
 7. **Help pages & legal**: the About, FAQ, User Guide, and policy pages, if the built-in texts do not suit you. See [Help pages & legal](/docs/administering/system-configuration/supportive-material.md).
 
 ## 5. Check the reference types

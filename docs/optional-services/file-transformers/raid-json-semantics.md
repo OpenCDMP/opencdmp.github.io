@@ -22,7 +22,8 @@ How an answer is read:
 
 - Text inputs give their text, Yes/No and checkbox inputs `true` or `false`, number inputs the number, and date inputs `yyyy-MM-dd`.
 - Select and radio inputs give the value of the chosen option. To write a RAiD vocabulary value, use it as the option's value and give the option a readable label.
-- Reference inputs give the picked reference's value, for example its ROR or ORCID address.
+- Reference inputs give the picked reference's value, for example its ROR or ORCID address, for a key the input carries. A reference input can also take keys from its [reference type](/docs/administering/content-management/templates/semantics.md#keys-from-reference-types): each such key gives the picked reference's ID, name, description, or the field the type assigns it.
+- In a list, each picked reference produces its own entry, with the answer's other values copied into each: two organisations picked in one answer give two `organisations` entries. Reference inputs that fill the same keys are alternatives; inputs that fill different keys are combined, one pick of each.
 - Tags inputs give their first tag.
 
 ## Values that are always set
@@ -160,6 +161,7 @@ Importing a RAiD JSON file creates a new plan:
 - The plan's title is the file's primary title, or its first title when none is marked primary.
 - The plan is public when `access.type.id` is open access, and restricted otherwise.
 - The `identifier`, `date`, and `access` values are written to the blueprint questions carrying their semantics. The lists are not read back, and no assets are created.
+- A reference input that takes `identifier`, `date`, or `access` keys only through its reference type gets one reference made from the file: its ID from the type's Reference ID key, its name, description, and fields from the type's other keys. OpenCDMP links it to an existing reference of the type with the same ID, or adds it as a new reference.
 
 ## Related
 
