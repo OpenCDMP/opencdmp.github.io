@@ -22,20 +22,20 @@ The Notification Service and Annotation Service are closed-source components dis
 
 | Service | Version | Released |
 |---|---|---|
-| API Service | 2.0.2 | 2026-11-03 |
-| Webapp | 2.0.2 | 2026-11-03 |
-| File Transformer — Docx | 2.0.1 | 2026-11-03 |
-| File Transformer — RDA maDMP | 2.0.1 | 2026-11-03 |
-| File Transformer — RAiD | 2.0.1 | 2026-11-03 |
-| Deposit Service — Zenodo | 2.0.2 | 2026-11-03 |
-| Deposit Service — DSpace | 2.0.2 | 2026-11-03 |
-| Deposit Service — CKAN | 2.0.2 | 2026-11-03 |
-| Deposit Service — Dataverse | 2.0.2 | 2026-11-03 |
-| Deposit Service — Fedora | 2.0.2 | 2026-11-03 |
-| Evaluator — RDA maDMP | 2.0.1 | 2026-11-03 |
-| Evaluator — OSTrails DMP Evaluation Service | 2.0.2 | 2026-11-03 |
-| Evaluator — OpenAIRE FAIR | 2.0.1 | 2026-11-03 |
-| RDA maDMP API | 2.0.1 | 2026-11-03 |
+| API Service | 2.0.3 | 2026-11-23 |
+| Webapp | 2.0.3 | 2026-11-23 |
+| File Transformer — Docx | 2.0.2 | 2026-11-23 |
+| File Transformer — RDA maDMP | 2.0.2 | 2026-11-23 |
+| File Transformer — RAiD | 2.0.2 | 2026-11-23 |
+| Deposit Service — Zenodo | 2.0.3 | 2026-11-23 |
+| Deposit Service — DSpace | 2.0.3 | 2026-11-23 |
+| Deposit Service — CKAN | 2.0.3 | 2026-11-23 |
+| Deposit Service — Dataverse | 2.0.3 | 2026-11-23 |
+| Deposit Service — Fedora | 2.0.3 | 2026-11-23 |
+| Evaluator — RDA maDMP | 2.0.2 | 2026-11-23 |
+| Evaluator — OSTrails DMP Evaluation Service | 2.0.3 | 2026-11-23 |
+| Evaluator — OpenAIRE FAIR | 2.0.2 | 2026-11-23 |
+| RDA maDMP API | 2.0.2 | 2026-11-23 |
 | Notification Service | 0.0.23 | — |
 | Annotation Service | 0.0.25 | — |
 
@@ -53,6 +53,13 @@ The Notification Service and Annotation Service are closed-source components dis
 | Deposit services 2.0.2 | 2026-11-03 | Keys are read through the reference type of a picked reference; the images run on `eclipse-temurin:21-jre-noble` instead of Alpine, where outgoing HTTPS calls failed; DSpace reports the repository's errors and checks that the previous item can be versioned; Dataverse creates datasets with a dataset type |
 | Evaluators 2.0.1 / OSTrails 2.0.2 | 2026-11-03 | Evaluation requests are audited by plan or asset id instead of the full model |
 | RDA maDMP API 2.0.1 | 2026-11-03 | Builds on common-models 2.0.1 |
+| API and Webapp 2.0.3 | 2026-11-23 | Runs on Java 21.0.13.1 (CVE-2026-114938). Changing a plan's asset templates now requires permission to edit the plan, and a finalized plan can no longer be changed by saving it. User invitations are emailed again, and the CC and BCC recipients of notifications reach the notification service; a plan can't be deposited twice at once to the same repository, and the plan overview shows deposits still running; new blueprint and template versions start as drafts, and finalizing one that adds an editor keeps it as the current version; organisations can limit the benchmarks and tests each evaluator offers; deleting an asset template that assets use returns a clear error; input labels show when a question has several inputs, and the template editor flags visibility rules whose target question was deleted; keyboard and screen-reader fixes, and layouts for small screens. The upgrade runs one database migration at startup (a status for DOI records) |
+| OSTrails evaluator 2.0.3 | 2026-11-23 | Runs on Java 21.0.13.1 (CVE-2026-114938); reads the test list from the service's new JSON-LD endpoint, so the test picker is no longer empty |
+| File transformers 2.0.2, RDA maDMP and OpenAIRE FAIR evaluators 2.0.2, RDA maDMP API 2.0.2, deposit services 2.0.3 | 2026-11-23 | Rebuilt on Java 21.0.13.1 (CVE-2026-114938); no code changes |
+
+:::warning Security release
+CVE-2026-114938 is a heap overflow in the HotSpot JIT compiler (CVSS 8.1), fixed in OpenJDK 21.0.13.1. The API service and plugin images released before 2026-11-23 run an affected Java; the Webapp image runs no Java. Upgrade the API service, the Webapp and every plugin to the versions above. The libraries (common-models and the base packages) ship no Java runtime and are unchanged.
+:::
 
 ### Highlights
 
